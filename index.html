@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
 
   <!-- PWA & Mobile Web App Meta & Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -2427,33 +2427,311 @@
          5. COUNTRY STRATEGIES SECTION (INDIA BILATERAL TRADING CARDS)
          =================================================================== -->
     <section id="view-strategies" class="view-section">
-      <!-- Hero Banner -->
-      <div class="strategies-hero">
-        <div class="strategies-hero-badge">
-          <span>🇮🇳 IAESTE India Strategic Intelligence</span>
+      <!-- Hero Banner (High-Tech Earth Globe & Animated Corridors matching reference image) -->
+      <div class="strategies-hero-redesign">
+        <!-- Left Column: Intelligence Badge, Title, Description, and 4 Glassmorphism Stat Cards -->
+        <div class="strategies-hero-left">
+          <div class="strategies-hero-badge">
+            <span>🇮🇳 IAESTE India Strategic Intelligence</span>
+          </div>
+
+          <h2 class="strat-hero-title">
+            Bilateral Country<br>
+            <span class="strat-hero-highlight">Exchange Strategies</span>
+          </h2>
+
+          <p class="strat-hero-sub">
+            Actionable intelligence and tactical trading cards for IAESTE India delegations. Explore verified opportunities, surplus targets, visa insights, and high-yield corridors for Phase-II and Annual Conference trading tables.
+          </p>
+
+          <div class="strategies-hero-stats">
+            <div class="hero-stat-box" onclick="resetStrategyFilters()" title="View All 16 Strategic Partner Profiles">
+              <div class="stat-icon-circle blue">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="stat-text-wrap">
+                <span class="val">16</span>
+                <span class="lbl">Partner Profiles</span>
+              </div>
+            </div>
+
+            <div class="hero-stat-box" onclick="filterStrategyPosture('surplus')" title="Filter by Surplus Targets (+Capacity)">
+              <div class="stat-icon-circle green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+              </div>
+              <div class="stat-text-wrap">
+                <span class="val">+29 / +34</span>
+                <span class="lbl">Top Surpluses (DE / AT)</span>
+              </div>
+            </div>
+
+            <div class="hero-stat-box" title="IAESTE India Cumulative 2026 Volume (80 Out / 72 In Official Report)">
+              <div class="stat-icon-circle amber">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+              </div>
+              <div class="stat-text-wrap">
+                <span class="val">80 / 72</span>
+                <span class="lbl">India Global 2026</span>
+              </div>
+            </div>
+
+            <div class="hero-stat-box" title="Full Offline Cache Available">
+              <div class="stat-icon-circle purple">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <div class="stat-text-wrap">
+                <span class="val">100%</span>
+                <span class="lbl">Conference Ready</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <h2>
-          <span>Bilateral Country Exchange Strategies</span>
-        </h2>
-        <p>
-          Actionable intelligence and tactical trading cards tailored specifically for IAESTE India delegations (LC Manipal, Karunya, JECRC, MUJ, and CI-SMU). Every profile synthesizes verified flow data from 2026 &amp; 2025 Activity Reports, net surplus balances, consular visa hurdles (ZAV / Cantonal permits), student compensation realities, and negotiation scripts for Phase-II and Annual Conference (AC) trading tables.
-        </p>
-        <div class="strategies-hero-stats">
-          <div class="hero-stat-box">
-            <span class="val">16</span>
-            <span class="lbl">Strategic Partner Profiles</span>
+
+        <!-- Right Side: Illuminated Earth Globe with Interactive Flight Arcs & Floating Glass Cards -->
+        <div class="strategies-globe-stage" id="strat-globe-stage">
+          <svg class="strat-globe-svg" viewBox="0 0 880 440" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <radialGradient id="stratSpaceGrad" cx="65%" cy="65%" r="70%">
+                <stop offset="0%" stop-color="#14213d" stop-opacity="0.85"/>
+                <stop offset="35%" stop-color="#0b1329" stop-opacity="0.95"/>
+                <stop offset="100%" stop-color="#050814" stop-opacity="1"/>
+              </radialGradient>
+              <radialGradient id="globeAtmosphereRim" cx="50%" cy="50%" r="50%">
+                <stop offset="70%" stop-color="#0284c7" stop-opacity="0"/>
+                <stop offset="90%" stop-color="#38bdf8" stop-opacity="0.45"/>
+                <stop offset="100%" stop-color="#60a5fa" stop-opacity="0.9"/>
+              </radialGradient>
+              <linearGradient id="stratCorridorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#93c5fd" stop-opacity="0.95"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Starfield Clusters -->
+            <g class="starfield-group" opacity="0.6">
+              <circle cx="80" cy="40" r="1" fill="#ffffff" />
+              <circle cx="160" cy="90" r="1.5" fill="#38bdf8" />
+              <circle cx="220" cy="30" r="0.8" fill="#ffffff" />
+              <circle cx="340" cy="75" r="1.2" fill="#ffffff" />
+              <circle cx="480" cy="35" r="1.5" fill="#93c5fd" />
+              <circle cx="560" cy="90" r="0.9" fill="#ffffff" />
+              <circle cx="680" cy="45" r="1.4" fill="#38bdf8" />
+              <circle cx="750" cy="80" r="1" fill="#ffffff" />
+              <circle cx="820" cy="30" r="1.6" fill="#ffffff" />
+              <circle cx="860" cy="110" r="1" fill="#93c5fd" />
+            </g>
+
+            <!-- Illuminated Earth Sphere Horizon Arc -->
+            <ellipse cx="620" cy="560" rx="540" ry="430" fill="url(#stratSpaceGrad)"/>
+            <ellipse cx="620" cy="560" rx="540" ry="430" fill="url(#globeAtmosphereRim)"/>
+            <ellipse cx="620" cy="560" rx="539" ry="429" fill="none" stroke="#60a5fa" stroke-width="2.5" opacity="0.85" filter="drop-shadow(0 0 10px #38bdf8)"/>
+
+            <!-- Night City Lights & Land Contours -->
+            <!-- Europe -->
+            <path class="strat-continent-path" d="M380,130 Q440,110 500,125 Q520,150 490,175 Q450,190 410,185 Q375,165 380,130 Z"/>
+            <!-- Africa -->
+            <path class="strat-continent-path" d="M390,200 Q450,195 490,230 Q510,290 470,360 Q430,365 400,290 Q380,240 390,200 Z"/>
+            <!-- Middle East -->
+            <path class="strat-continent-path" d="M500,190 Q545,185 565,220 Q570,250 540,260 Q515,250 500,220 Z"/>
+            <!-- India Subcontinent (Golden Center) -->
+            <path class="strat-continent-path strat-india-land" d="M590,230 Q630,225 645,260 Q635,295 620,320 Q605,310 595,270 Q585,250 590,230 Z"/>
+            <!-- East & Southeast Asia -->
+            <path class="strat-continent-path" d="M640,140 Q710,120 780,145 Q820,190 770,240 Q730,260 670,240 Q630,210 640,140 Z"/>
+            <!-- Japan Archipelago -->
+            <path class="strat-continent-path" d="M785,160 Q805,150 810,180 Q800,205 780,195 Z"/>
+
+            <!-- Glowing City Light Clusters -->
+            <g class="city-lights-group" opacity="0.85">
+              <circle cx="430" cy="145" r="2.5" fill="#fef08a" filter="drop-shadow(0 0 3px #fde047)"/>
+              <circle cx="455" cy="165" r="2" fill="#fef08a"/>
+              <circle cx="485" cy="140" r="2" fill="#fef08a"/>
+              <circle cx="535" cy="235" r="2.5" fill="#fed7aa" filter="drop-shadow(0 0 3px #fb923c)"/>
+              <circle cx="612" cy="265" r="3.5" fill="#38bdf8" filter="drop-shadow(0 0 5px #0284c7)"/>
+              <circle cx="620" cy="290" r="2" fill="#fed7aa"/>
+              <circle cx="700" cy="220" r="2" fill="#fef08a"/>
+              <circle cx="795" cy="175" r="3" fill="#67e8f9" filter="drop-shadow(0 0 4px #06b6d4)"/>
+            </g>
+
+            <!-- Curved Flight Corridors from India (612, 268) -->
+            <g id="strat-corridors-group">
+              <!-- To Germany (430, 142) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 500 160 430 142"/>
+              <path class="strat-corridor-pulse" id="sc-germany" d="M 612 268 Q 500 160 430 142"/>
+
+              <!-- To Japan (795, 175) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 720 180 795 175"/>
+              <path class="strat-corridor-pulse" id="sc-japan" d="M 612 268 Q 720 180 795 175"/>
+
+              <!-- To Austria (460, 165) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 525 190 460 165"/>
+              <path class="strat-corridor-pulse" id="sc-austria" d="M 612 268 Q 525 190 460 165"/>
+
+              <!-- To Czech Republic (475, 150) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 535 180 475 150"/>
+              <path class="strat-corridor-pulse" id="sc-czech" d="M 612 268 Q 535 180 475 150"/>
+
+              <!-- To Poland (495, 138) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 545 170 495 138"/>
+              <path class="strat-corridor-pulse" id="sc-poland" d="M 612 268 Q 545 170 495 138"/>
+
+              <!-- To UK (390, 132) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 480 150 390 132"/>
+              <path class="strat-corridor-pulse" id="sc-uk" d="M 612 268 Q 480 150 390 132"/>
+
+              <!-- To Spain (380, 185) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 470 210 380 185"/>
+              <path class="strat-corridor-pulse" id="sc-spain" d="M 612 268 Q 470 210 380 185"/>
+
+              <!-- To Switzerland (425, 168) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 505 195 425 168"/>
+              <path class="strat-corridor-pulse" id="sc-switzerland" d="M 612 268 Q 505 195 425 168"/>
+
+              <!-- To Oman / UAE (535, 240) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 570 248 535 240"/>
+              <path class="strat-corridor-pulse" id="sc-oman" d="M 612 268 Q 570 248 535 240"/>
+
+              <!-- To Thailand (695, 255) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 655 258 695 255"/>
+              <path class="strat-corridor-pulse" id="sc-thailand" d="M 612 268 Q 655 258 695 255"/>
+
+              <!-- To Brazil (270, 310) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 420 310 270 310"/>
+              <path class="strat-corridor-pulse" id="sc-brazil" d="M 612 268 Q 420 310 270 310"/>
+
+              <!-- To USA (180, 160) -->
+              <path class="strat-corridor-base" d="M 612 268 Q 350 140 180 160"/>
+              <path class="strat-corridor-pulse" id="sc-usa" d="M 612 268 Q 350 140 180 160"/>
+            </g>
+
+            <!-- India Beacon Rings -->
+            <circle class="strat-hub-aura-1" cx="612" cy="268" r="14" fill="none" stroke="#38bdf8" stroke-width="2.2"/>
+            <circle class="strat-hub-aura-2" cx="612" cy="268" r="28" fill="none" stroke="#60a5fa" stroke-width="1.8"/>
+            <circle class="strat-hub-aura-3" cx="612" cy="268" r="44" fill="none" stroke="#93c5fd" stroke-width="1.2"/>
+          </svg>
+
+          <!-- Interactive HTML Nodes & Overlays -->
+          <div class="strat-nodes-overlay">
+            <!-- Central India Node -->
+            <div class="strat-node-india" style="left:69.5%; top:60.9%;" onclick="filterAndScrollStrategy('India')" title="IAESTE India National Operations">
+              <span class="flag-pill flag-in" style="width:24px; height:16px;"></span>
+              <div class="strat-pulse-dot"></div>
+            </div>
+
+            <!-- Germany Node -->
+            <div class="strat-node-point active" style="left:48.8%; top:32.2%;" onclick="filterAndScrollStrategy('Germany')" onmouseenter="showStratTooltip('Germany', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- Japan Node -->
+            <div class="strat-node-point" style="left:90.3%; top:39.7%;" onclick="filterAndScrollStrategy('Japan')" onmouseenter="showStratTooltip('Japan', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- Austria Node -->
+            <div class="strat-node-point" style="left:52.2%; top:37.5%;" onclick="filterAndScrollStrategy('Austria')" onmouseenter="showStratTooltip('Austria', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- Czech Republic Node -->
+            <div class="strat-node-point" style="left:53.9%; top:34.1%;" onclick="filterAndScrollStrategy('Czech Republic')" onmouseenter="showStratTooltip('Czech Republic', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- Poland Node -->
+            <div class="strat-node-point" style="left:56.2%; top:31.3%;" onclick="filterAndScrollStrategy('Poland')" onmouseenter="showStratTooltip('Poland', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- UK Node -->
+            <div class="strat-node-point" style="left:44.3%; top:30.0%;" onclick="filterAndScrollStrategy('United Kingdom')" onmouseenter="showStratTooltip('United Kingdom', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- Spain Node -->
+            <div class="strat-node-point" style="left:43.1%; top:42.0%;" onclick="filterAndScrollStrategy('Spain')" onmouseenter="showStratTooltip('Spain', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- Switzerland Node -->
+            <div class="strat-node-point" style="left:48.3%; top:38.1%;" onclick="filterAndScrollStrategy('Switzerland')" onmouseenter="showStratTooltip('Switzerland', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- Oman Node -->
+            <div class="strat-node-point" style="left:60.7%; top:54.5%;" onclick="filterAndScrollStrategy('Oman')" onmouseenter="showStratTooltip('Oman', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- Thailand Node -->
+            <div class="strat-node-point" style="left:78.9%; top:57.9%;" onclick="filterAndScrollStrategy('Thailand')" onmouseenter="showStratTooltip('Thailand', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- Brazil Node -->
+            <div class="strat-node-point" style="left:30.6%; top:70.4%;" onclick="filterAndScrollStrategy('Brazil')" onmouseenter="showStratTooltip('Brazil', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
+
+            <!-- USA Node -->
+            <div class="strat-node-point" style="left:20.4%; top:36.3%;" onclick="filterAndScrollStrategy('United States')" onmouseenter="showStratTooltip('United States', event)" onmouseleave="hideStratTooltip()">
+              <div class="point-circle-dot"></div>
+              <div class="point-radar-ring"></div>
+            </div>
           </div>
-          <div class="hero-stat-box">
-            <span class="val">+29 / +34</span>
-            <span class="lbl">Top Surpluses (DE / AT)</span>
+
+          <!-- Floating Glassmorphic Strategic Card: Germany (Top-Right) -->
+          <div class="strat-float-card strat-card-de" onclick="filterAndScrollStrategy('Germany')" title="Click to view Germany Bilateral Trading Card">
+            <div class="sfc-flag">🇩🇪</div>
+            <div class="sfc-info">
+              <div class="sfc-title">Germany</div>
+              <div class="sfc-tags">
+                <span class="sfc-tag green">+34 Surplus</span>
+                <span class="sfc-tag purple">High Yield</span>
+              </div>
+            </div>
+            <div class="sfc-chart" title="Materialization Confidence">
+              <span class="bar b1"></span>
+              <span class="bar b2"></span>
+              <span class="bar b3"></span>
+            </div>
           </div>
-          <div class="hero-stat-box">
-            <span class="val">80 Out / 72 In</span>
-            <span class="lbl">India Global 2026 Volume</span>
+
+          <!-- Floating Glassmorphic Strategic Card: Japan (Bottom-Right) -->
+          <div class="strat-float-card strat-card-jp" onclick="filterAndScrollStrategy('Japan')" title="Click to view Japan Bilateral Trading Card">
+            <div class="sfc-flag">🇯🇵</div>
+            <div class="sfc-info">
+              <div class="sfc-title">Japan</div>
+              <div class="sfc-tags">
+                <span class="sfc-tag green">+12 Surplus</span>
+                <span class="sfc-tag blue">Tech / R&D</span>
+              </div>
+            </div>
+            <div class="sfc-chart" title="Materialization Confidence">
+              <span class="bar b1"></span>
+              <span class="bar b2"></span>
+              <span class="bar b3"></span>
+            </div>
           </div>
-          <div class="hero-stat-box">
-            <span class="val">100% Offline</span>
-            <span class="lbl">Conference Ready</span>
+
+          <!-- Dynamic Hover Popover for Any Country Point -->
+          <div class="strat-dynamic-popover" id="strat-dynamic-popover">
+            <div class="sdp-header">
+              <span class="sdp-flag" id="sdp-flag">🇦🇹</span>
+              <span class="sdp-name" id="sdp-name">Austria</span>
+            </div>
+            <div class="sdp-meta" id="sdp-meta">+34 Surplus · Elite Labs</div>
+            <div class="sdp-prompt">Click point to view trading card ➔</div>
           </div>
         </div>
       </div>
@@ -2465,15 +2743,16 @@
             <svg class="strategies-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input type="text" id="strategy-search-box" placeholder="Search country, branch (CS, biotech, robotics), or visa requirement..." oninput="handleStrategySearch(this.value)">
           </div>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="resetStrategyFilters()">
-            Reset Filters
+          <button type="button" class="btn btn-secondary btn-sm btn-strat-reset" onclick="resetStrategyFilters()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>
+            <span>Reset Filters</span>
           </button>
         </div>
 
         <!-- Region Filter Pills -->
         <div class="filter-pills-row">
           <span class="filter-group-label">Region:</span>
-          <button type="button" class="filter-pill active" data-region="all" onclick="filterStrategyRegion('all')">All Regions</button>
+          <button type="button" class="filter-pill active" data-region="all" onclick="filterStrategyRegion('all')">🌐 All Regions</button>
           <button type="button" class="filter-pill" data-region="EU/EFTA" onclick="filterStrategyRegion('EU/EFTA')">🇪🇺 EU &amp; EFTA</button>
           <button type="button" class="filter-pill" data-region="Americas" onclick="filterStrategyRegion('Americas')">🌎 Americas</button>
           <button type="button" class="filter-pill" data-region="Asia-Pacific" onclick="filterStrategyRegion('Asia-Pacific')">🌏 Asia-Pacific</button>
@@ -2706,7 +2985,7 @@
   <script src="country_strategies_data.js"></script>
 
   <!-- Main Engine Logic -->
-  <script src="app.js?v=8"></script>
+  <script src="app.js?v=9"></script>
 
 </body>
 </html>

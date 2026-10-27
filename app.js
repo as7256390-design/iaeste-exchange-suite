@@ -5578,6 +5578,87 @@ ${c.tacticalWarnings.map(w => '  ! ' + w).join('\n')}
   });
 }
 
+/**
+ * Interactive Earth Globe point click helper:
+ * Filters to target country, scrolls to grid, and highlights card
+ */
+function filterAndScrollStrategy(countryName) {
+  if (!countryName || countryName === 'India') {
+    resetStrategyFilters();
+    return;
+  }
+  window.strategyFilterState = { region: 'all', posture: 'all', search: countryName };
+  const searchInput = document.getElementById('strategy-search-box');
+  if (searchInput) searchInput.value = countryName;
+
+  document.querySelectorAll('[data-region]').forEach(el => {
+    el.classList.toggle('active', el.getAttribute('data-region') === 'all');
+  });
+  document.querySelectorAll('[data-posture]').forEach(el => {
+    if (el.tagName === 'BUTTON') {
+      el.classList.toggle('active', el.getAttribute('data-posture') === 'all');
+    }
+  });
+
+  renderCountryStrategiesView();
+
+  const grid = document.getElementById('country-strategies-grid');
+  if (grid) {
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(() => {
+      const card = grid.querySelector('.strategy-card');
+      if (card) {
+        card.style.transform = 'translateY(-6px) scale(1.02)';
+        card.style.borderColor = '#2563eb';
+        card.style.boxShadow = '0 12px 30px rgba(37, 99, 235, 0.25)';
+        setTimeout(() => {
+          card.style.transform = '';
+          card.style.borderColor = '';
+          card.style.boxShadow = '';
+        }, 1800);
+      }
+    }, 450);
+  }
+}
+window.filterAndScrollStrategy = filterAndScrollStrategy;
+
+function showStratTooltip(countryName, e) {
+  const popover = document.getElementById('strat-dynamic-popover');
+  if (!popover) return;
+  const dataset = window.COUNTRY_STRATEGIES_DATA || [];
+  const c = dataset.find(x => x.country.toLowerCase() === countryName.toLowerCase());
+  
+  const flagEl = document.getElementById('sdp-flag');
+  const nameEl = document.getElementById('sdp-name');
+  const metaEl = document.getElementById('sdp-meta');
+
+  if (c) {
+    if (flagEl) flagEl.textContent = c.flag;
+    if (nameEl) nameEl.textContent = c.country;
+    if (metaEl) metaEl.textContent = `${c.netBalance > 0 ? '+' : ''}${c.netBalance} Net · ${c.postureLabel}`;
+  } else {
+    if (nameEl) nameEl.textContent = countryName;
+    if (metaEl) metaEl.textContent = 'Strategic IAESTE Partner';
+  }
+
+  const target = e.currentTarget;
+  const stage = document.getElementById('strat-globe-stage');
+  if (target && stage) {
+    const rect = target.getBoundingClientRect();
+    const stageRect = stage.getBoundingClientRect();
+    popover.style.left = `${rect.left - stageRect.left + rect.width / 2}px`;
+    popover.style.top = `${rect.top - stageRect.top - 8}px`;
+    popover.classList.add('visible');
+  }
+}
+window.showStratTooltip = showStratTooltip;
+
+function hideStratTooltip() {
+  const popover = document.getElementById('strat-dynamic-popover');
+  if (popover) popover.classList.remove('visible');
+}
+window.hideStratTooltip = hideStratTooltip;
+
 function focusCountryInAnalyser(countryName) {
   switchTab('analyser');
   setTimeout(() => {
