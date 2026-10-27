@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 
   <!-- PWA & Mobile Web App Meta & Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -401,11 +401,48 @@
 
 
       <!-- Core Tools Grid -->
-      <div class="tools-grid">
+      <!-- ===================================================================
+           PLATFORM MODULES SECTION (Header & Visual Animated Cards)
+           =================================================================== -->
+      <div class="modules-section-header">
+        <div class="modules-header-left">
+          <div class="modules-tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            </svg>
+            <span>PLATFORM MODULES</span>
+          </div>
+          <h2 class="modules-title">Everything You Need, In One Suite</h2>
+          <p class="modules-subtitle">
+            Track activities, grade offers, analyse trade leads, and explore country strategies — all in one unified platform built for IAESTE operations.
+          </p>
+        </div>
+        <div class="modules-header-right">
+          <div class="global-opps-card" onclick="switchTab('strategies')" title="Explore Global Opportunities & Country Strategies">
+            <div class="global-opps-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <div class="global-opps-text">
+              <strong>Global Opportunities</strong>
+              <span>Stronger Collaborations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Tools 4-Column Grid -->
+      <div class="tools-grid tools-grid-redesign">
         
         <!-- Tool 1: Activity Reports Analyser -->
-        <article class="tool-card">
-          <div>
+        <article class="tool-card card-analyser-module" onclick="if(!event.target.closest('button, .tool-chip')) switchTab('analyser')">
+          <div class="tool-card-top">
             <div class="tool-card-header">
               <div class="tool-icon analyser-icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
@@ -414,25 +451,54 @@
                 <h3>Activity Analyser</h3>
                 <span>Multi-Year Official Reports</span>
               </div>
+              <button type="button" class="tool-arrow-btn" onclick="event.stopPropagation(); switchTab('analyser')" title="Open Activity Analyser">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
             </div>
+
             <p class="tool-desc">
               Ingest IAESTE activity reports across 69 committees. Discover partner trade surpluses, bilateral corridors, 6-year trend trajectories, and employer cancellation risks.
             </p>
+
+            <!-- Visual Graphic Widget: Animated Bar Chart -->
+            <div class="card-visual-widget visual-analyser">
+              <div class="visual-badge green">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                <span>18%</span>
+              </div>
+              <div class="visual-bars-container blue-bars">
+                <div class="vbar"><div class="vbar-fill" style="height: 38%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 52%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 68%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 88%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 72%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 94%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 62%;"></div></div>
+              </div>
+            </div>
+
             <div class="tool-chips">
               <span class="tool-chip">6-Year Archive</span>
               <span class="tool-chip">570+ Corridors</span>
               <span class="tool-chip">Surplus Matrix</span>
             </div>
           </div>
+
           <div class="tool-actions">
-            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('analyser')">Open Analyser</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="loadPreloadedAnalyserData()">Load Archive</button>
+            <button type="button" class="btn btn-primary btn-sm btn-tool-primary blue" onclick="event.stopPropagation(); switchTab('analyser')">
+              <span>Open Analyser</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); loadPreloadedAnalyserData()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+              <span>Load Archive</span>
+            </button>
           </div>
         </article>
 
         <!-- Tool 2A: Incoming Offers Grader -->
-        <article class="tool-card">
-          <div>
+        <article class="tool-card card-incoming-module" onclick="if(!event.target.closest('button, .tool-chip')) switchTab('grader-incoming')">
+          <div class="tool-card-top">
             <div class="tool-card-header">
               <div class="tool-icon incoming-icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
@@ -441,25 +507,55 @@
                 <h3>Incoming Grader</h3>
                 <span>Indian Local Committees</span>
               </div>
+              <button type="button" class="tool-arrow-btn" onclick="event.stopPropagation(); switchTab('grader-incoming')" title="Open Incoming Grader">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
             </div>
+
             <p class="tool-desc">
               Audit internal offers from LC Manipal, Karunya, JECRC, MUJ, and CI-SMU. Evaluates INR living allowances, on-campus lodging bonusing, and Phase-II conference tradeability.
             </p>
+
+            <!-- Visual Graphic Widget: Orange Bar Chart + Offers Pill -->
+            <div class="card-visual-widget visual-incoming">
+              <div class="visual-badge-pill orange">
+                <span class="badge-dot orange"></span>
+                <strong>246</strong>
+                <span>Offers Audited</span>
+              </div>
+              <div class="visual-bars-container orange-bars">
+                <div class="vbar"><div class="vbar-fill" style="height: 35%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 58%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 48%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 92%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 70%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 84%;"></div></div>
+                <div class="vbar"><div class="vbar-fill" style="height: 60%;"></div></div>
+              </div>
+            </div>
+
             <div class="tool-chips">
               <span class="tool-chip">4 LCs + 1 CI</span>
               <span class="tool-chip">Lodging Multiplier</span>
               <span class="tool-chip">A+ to D Tiers</span>
             </div>
           </div>
+
           <div class="tool-actions">
-            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('grader-incoming')">Open Grader</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="loadSampleIncomingOffersData()">Stage 25 Offers</button>
+            <button type="button" class="btn btn-primary btn-sm btn-tool-primary orange" onclick="event.stopPropagation(); switchTab('grader-incoming')">
+              <span>Open Grader</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); loadSampleIncomingOffersData()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              <span>Stage 25 Offers</span>
+            </button>
           </div>
         </article>
 
         <!-- Tool 2B: Outgoing Offers Grader -->
-        <article class="tool-card">
-          <div>
+        <article class="tool-card card-outgoing-module" onclick="if(!event.target.closest('button, .tool-chip')) switchTab('grader-outgoing')">
+          <div class="tool-card-top">
             <div class="tool-card-header">
               <div class="tool-icon outgoing-icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -468,25 +564,56 @@
                 <h3>Outgoing Grader</h3>
                 <span>Live Table Scoring</span>
               </div>
+              <button type="button" class="tool-arrow-btn" onclick="event.stopPropagation(); switchTab('grader-outgoing')" title="Open Outgoing Grader">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
             </div>
+
             <p class="tool-desc">
               Grade foreign offers received at conference trading tables. Calibrated for Indian students with net purchasing power in foreign currency, guaranteed lodging, and summer break fit.
             </p>
+
+            <!-- Visual Graphic Widget: Purple Wave Curve + 2.8 Badge -->
+            <div class="card-visual-widget visual-outgoing">
+              <div class="visual-badge-purple-pill">
+                <span>2.8</span>
+              </div>
+              <div class="visual-wave-svg">
+                <svg viewBox="0 0 260 80" preserveAspectRatio="none" fill="none">
+                  <path d="M0 55 C35 60, 60 38, 95 40 C125 42, 140 18, 160 14 C185 10, 205 32, 230 28 C245 25, 255 35, 260 32 L260 80 L0 80 Z" fill="url(#wave-purple-fill)" opacity="0.4"/>
+                  <path d="M0 55 C35 60, 60 38, 95 40 C125 42, 140 18, 160 14 C185 10, 205 32, 230 28 C245 25, 255 35, 260 32" stroke="#8b5cf6" stroke-width="2.8" stroke-linecap="round"/>
+                  <defs>
+                    <linearGradient id="wave-purple-fill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.8"/>
+                      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0.02"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+
             <div class="tool-chips">
               <span class="tool-chip">2-Sec Scorer</span>
               <span class="tool-chip">Purchasing Power</span>
               <span class="tool-chip">Summer Fit</span>
             </div>
           </div>
+
           <div class="tool-actions">
-            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('grader-outgoing')">Open Grader</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="openLiveEvaluatorModal()">⚡ Instant Scorer</button>
+            <button type="button" class="btn btn-primary btn-sm btn-tool-primary purple" onclick="event.stopPropagation(); switchTab('grader-outgoing')">
+              <span>Open Grader</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); openLiveEvaluatorModal()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              <span>Instant Scorer</span>
+            </button>
           </div>
         </article>
 
         <!-- Tool 3: Materialization Leads Engine -->
-        <article class="tool-card">
-          <div>
+        <article class="tool-card card-leads-module" onclick="if(!event.target.closest('button, .tool-chip')) switchTab('leads')">
+          <div class="tool-card-top">
             <div class="tool-card-header">
               <div class="tool-icon leads-icon">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
@@ -495,50 +622,132 @@
                 <h3>Trade Leads</h3>
                 <span>Materialization Intelligence</span>
               </div>
+              <button type="button" class="tool-arrow-btn" onclick="event.stopPropagation(); switchTab('leads')" title="Open Trade Leads">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
             </div>
+
             <p class="tool-desc">
               Discover which partner countries yield the highest realized traineeships. Backed by verified facts from IAESTE activity reports (completion %, cancellation rates, and fulfillment history).
             </p>
+
+            <!-- Visual Graphic Widget: Country Progress Bars -->
+            <div class="card-visual-widget visual-leads">
+              <div class="visual-lead-row" onclick="event.stopPropagation(); navigateToCountryLead('Austria')">
+                <span class="vlead-country"><span class="flag-pill-mini flag-at"></span> Austria</span>
+                <div class="vlead-bar-track"><div class="vlead-bar-fill green" style="width: 78%;"></div></div>
+                <span class="vlead-pct">78%</span>
+              </div>
+              <div class="visual-lead-row" onclick="event.stopPropagation(); navigateToCountryLead('Czechia')">
+                <span class="vlead-country"><span class="flag-pill-mini flag-cz"></span> Czechia</span>
+                <div class="vlead-bar-track"><div class="vlead-bar-fill blue" style="width: 79%;"></div></div>
+                <span class="vlead-pct">79%</span>
+              </div>
+              <div class="visual-lead-row" onclick="event.stopPropagation(); navigateToCountryLead('Japan')">
+                <span class="vlead-country"><span class="flag-pill-mini flag-jp"></span> Japan</span>
+                <div class="vlead-bar-track"><div class="vlead-bar-fill purple" style="width: 80%;"></div></div>
+                <span class="vlead-pct">80%</span>
+              </div>
+            </div>
+
             <div class="tool-chips">
-              <span class="tool-chip">Austria (78%)</span>
-              <span class="tool-chip">Czechia (79%)</span>
-              <span class="tool-chip">Japan (80%)</span>
+              <span class="tool-chip">Completion %</span>
+              <span class="tool-chip">Cancellation Rates</span>
+              <span class="tool-chip">Fulfillment</span>
             </div>
           </div>
+
           <div class="tool-actions">
-            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('leads')">View Leads</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="exportMaterializationReport()">Export CSV</button>
+            <button type="button" class="btn btn-primary btn-sm btn-tool-primary green" onclick="event.stopPropagation(); switchTab('leads')">
+              <span>View Leads</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); exportMaterializationReport()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Export CSV</span>
+            </button>
           </div>
         </article>
 
-        <!-- Tool 4: Bilateral Country Strategies (India Focus) -->
-        <article class="tool-card">
-          <div>
+      </div>
+
+      <!-- Wide Feature Card: Country Strategies 🇮🇳 -->
+      <div class="wide-feature-container">
+        <article class="tool-card tool-card-wide card-strategies-module" onclick="if(!event.target.closest('button, .tool-chip, .wide-germany-pill')) switchTab('strategies')">
+          <div class="wide-card-left">
             <div class="tool-card-header">
-              <div class="tool-icon leads-icon" style="background:#eff6ff; color:#2563eb;">
+              <div class="tool-icon strategies-icon" style="background:#eff6ff; color:#2563eb; border: 1px solid #bfdbfe;">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
               </div>
               <div class="tool-title-group">
                 <h3>Country Strategies 🇮🇳</h3>
                 <span>Bilateral AC Playbooks</span>
               </div>
+              <button type="button" class="tool-arrow-btn" onclick="event.stopPropagation(); switchTab('strategies')" title="Open Country Strategies">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
             </div>
+
             <p class="tool-desc">
               Tactical trading cards tailored specifically for IAESTE India delegations. Country-by-country strategies covering Germany (+29 surplus), Poland (cancellation mitigation), Austria, Switzerland, Oman, and 11+ partner nations with live scripts and visa timings.
             </p>
+
             <div class="tool-chips">
               <span class="tool-chip">16 Partner Profiles</span>
               <span class="tool-chip">AC Pitch Scripts</span>
               <span class="tool-chip">ZAV / Visa Timelines</span>
             </div>
+
+            <div class="tool-actions">
+              <button type="button" class="btn btn-primary btn-sm btn-tool-primary blue" onclick="event.stopPropagation(); switchTab('strategies')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 6h10"></path><path d="M6 10h10"></path></svg>
+                <span>Explore Strategies</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="event.stopPropagation(); switchTab('strategies'); setTimeout(() => filterStrategyPosture('surplus'), 100);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
+                <span>Surplus Targets</span>
+              </button>
+            </div>
           </div>
-          <div class="tool-actions">
-            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('strategies')">Explore Strategies</button>
-            <button type="button" class="btn btn-secondary btn-sm" onclick="switchTab('strategies'); setTimeout(() => filterStrategyPosture('surplus'), 100);">Surplus Targets</button>
+
+          <!-- Wide Card Right: Animated Bilateral Network Flight Map -->
+          <div class="wide-card-right">
+            <div class="wide-map-wrapper">
+              <svg class="wide-network-svg" viewBox="0 0 540 240" fill="none">
+                <!-- Continents Silhouettes -->
+                <path d="M70 70 Q100 45 130 80 Q120 120 90 140 Q60 110 70 70 Z" fill="#e2e8f0" opacity="0.45"/>
+                <path d="M210 50 Q260 30 300 55 Q310 90 270 110 Q230 100 210 50 Z" fill="#cbd5e1" opacity="0.55"/>
+                <path d="M320 60 Q400 40 450 80 Q430 130 380 120 Q340 100 320 60 Z" fill="#cbd5e1" opacity="0.55"/>
+                <path d="M240 120 Q280 130 290 170 Q250 180 240 120 Z" fill="#e2e8f0" opacity="0.45"/>
+
+                <!-- Flight Arcs from India hub -->
+                <path class="flight-corridor corridor-1" d="M330 135 C310 90, 260 70, 235 65" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4 4"/>
+                <path class="flight-corridor corridor-2" d="M330 135 C360 100, 410 90, 440 95" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4 4"/>
+                <path class="flight-corridor corridor-3" d="M330 135 C280 120, 240 140, 180 125" stroke="#93c5fd" stroke-width="1.8" stroke-dasharray="4 4"/>
+                <path class="flight-corridor corridor-4" d="M330 135 C300 160, 260 180, 200 170" stroke="#93c5fd" stroke-width="1.8" stroke-dasharray="4 4"/>
+
+                <!-- Hub Nodes with Radar Ping -->
+                <circle cx="330" cy="135" r="4.5" fill="#2563eb"/>
+                <circle cx="330" cy="135" r="10" stroke="#2563eb" stroke-width="1.2" class="radar-ping"/>
+                <circle cx="235" cy="65" r="4" fill="#10b981"/>
+                <circle cx="440" cy="95" r="4" fill="#3b82f6"/>
+                <circle cx="180" cy="125" r="3.5" fill="#3b82f6"/>
+              </svg>
+
+              <!-- Floating Germany Surplus Pill on the map -->
+              <div class="wide-germany-pill" onclick="event.stopPropagation(); navigateToCountryLead('Germany')" title="Germany +29 Surplus Strategy">
+                <span class="flag-pill flag-de"></span>
+                <div class="germany-pill-text">
+                  <strong>Germany</strong>
+                  <span class="surplus-tag">+29 Surplus</span>
+                </div>
+              </div>
+            </div>
           </div>
         </article>
-
       </div>
+
 
       <!-- Operational Workflow Section -->
       <div class="workflow-section">
@@ -2270,7 +2479,7 @@
   <script src="country_strategies_data.js"></script>
 
   <!-- Main Engine Logic -->
-  <script src="app.js?v=3"></script>
+  <script src="app.js?v=4"></script>
 
 </body>
 </html>
