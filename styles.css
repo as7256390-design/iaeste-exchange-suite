@@ -700,6 +700,22 @@ button, input, select, textarea {
   border-left: 8px solid #11457e;
 }
 
+.flag-in {
+  background: linear-gradient(to bottom, #ff9933 33.3%, #ffffff 33.3%, #ffffff 66.6%, #138808 66.6%);
+  position: relative;
+}
+.flag-in::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 1px solid #000080;
+  transform: translate(-50%, -50%);
+}
+
 /* --- Floating Glass Cards --- */
 .floating-glass-card {
   position: absolute;
@@ -3969,94 +3985,524 @@ button, input, select, textarea {
   font-weight: 700;
 }
 
-/* AI Lead Generator Card */
-.leads-generator-card {
+/* ===================================================================
+   TRADE LEADS HERO BANNER & MAP NETWORK (Pixel-Perfect from Reference)
+   =================================================================== */
+
+.leads-hero-redesign {
   background: #ffffff;
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
-  padding: 1.35rem 1.5rem;
-  margin-bottom: 1.75rem;
-  box-shadow: var(--shadow-sm);
+  border-radius: 20px;
+  padding: 2.25rem 2.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: relative;
   overflow: hidden;
 }
 
-.leads-generator-card::before {
-  content: '';
+.leads-hero-left {
+  max-width: 540px;
+  z-index: 2;
+}
+
+.leads-hero-left .lead-tag {
+  background: #eff6ff;
+  color: #2563eb;
+  font-weight: 800;
+  font-size: 0.725rem;
+  letter-spacing: 0.06em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+}
+
+.leads-hero-title {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.75rem 0;
+}
+
+.leads-hero-highlight {
+  color: #2563eb;
+  display: block;
+}
+
+.leads-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.leads-stat-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.leads-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px -4px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
+}
+
+.leads-stat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.leads-stat-icon.blue {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.leads-stat-icon.green {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.leads-stat-icon.amber {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.leads-stat-icon.purple {
+  background: #faf5ff;
+  color: #9333ea;
+}
+
+.leads-stat-num {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.leads-stat-lbl {
+  font-size: 0.725rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.leads-hero-right {
+  position: relative;
+  width: 520px;
+  height: 270px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.leads-map-showcase {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.leads-flight-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.flight-arc {
+  animation: flight-dash 15s linear infinite;
+}
+
+@keyframes flight-dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.leads-map-flag {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--primary) 0%, #06b6d4 50%, #10b981 100%);
+  border-radius: 4px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  z-index: 5;
+}
+
+.leads-map-flag:hover {
+  transform: scale(1.2) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+}
+
+.flag-pos-de {
+  top: 42px;
+  left: 200px;
+}
+
+.flag-pos-cz {
+  top: 105px;
+  left: 190px;
+}
+
+.flag-pos-in {
+  top: 130px;
+  left: 335px;
+}
+
+.flag-pos-jp {
+  top: 60px;
+  right: 25px;
+}
+
+.flag-pos-at {
+  bottom: 50px;
+  left: 290px;
+}
+
+@media (max-width: 1100px) {
+  .leads-hero-redesign {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.75rem 1.5rem;
+  }
+  .leads-hero-right {
+    width: 100%;
+    max-width: 500px;
+    height: 240px;
+    margin-top: 1.5rem;
+    align-self: center;
+  }
+}
+
+/* ===================================================================
+   DELEGATION CONTROLS BAR (Dropdowns & Export CSV)
+   =================================================================== */
+
+.leads-controls-bar {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 0.85rem 1.35rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.02);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.leads-controls-bar .controls-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.controls-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.controls-select-icon {
+  position: absolute;
+  left: 14px;
+  pointer-events: none;
+  color: #64748b;
+  z-index: 2;
+}
+
+.input-select-modern {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.65rem 2.2rem 0.65rem 2.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  transition: all 0.2s ease;
+  min-width: 210px;
+}
+
+.input-select-modern:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+
+.input-select-modern:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.btn-export-leads {
+  background: #2563eb;
+  color: #ffffff;
+  border: 1px solid #2563eb;
+  border-radius: 10px;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+}
+
+.btn-export-leads:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+}
+
+/* ===================================================================
+   AI TRADE LEAD GENERATOR FORM CARD
+   =================================================================== */
+
+.leads-generator-redesign {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
 }
 
 .leads-generator-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  margin-bottom: 1.35rem;
+  gap: 1rem;
+}
+
+.gen-header-left {
+  display: flex;
+  align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1.15rem;
 }
 
 .leads-generator-icon {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 10px;
-  background: rgba(37, 99, 235, 0.08);
-  color: var(--primary);
+  background: #eff6ff;
+  color: #2563eb;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
-.leads-model-tag {
-  font-size: 0.725rem;
+.gen-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.leads-model-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #dbeafe;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.775rem;
   font-weight: 700;
-  color: var(--primary);
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.2);
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radius-full);
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
 }
 
 .generator-controls-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.85rem;
-  margin-bottom: 1.15rem;
+  gap: 1.15rem;
+  margin-bottom: 1.35rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .generator-controls-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 600px) {
   .generator-controls-grid {
     grid-template-columns: 1fr;
   }
 }
 
 .gen-control-field label {
-  display: block;
-  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.775rem;
   font-weight: 700;
-  color: var(--text-secondary);
-  margin-bottom: 0.35rem;
+  color: #475569;
+  margin-bottom: 0.45rem;
 }
 
-.generator-actions-row {
+.gen-select-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-icon {
+  position: absolute;
+  left: 12px;
+  color: #94a3b8;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.gen-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.65rem 2rem 0.65rem 2.35rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: all 0.2s ease;
+}
+
+.gen-select:hover {
+  border-color: #cbd5e1;
+  background-color: #f8fafc;
+}
+
+.gen-select:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.gen-actions-redesign {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.75rem;
   flex-wrap: wrap;
-  gap: 0.85rem;
-  padding-top: 0.5rem;
+}
+
+.weights-display-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.weights-filter-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.weights-filter-icon:hover {
+  background: #dbeafe;
+}
+
+.weights-pills-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.weight-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+.w-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.w-dot.blue { background: #2563eb; }
+.w-dot.green { background: #10b981; }
+.w-dot.amber { background: #f59e0b; }
+.w-dot.purple { background: #8b5cf6; }
+.w-dot.pink { background: #ec4899; }
+
+.btn-generate-leads-primary {
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.45rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+  margin-left: auto;
+}
+
+.btn-generate-leads-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
 }
 
 /* Recommended Trade Partners Section Redesign */
