@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
 
   <!-- PWA & Mobile Web App Meta & Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -1782,104 +1782,339 @@
       <!-- ===================================================================
            REDESIGNED TRADE LEADS HERO BANNER (Split Hero with Flight Map)
            =================================================================== -->
-      <div class="lead-hero-banner leads-hero-redesign">
-        <!-- Left Column: Title & 4 Stat Cards -->
-        <div class="leads-hero-left">
-          <div class="lead-tag">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
-            <span>TRADE LEADS</span>
+      <!-- ===================================================================
+           REDESIGNED TRADE LEADS HERO BANNER (Interactive Animated World Map)
+           =================================================================== -->
+      <div class="lead-hero-banner leads-hero-map-redesign">
+        <!-- Left Column: Title, 4 Stat Cards, and Legend -->
+        <div class="leads-hero-map-left">
+          <div>
+            <div class="leads-tag-pill">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              <span>TRADE LEADS</span>
+            </div>
+
+            <h2 class="leads-hero-title">
+              High-Materialization<br>
+              <span class="leads-hero-highlight">Partner Recommendations</span>
+            </h2>
+
+            <!-- 4 Stat Cards: Row 1 has 3, Row 2 has 1 -->
+            <div class="leads-stats-grid-wrap">
+              <div class="leads-stats-row-top">
+                <div class="leads-stat-card" onclick="openTrainedFilesModal()" title="View Ingested Official Training Documents">
+                  <div class="leads-stat-icon blue">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  </div>
+                  <div class="leads-stat-content">
+                    <div class="leads-stat-num">37</div>
+                    <div class="leads-stat-lbl">Files</div>
+                  </div>
+                </div>
+
+                <div class="leads-stat-card">
+                  <div class="leads-stat-icon green">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  </div>
+                  <div class="leads-stat-content">
+                    <div class="leads-stat-num">2019 – 2025</div>
+                    <div class="leads-stat-lbl">Archive</div>
+                  </div>
+                </div>
+
+                <div class="leads-stat-card">
+                  <div class="leads-stat-icon amber">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  </div>
+                  <div class="leads-stat-content">
+                    <div class="leads-stat-num">9,374+</div>
+                    <div class="leads-stat-lbl">Trainees</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="leads-stats-row-bottom">
+                <div class="leads-stat-card">
+                  <div class="leads-stat-icon purple">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+                  </div>
+                  <div class="leads-stat-content">
+                    <div class="leads-stat-num">577</div>
+                    <div class="leads-stat-lbl">Corridors</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <h2 class="leads-hero-title">
-            High-Materialization<br>
-            <span class="leads-hero-highlight">Partner Recommendations</span>
-          </h2>
-
-          <!-- 4 Stat Cards Row -->
-          <div class="leads-stats-row">
-            <div class="leads-stat-card" onclick="openTrainedFilesModal()" title="View 37 Ingested Training Documents">
-              <div class="leads-stat-icon blue">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              </div>
-              <div class="leads-stat-content">
-                <div class="leads-stat-num">37</div>
-                <div class="leads-stat-lbl">Files</div>
-              </div>
+          <!-- Floating Map Legend Box -->
+          <div class="leads-map-legend">
+            <div class="legend-item">
+              <span class="legend-dot-blue"></span>
+              <span>Partner countries</span>
             </div>
-
-            <div class="leads-stat-card">
-              <div class="leads-stat-icon green">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-              </div>
-              <div class="leads-stat-content">
-                <div class="leads-stat-num">2019 – 2025</div>
-                <div class="leads-stat-lbl">Archive</div>
-              </div>
-            </div>
-
-            <div class="leads-stat-card">
-              <div class="leads-stat-icon amber">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-              </div>
-              <div class="leads-stat-content">
-                <div class="leads-stat-num">9,374+</div>
-                <div class="leads-stat-lbl">Trainees</div>
-              </div>
-            </div>
-
-            <div class="leads-stat-card">
-              <div class="leads-stat-icon purple">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
-              </div>
-              <div class="leads-stat-content">
-                <div class="leads-stat-num">577</div>
-                <div class="leads-stat-lbl">Corridors</div>
-              </div>
+            <div class="legend-item">
+              <span class="legend-arc-blue"></span>
+              <span>Exchange corridor</span>
             </div>
           </div>
         </div>
 
-        <!-- Right Column: World Map Network Graphic with Floating Country Badges -->
-        <div class="leads-hero-right">
-          <div class="leads-map-showcase">
-            <svg class="leads-flight-svg" viewBox="0 0 540 280" fill="none">
-              <!-- Continents Silhouette Dots/Paths -->
-              <path d="M70 70 Q100 45 140 80 Q130 130 90 150 Q60 110 70 70 Z" fill="#e2e8f0" opacity="0.5"/>
-              <path d="M220 50 Q280 30 330 55 Q340 95 290 120 Q240 100 220 50 Z" fill="#cbd5e1" opacity="0.6"/>
-              <path d="M350 60 Q430 40 480 80 Q460 140 400 130 Q360 100 350 60 Z" fill="#cbd5e1" opacity="0.6"/>
-              <path d="M250 130 Q290 140 300 190 Q260 200 250 130 Z" fill="#e2e8f0" opacity="0.5"/>
-              <path d="M430 150 Q480 160 460 200 Q420 180 430 150 Z" fill="#e2e8f0" opacity="0.45"/>
+        <!-- Right Area: Interactive World Map Showcase -->
+        <div class="leads-hero-map-stage" id="leads-map-stage">
+          <svg class="map-svg-canvas" id="map-svg-canvas" viewBox="0 0 950 400" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="corridorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0284c7" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.95"/>
+              </linearGradient>
+            </defs>
 
-              <!-- Radiating Curved Flight Arcs from India (360, 145) -->
-              <path class="flight-arc arc-de" d="M360 145 C320 90, 260 70, 230 65" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4 4"/>
-              <path class="flight-arc arc-cz" d="M360 145 C310 120, 260 110, 215 115" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4 4"/>
-              <path class="flight-arc arc-at" d="M360 145 C340 180, 290 200, 250 195" stroke="#93c5fd" stroke-width="1.8" stroke-dasharray="4 4"/>
-              <path class="flight-arc arc-jp" d="M360 145 C390 110, 440 95, 475 90" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4 4"/>
+            <!-- Vector World Map Continents -->
+            <!-- North America -->
+            <path class="map-continent-path" d="M120,40 Q160,35 220,40 Q250,55 240,80 Q260,95 245,120 Q220,135 225,165 Q210,195 250,210 Q280,215 260,230 Q220,225 180,190 Q150,165 140,130 Q110,110 120,70 Z"/>
+            <path class="map-continent-path" d="M220,205 Q250,215 280,220 Q290,235 265,245 Q240,235 220,205 Z"/>
+            <!-- South America -->
+            <path class="map-continent-path" d="M310,235 Q350,225 390,240 Q430,270 440,310 Q420,360 370,390 Q340,380 330,340 Q310,310 295,275 Q295,245 310,235 Z"/>
+            <!-- Europe -->
+            <path class="map-continent-path" d="M510,70 Q560,50 610,65 Q620,95 590,110 Q610,125 640,120 Q630,150 590,165 Q540,175 510,170 Q495,145 520,130 Q500,105 510,70 Z"/>
+            <path class="map-continent-path" d="M550,50 Q580,35 600,55 Q590,80 560,75 Z"/>
+            <!-- Africa -->
+            <path class="map-continent-path" d="M520,175 Q580,170 630,195 Q640,230 670,270 Q660,320 630,365 Q590,370 560,310 Q530,270 510,220 Q505,185 520,175 Z"/>
+            <!-- Middle East -->
+            <path class="map-continent-path" d="M635,175 Q680,170 700,200 Q710,235 680,250 Q650,240 635,210 Z"/>
+            <!-- Asia -->
+            <path class="map-continent-path" d="M640,75 Q720,50 820,65 Q890,95 910,140 Q880,185 850,210 Q810,240 770,270 Q740,275 730,250 Q750,220 710,195 Q670,160 640,130 Z"/>
+            <!-- Japan -->
+            <path class="map-continent-path" d="M895,145 Q910,140 910,165 Q900,185 885,175 Z"/>
+            <!-- Australia -->
+            <path class="map-continent-path" d="M830,295 Q890,285 920,315 Q925,355 880,375 Q830,365 825,325 Z"/>
 
-              <!-- Connection Dots & Hub Nodes -->
-              <circle cx="360" cy="145" r="4.5" fill="#2563eb"/>
-              <circle cx="230" cy="65" r="4" fill="#3b82f6"/>
-              <circle cx="215" cy="115" r="4" fill="#3b82f6"/>
-              <circle cx="250" cy="195" r="4" fill="#3b82f6"/>
-              <circle cx="475" cy="90" r="4" fill="#ef4444"/>
-            </svg>
+            <!-- Corridors from India Hub (740, 242) -->
+            <g id="map-corridors-group">
+              <path class="corridor-base-line" d="M 740 242 Q 650 140 565 122"/>
+              <path class="corridor-pulse-line" id="corridor-germany" d="M 740 242 Q 650 140 565 122"/>
 
-            <!-- Floating Country Flags around Map -->
-            <div class="leads-map-flag flag-pos-de" onclick="navigateToCountryLead('Germany')" title="Germany">
-              <span class="flag-pill flag-de"></span>
+              <path class="corridor-base-line" d="M 740 242 Q 660 170 582 142"/>
+              <path class="corridor-pulse-line" id="corridor-austria" d="M 740 242 Q 660 170 582 142"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 665 160 592 130"/>
+              <path class="corridor-pulse-line" id="corridor-czech" d="M 740 242 Q 665 160 592 130"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 640 145 552 125"/>
+              <path class="corridor-pulse-line" id="corridor-belgium" d="M 740 242 Q 640 145 552 125"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 630 180 525 168"/>
+              <path class="corridor-pulse-line" id="corridor-spain" d="M 740 242 Q 630 180 525 168"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 675 175 606 138"/>
+              <path class="corridor-pulse-line" id="corridor-slovakia" d="M 740 242 Q 675 175 606 138"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 670 150 600 115"/>
+              <path class="corridor-pulse-line" id="corridor-poland" d="M 740 242 Q 670 150 600 115"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 685 205 628 192"/>
+              <path class="corridor-pulse-line" id="corridor-palestine" d="M 740 242 Q 685 205 628 192"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 690 210 635 196"/>
+              <path class="corridor-pulse-line" id="corridor-jordan" d="M 740 242 Q 690 210 635 196"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 700 205 665 185"/>
+              <path class="corridor-pulse-line" id="corridor-iran" d="M 740 242 Q 700 205 665 185"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 710 230 680 225"/>
+              <path class="corridor-pulse-line" id="corridor-oman" d="M 740 242 Q 710 230 680 225"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 645 205 555 192"/>
+              <path class="corridor-pulse-line" id="corridor-tunisia" d="M 740 242 Q 645 205 555 192"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 690 270 638 275"/>
+              <path class="corridor-pulse-line" id="corridor-kenya" d="M 740 242 Q 690 270 638 275"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 675 300 615 318"/>
+              <path class="corridor-pulse-line" id="corridor-zambia" d="M 740 242 Q 675 300 615 318"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 755 230 772 230"/>
+              <path class="corridor-pulse-line" id="corridor-bangladesh" d="M 740 242 Q 755 230 772 230"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 770 250 802 252"/>
+              <path class="corridor-pulse-line" id="corridor-thailand" d="M 740 242 Q 770 250 802 252"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 480 80 220 205"/>
+              <path class="corridor-pulse-line" id="corridor-mexico" d="M 740 242 Q 480 80 220 205"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 550 300 375 305"/>
+              <path class="corridor-pulse-line" id="corridor-brazil" d="M 740 242 Q 550 300 375 305"/>
+
+              <path class="corridor-base-line" d="M 740 242 Q 530 290 325 295"/>
+              <path class="corridor-pulse-line" id="corridor-bolivia" d="M 740 242 Q 530 290 325 295"/>
+            </g>
+
+            <!-- Concentric Radiating Aura Waves around India Hub -->
+            <circle class="india-hub-aura-1" cx="740" cy="242" r="16" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+            <circle class="india-hub-aura-2" cx="740" cy="242" r="30" fill="none" stroke="#38bdf8" stroke-width="2"/>
+            <circle class="india-hub-aura-3" cx="740" cy="242" r="46" fill="none" stroke="#0ea5e9" stroke-width="1.5"/>
+          </svg>
+
+          <!-- Interactive HTML Overlay Pins -->
+          <div id="map-html-pins-container">
+            <!-- India Central Hub -->
+            <div class="india-center-pin" style="left:77.8%; top:60.5%;">
+              <div class="india-center-flag" title="IAESTE India National Hub (74 Incoming / 81 Outgoing)">
+                <span class="flag-pill flag-in" style="width:24px; height:16px;"></span>
+              </div>
             </div>
-            <div class="leads-map-flag flag-pos-cz" onclick="navigateToCountryLead('Czechia')" title="Czechia">
-              <span class="flag-pill flag-cz"></span>
+
+            <!-- Germany Pin -->
+            <div class="map-pin-node active" id="pin-germany" style="left:59.4%; top:30.5%;" onclick="selectMapCountry('germany')">
+              <div class="pin-circle-flag">🇩🇪</div>
+              <div class="pin-glow-dot"></div>
             </div>
-            <div class="leads-map-flag flag-pos-in" title="India Hub">
-              <span class="flag-pill flag-in"></span>
+
+            <!-- Austria Pin -->
+            <div class="map-pin-node" id="pin-austria" style="left:61.2%; top:35.5%;" onclick="selectMapCountry('austria')">
+              <div class="pin-circle-flag">🇦🇹</div>
+              <div class="pin-glow-dot"></div>
             </div>
-            <div class="leads-map-flag flag-pos-jp" onclick="navigateToCountryLead('Japan')" title="Japan">
-              <span class="flag-pill flag-jp"></span>
+
+            <!-- Czech Republic Pin -->
+            <div class="map-pin-node" id="pin-czech" style="left:62.3%; top:32.5%;" onclick="selectMapCountry('czech')">
+              <div class="pin-circle-flag">🇨🇿</div>
+              <div class="pin-glow-dot"></div>
             </div>
-            <div class="leads-map-flag flag-pos-at" onclick="navigateToCountryLead('Austria')" title="Austria">
-              <span class="flag-pill flag-at"></span>
+
+            <!-- Belgium Pin -->
+            <div class="map-pin-node" id="pin-belgium" style="left:58.1%; top:31.2%;" onclick="selectMapCountry('belgium')">
+              <div class="pin-circle-flag">🇧🇪</div>
+              <div class="pin-glow-dot"></div>
             </div>
+
+            <!-- Spain Pin -->
+            <div class="map-pin-node" id="pin-spain" style="left:55.2%; top:42%;" onclick="selectMapCountry('spain')">
+              <div class="pin-circle-flag">🇪🇸</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Slovakia Pin -->
+            <div class="map-pin-node" id="pin-slovakia" style="left:63.7%; top:34.5%;" onclick="selectMapCountry('slovakia')">
+              <div class="pin-circle-flag">🇸🇰</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Poland Pin -->
+            <div class="map-pin-node" id="pin-poland" style="left:63.1%; top:28.7%;" onclick="selectMapCountry('poland')">
+              <div class="pin-circle-flag">🇵🇱</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Palestine Pin -->
+            <div class="map-pin-node" id="pin-palestine" style="left:66.1%; top:48.0%;" onclick="selectMapCountry('palestine')">
+              <div class="pin-circle-flag">🇵🇸</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Jordan Pin -->
+            <div class="map-pin-node" id="pin-jordan" style="left:66.8%; top:49.0%;" onclick="selectMapCountry('jordan')">
+              <div class="pin-circle-flag">🇯🇴</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Iran Pin -->
+            <div class="map-pin-node" id="pin-iran" style="left:70.0%; top:46.2%;" onclick="selectMapCountry('iran')">
+              <div class="pin-circle-flag">🇮🇷</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Oman Pin -->
+            <div class="map-pin-node" id="pin-oman" style="left:71.5%; top:56.2%;" onclick="selectMapCountry('oman')">
+              <div class="pin-circle-flag">🇴🇲</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Tunisia Pin -->
+            <div class="map-pin-node" id="pin-tunisia" style="left:58.4%; top:48.0%;" onclick="selectMapCountry('tunisia')">
+              <div class="pin-circle-flag">🇹🇳</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Kenya Pin -->
+            <div class="map-pin-node" id="pin-kenya" style="left:67.1%; top:68.7%;" onclick="selectMapCountry('kenya')">
+              <div class="pin-circle-flag">🇰🇪</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Zambia Pin -->
+            <div class="map-pin-node" id="pin-zambia" style="left:64.7%; top:79.5%;" onclick="selectMapCountry('zambia')">
+              <div class="pin-circle-flag">🇿🇲</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Bangladesh Pin -->
+            <div class="map-pin-node" id="pin-bangladesh" style="left:81.2%; top:57.5%;" onclick="selectMapCountry('bangladesh')">
+              <div class="pin-circle-flag">🇧🇩</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Thailand Pin -->
+            <div class="map-pin-node" id="pin-thailand" style="left:84.4%; top:63.0%;" onclick="selectMapCountry('thailand')">
+              <div class="pin-circle-flag">🇹🇭</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Mexico Pin -->
+            <div class="map-pin-node" id="pin-mexico" style="left:23.1%; top:51.2%;" onclick="selectMapCountry('mexico')">
+              <div class="pin-circle-flag">🇲🇽</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Brazil Pin -->
+            <div class="map-pin-node" id="pin-brazil" style="left:39.4%; top:76.2%;" onclick="selectMapCountry('brazil')">
+              <div class="pin-circle-flag">🇧🇷</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+
+            <!-- Bolivia Pin -->
+            <div class="map-pin-node" id="pin-bolivia" style="left:34.2%; top:73.7%;" onclick="selectMapCountry('bolivia')">
+              <div class="pin-circle-flag">🇧🇴</div>
+              <div class="pin-glow-dot"></div>
+            </div>
+          </div>
+
+          <!-- Interactive Details Popup Card (Germany default as in reference image) -->
+          <div class="map-popup-card" id="map-popup-card">
+            <div class="popup-header">
+              <div class="popup-country-info">
+                <span class="popup-flag-mini" id="popup-flag">🇩🇪</span>
+                <span class="popup-country-name" id="popup-name">Germany</span>
+              </div>
+              <div class="popup-actions">
+                <span class="popup-match-pill" id="popup-match">99% Match</span>
+                <button type="button" class="popup-close-btn" onclick="closeMapPopup()" title="Close details">✕</button>
+              </div>
+            </div>
+            <div class="popup-stats-row">
+              <div class="popup-stat-col">
+                <span class="p-val" id="popup-in">3</span>
+                <span class="p-lbl">Incoming</span>
+              </div>
+              <div class="popup-stat-col">
+                <span class="p-val" id="popup-out">19</span>
+                <span class="p-lbl">Outgoing</span>
+              </div>
+              <div class="popup-stat-col">
+                <span class="p-val" id="popup-mat">66.7%</span>
+                <span class="p-lbl">Materialization</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Zoom Controls (Top Right) -->
+          <div class="map-zoom-controls">
+            <button type="button" class="map-control-btn" onclick="zoomMap(0.2)" title="Zoom in">+</button>
+            <button type="button" class="map-control-btn" onclick="zoomMap(-0.2)" title="Zoom out">−</button>
+            <button type="button" class="map-control-btn" onclick="resetMapZoom()" title="Reset view">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -2471,7 +2706,7 @@
   <script src="country_strategies_data.js"></script>
 
   <!-- Main Engine Logic -->
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=8"></script>
 
 </body>
 </html>

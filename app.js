@@ -4662,6 +4662,109 @@ function sortLeadsTable(col) {
   renderLeadsTable();
 }
 
+/* ===================================================================
+   INTERACTIVE WORLD MAP NETWORK CONTROLLER (2025–2026 OFFICIAL STATS)
+   =================================================================== */
+
+window.MAP_PARTNERS_DATA = {
+  germany: { name: 'Germany', flag: '🇩🇪', match: '99% Match', incoming: 3, outgoing: 19, mat: '66.7%' },
+  austria: { name: 'Austria', flag: '🇦🇹', match: '95% Match', incoming: 2, outgoing: 3, mat: '75.0%' },
+  czech: { name: 'Czech Republic', flag: '🇨🇿', match: '94% Match', incoming: 2, outgoing: 6, mat: '83.3%' },
+  belgium: { name: 'Belgium', flag: '🇧🇪', match: '91% Match', incoming: 1, outgoing: 2, mat: '100%' },
+  spain: { name: 'Spain', flag: '🇪🇸', match: '96% Match', incoming: 5, outgoing: 4, mat: '80.0%' },
+  slovakia: { name: 'Slovakia', flag: '🇸🇰', match: '92% Match', incoming: 1, outgoing: 3, mat: '66.7%' },
+  poland: { name: 'Poland', flag: '🇵🇱', match: '93% Match', incoming: 0, outgoing: 4, mat: '75.0%' },
+  palestine: { name: 'Palestine', flag: '🇵🇸', match: '98% Match', incoming: 16, outgoing: 0, mat: '100%' },
+  jordan: { name: 'Jordan', flag: '🇯🇴', match: '93% Match', incoming: 2, outgoing: 1, mat: '100%' },
+  iran: { name: 'Iran', flag: '🇮🇷', match: '95% Match', incoming: 6, outgoing: 0, mat: '100%' },
+  oman: { name: 'Oman', flag: '🇴🇲', match: '94% Match', incoming: 6, outgoing: 1, mat: '100%' },
+  tunisia: { name: 'Tunisia', flag: '🇹🇳', match: '93% Match', incoming: 3, outgoing: 2, mat: '66.7%' },
+  kenya: { name: 'Kenya', flag: '🇰🇪', match: '96% Match', incoming: 7, outgoing: 2, mat: '100%' },
+  zambia: { name: 'Zambia', flag: '🇿🇲', match: '92% Match', incoming: 2, outgoing: 1, mat: '100%' },
+  bangladesh: { name: 'Bangladesh', flag: '🇧🇩', match: '97% Match', incoming: 8, outgoing: 1, mat: '100%' },
+  thailand: { name: 'Thailand', flag: '🇹🇭', match: '94% Match', incoming: 3, outgoing: 4, mat: '75.0%' },
+  mexico: { name: 'Mexico', flag: '🇲🇽', match: '90% Match', incoming: 1, outgoing: 1, mat: '100%' },
+  brazil: { name: 'Brazil', flag: '🇧🇷', match: '92% Match', incoming: 2, outgoing: 3, mat: '66.7%' },
+  bolivia: { name: 'Bolivia', flag: '🇧🇴', match: '90% Match', incoming: 1, outgoing: 0, mat: '100%' }
+};
+
+let currentMapZoom = 1.0;
+
+function zoomMap(delta) {
+  currentMapZoom = Math.max(0.8, Math.min(2.0, +(currentMapZoom + delta).toFixed(1)));
+  applyMapZoom();
+}
+window.zoomMap = zoomMap;
+
+function resetMapZoom() {
+  currentMapZoom = 1.0;
+  applyMapZoom();
+}
+window.resetMapZoom = resetMapZoom;
+
+function applyMapZoom() {
+  const svg = document.getElementById('map-svg-canvas');
+  const pins = document.getElementById('map-html-pins-container');
+  if (svg) svg.style.transform = `scale(${currentMapZoom})`;
+  if (pins) pins.style.transform = `scale(${currentMapZoom})`;
+}
+
+function selectMapCountry(key) {
+  const data = window.MAP_PARTNERS_DATA[key];
+  if (!data) return;
+
+  const card = document.getElementById('map-popup-card');
+  const flagEl = document.getElementById('popup-flag');
+  const nameEl = document.getElementById('popup-name');
+  const matchEl = document.getElementById('popup-match');
+  const inEl = document.getElementById('popup-in');
+  const outEl = document.getElementById('popup-out');
+  const matEl = document.getElementById('popup-mat');
+
+  if (flagEl) flagEl.textContent = data.flag;
+  if (nameEl) nameEl.textContent = data.name;
+  if (matchEl) matchEl.textContent = data.match;
+  if (inEl) inEl.textContent = data.incoming;
+  if (outEl) outEl.textContent = data.outgoing;
+  if (matEl) matEl.textContent = data.mat;
+
+  if (card) {
+    card.classList.remove('hidden');
+  }
+
+  // Active pin state
+  document.querySelectorAll('.map-pin-node').forEach(node => {
+    node.classList.remove('active');
+  });
+  const pin = document.getElementById(`pin-${key}`);
+  if (pin) pin.classList.add('active');
+
+  // Highlight corridor line
+  document.querySelectorAll('.corridor-pulse-line').forEach(line => {
+    line.style.opacity = '0.35';
+    line.style.strokeWidth = '1.8px';
+  });
+  const activeLine = document.getElementById(`corridor-${key}`);
+  if (activeLine) {
+    activeLine.style.opacity = '1';
+    activeLine.style.strokeWidth = '3.5px';
+  }
+}
+window.selectMapCountry = selectMapCountry;
+
+function closeMapPopup() {
+  const card = document.getElementById('map-popup-card');
+  if (card) card.classList.add('hidden');
+  document.querySelectorAll('.map-pin-node').forEach(node => {
+    node.classList.remove('active');
+  });
+  document.querySelectorAll('.corridor-pulse-line').forEach(line => {
+    line.style.opacity = '0.95';
+    line.style.strokeWidth = '2.2px';
+  });
+}
+window.closeMapPopup = closeMapPopup;
+
 function updateDelegationPerspective() {
   const sel = document.getElementById('lead-perspective-select');
   const val = sel ? sel.value : 'india';
@@ -4669,7 +4772,7 @@ function updateDelegationPerspective() {
 
   const yearKey = state.analyser.selectedYear || '2026';
   const leads = getEnrichedLeadsData();
-  const indiaData = leads.find(l => l.country.toLowerCase() === 'india') || { outgoing: 80, incoming: 72, net: -8, accepted: 74 };
+  const indiaData = leads.find(l => l.country.toLowerCase() === 'india') || { outgoing: 81, incoming: 74, net: -7, accepted: 81 };
   const austriaData = leads.find(l => l.country.toLowerCase() === 'austria') || { mat_rate: 77.4, net: 34 };
   const czechData = leads.find(l => l.country.toLowerCase().includes('czech')) || { mat_rate: 77.6, net: 10 };
   const germanyData = leads.find(l => l.country.toLowerCase() === 'germany') || { accepted: 115, net: 29 };
