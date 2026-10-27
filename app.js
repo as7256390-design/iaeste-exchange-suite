@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===================================================================
 
 function setupNavigation() {
-  const tabs = ['overview', 'analyser', 'grader-incoming', 'grader-outgoing', 'leads', 'playbook'];
+  const tabs = ['overview', 'analyser', 'grader-incoming', 'grader-outgoing', 'leads', 'strategies'];
   tabs.forEach(tab => {
     const btn = document.getElementById(`tab-btn-${tab}`);
     if (btn) {
@@ -295,25 +295,6 @@ function navigateToCountryLead(countryName) {
   }, 120);
 }
 window.navigateToCountryLead = navigateToCountryLead;
-
-// ===================================================================
-// GUIDE & REFERENCE TAB SWITCHING
-// ===================================================================
-
-function switchGuideTab(tabId) {
-  const tabs = ['analyser', 'grader', 'leads', 'playbook'];
-  tabs.forEach(t => {
-    const btn = document.getElementById(`btn-guide-${t}`);
-    const content = document.getElementById(`guide-content-${t}`);
-    if (btn) {
-      if (t === tabId) btn.classList.add('active');
-      else btn.classList.remove('active');
-    }
-    if (content) {
-      content.style.display = (t === tabId) ? 'flex' : 'none';
-    }
-  });
-}
 
 // Utility file readers
 function readFileAsArrayBuffer(file) {
@@ -4576,7 +4557,7 @@ function renderCuratedLeadCards() {
       <!-- Action Footer -->
       <div class="lead-actions-bar">
         <div class="lead-strategy-note">
-          <span style="color:var(--text-muted); font-size:0.685rem; text-transform:uppercase; display:block; font-weight:800; letter-spacing:0.02em;">Phase-II Action Playbook</span>
+          <span style="color:var(--text-muted); font-size:0.685rem; text-transform:uppercase; display:block; font-weight:800; letter-spacing:0.02em;">Phase-II Action Guidance</span>
           ${data.guidance}
         </div>
         <button type="button" class="btn btn-secondary btn-sm lead-inspect-btn" onclick="lookupCountryStrategy('${data.country}'); document.getElementById('country-dossier-result').scrollIntoView({ behavior:'smooth', block:'start' });">

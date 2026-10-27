@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 
   <!-- PWA & Mobile Web App Meta & Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -54,10 +54,6 @@
         <button type="button" class="nav-tab-btn" id="tab-btn-leads" onclick="switchTab('leads')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
           Trade Leads
-        </button>
-        <button type="button" class="nav-tab-btn" id="tab-btn-playbook" onclick="switchTab('playbook')">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 6h10"></path><path d="M6 10h10"></path></svg>
-          Playbook
         </button>
         <button type="button" class="nav-tab-btn" id="tab-btn-strategies" onclick="switchTab('strategies')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
@@ -681,7 +677,7 @@
               </div>
               <div class="tool-title-group">
                 <h3>Country Strategies 🇮🇳</h3>
-                <span>Bilateral AC Playbooks</span>
+                <span>Bilateral AC Strategies</span>
               </div>
               <button type="button" class="tool-arrow-btn" onclick="event.stopPropagation(); switchTab('strategies')" title="Open Country Strategies">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -756,8 +752,8 @@
             <h3>Exchange Session Operational Workflow</h3>
             <p>Four-step procedure for Phase-II and Annual General Conference (AC) delegations</p>
           </div>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="switchTab('playbook')">
-            View Complete Playbook
+          <button type="button" class="btn btn-secondary btn-sm" onclick="switchTab('strategies')">
+            Explore Country Strategies
           </button>
         </div>
         <div class="workflow-steps-grid">
@@ -2193,124 +2189,7 @@
     </section>
 
     <!-- ===================================================================
-         5. HOW TO USE EACH TOOL & PLAYBOOK VIEW
-         =================================================================== -->
-    <section id="view-playbook" class="view-section">
-      <article class="playbook-article">
-        <div style="margin-bottom:1.75rem;">
-          <h2 style="font-size:1.85rem; font-weight:800; color:var(--text-main); margin-bottom:0.4rem; letter-spacing:-0.02em;">
-            📖 Tool Guide &amp; Conference Playbook
-          </h2>
-          <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.6; max-width:780px;">
-            Step-by-step instructions for every tool in the suite, plus battle-tested strategies for Phase-II and Annual General Conference (AC) sessions.
-          </p>
-        </div>
-
-        <div class="guide-tabs">
-          <button type="button" class="guide-tab-btn active" id="btn-guide-analyser" onclick="switchGuideTab('analyser')">
-            Activity Analyser Guide
-          </button>
-          <button type="button" class="guide-tab-btn" id="btn-guide-grader" onclick="switchGuideTab('grader')">
-            Offer Grader Guide
-          </button>
-          <button type="button" class="guide-tab-btn" id="btn-guide-leads" onclick="switchGuideTab('leads')">
-            Trade Leads Guide
-          </button>
-          <button type="button" class="guide-tab-btn" id="btn-guide-playbook" onclick="switchGuideTab('playbook')">
-            Conference Playbook
-          </button>
-        </div>
-
-        <!-- GUIDE 1: ACTIVITY REPORTS ANALYSER -->
-        <div id="guide-content-analyser" class="guide-steps-container">
-          <div class="guide-step-card">
-            <div class="guide-step-header">
-              <div class="guide-step-num">1</div>
-              <div class="guide-step-title">Select Reporting Year or Upload Custom Files</div>
-            </div>
-            <div class="guide-step-body">
-              <p>The Analyser comes pre-loaded with verified official IAESTE Annual Activity Reports (2019 to 2026, encompassing 11,250+ trainees across 69 committees).</p>
-              <ul>
-                <li><strong>Examine official historical figures:</strong> Use the <em>Reporting Year Filter</em> to switch between 2019–2026 or cumulative archive. All KPIs, charts, and bilateral balances refresh instantly.</li>
-                <li><strong>Upload custom datasets:</strong> Click <em>"Upload Custom Files"</em> or drag files into the upload area. The system accepts <code>.xlsx</code>, <code>.csv</code>, <code>.docx</code>, <code>.pdf</code>, and <code>.zip</code> archives.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="guide-step-card">
-            <div class="guide-step-header">
-              <div class="guide-step-num">2</div>
-              <div class="guide-step-title">Inspect Trade Balance &amp; Leverage</div>
-            </div>
-            <div class="guide-step-body">
-              <p>The <strong>Phase-II Trade Balance Leaderboard</strong> categorizes member committees by reciprocal exchange capacity:</p>
-              <ul>
-                <li><strong>Surplus (+Capacity):</strong> Hosted more students than they sent. Priority targets for trading.</li>
-                <li><strong>Deficit (-Sent &gt; Received):</strong> Sent more students than they received. Demands reciprocal placements.</li>
-                <li><strong>Corridor Drill-down:</strong> Click any committee to isolate its bilateral flows and longitudinal 6-year history.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- GUIDE 2: OFFER GRADER -->
-        <div id="guide-content-grader" class="guide-steps-container" style="display:none;">
-          <div class="guide-step-card">
-            <div class="guide-step-header">
-              <div class="guide-step-num">1</div>
-              <div class="guide-step-title">Incoming vs Outgoing Mode</div>
-            </div>
-            <div class="guide-step-body">
-              <p>The Offer Grader is split into two specialized engines:</p>
-              <ul>
-                <li><strong>Incoming Grader:</strong> Audits internal offers created by our 4 Indian LCs + 1 CI before conference trading.</li>
-                <li><strong>Outgoing Grader:</strong> Evaluates international offers received at exchange tables for Indian student fit.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="guide-step-card">
-            <div class="guide-step-header">
-              <div class="guide-step-num">2</div>
-              <div class="guide-step-title">Fine-Tune Scoring Weights</div>
-            </div>
-            <div class="guide-step-body">
-              <p>Adjust criteria weights (Stipend, Lodging, Discipline, Summer Window, Partner Reliability) or select one of the built-in presets (Balanced, Lodging Focus, Net Savings).</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- GUIDE 3: TRADE LEADS -->
-        <div id="guide-content-leads" class="guide-steps-container" style="display:none;">
-          <div class="guide-step-card">
-            <div class="guide-step-header">
-              <div class="guide-step-num">1</div>
-              <div class="guide-step-title">Verified Empirical Materialization</div>
-            </div>
-            <div class="guide-step-body">
-              <p>Materialization rate is defined as <code>(Accepted Placements / Total Nominations) × 100</code>. Prioritize partner countries maintaining over 70% materialization rates with low cancellation ratios.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- GUIDE 4: PLAYBOOK -->
-        <div id="guide-content-playbook" class="guide-steps-container" style="display:none;">
-          <div class="guide-step-card">
-            <div class="guide-step-header">
-              <div class="guide-step-num">1</div>
-              <div class="guide-step-title">Conference Negotiation Rules</div>
-            </div>
-            <div class="guide-step-body">
-              <p>Never trade an A+ offer without receiving an equivalent A/A+ position in return. Protect housing-guaranteed positions as high-value currency at the table.</p>
-            </div>
-          </div>
-        </div>
-
-      </article>
-    </section>
-
-    <!-- ===================================================================
-         6. COUNTRY STRATEGIES SECTION (INDIA BILATERAL TRADING CARDS)
+         5. COUNTRY STRATEGIES SECTION (INDIA BILATERAL TRADING CARDS)
          =================================================================== -->
     <section id="view-strategies" class="view-section">
       <!-- Hero Banner -->
@@ -2592,7 +2471,7 @@
   <script src="country_strategies_data.js"></script>
 
   <!-- Main Engine Logic -->
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
 
 </body>
 </html>
