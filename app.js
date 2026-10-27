@@ -1465,6 +1465,35 @@ function updateAnalyserKPIs() {
   }
 }
 
+window.quickFilterAnalyser = function(kpiType) {
+  // Highlight clicked KPI card
+  document.querySelectorAll('.act-kpi-card').forEach(c => c.classList.remove('selected-filter'));
+  const cardMap = {
+    'sent': '.act-kpi-card.blue',
+    'received': '.act-kpi-card.green',
+    'committees': '.act-kpi-card.orange',
+    'corridors': '.act-kpi-card.purple',
+    'placement': '.act-kpi-card.cyan',
+    'cancel': '.act-kpi-card.red'
+  };
+  const targetCard = document.querySelector(cardMap[kpiType]);
+  if (targetCard) targetCard.classList.add('selected-filter');
+
+  if (kpiType === 'corridors') {
+    const corrs = document.getElementById('bilateral-chart-title') || document.querySelector('.composition-grid-4') || document.querySelector('.official-2026-wrapper');
+    if (corrs) corrs.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else if (kpiType === 'committees') {
+    const tableEl = document.getElementById('analyser-committee-table') || document.querySelector('#view-analyser .table-container');
+    if (tableEl) tableEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else if (kpiType === 'sent' || kpiType === 'received') {
+    const tableEl = document.getElementById('analyser-committee-table') || document.querySelector('#view-analyser .table-container');
+    if (tableEl) tableEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else if (kpiType === 'placement' || kpiType === 'cancel') {
+    const panel = document.getElementById('analyser-official-2026-panel');
+    if (panel) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
+
 // Render Phase-II Surplus / Deficit Leaderboard
 function renderTradeBalanceList() {
   const container = document.getElementById('trade-balance-list');
@@ -3494,6 +3523,49 @@ function populateOutgoingFilterDropdowns() {
     countrySelect.appendChild(opt);
   });
 }
+
+window.quickFilterOutgoing = function(filterType) {
+  const gradeSelect = document.getElementById('filter-outgoing-grade');
+  const countrySelect = document.getElementById('filter-outgoing-country');
+
+  // Highlight clicked KPI card
+  document.querySelectorAll('.out-kpi-card').forEach(c => c.classList.remove('selected-filter'));
+  const cardMap = {
+    'all': '.out-kpi-card.blue',
+    'A+': '.out-kpi-card.orange',
+    'A': '.out-kpi-card.purple',
+    'housing': '.out-kpi-card.green',
+    'summer': '.out-kpi-card.pink',
+    'score': '.out-kpi-card.cyan'
+  };
+  const targetCard = document.querySelector(cardMap[filterType]);
+  if (targetCard) targetCard.classList.add('selected-filter');
+
+  if (filterType === 'all') {
+    if (gradeSelect) gradeSelect.value = 'all';
+    if (countrySelect) countrySelect.value = 'all';
+  } else if (filterType === 'A+' || filterType === 'A') {
+    if (gradeSelect) gradeSelect.value = filterType;
+  } else if (filterType === 'housing') {
+    state.graderOutgoing.sortColumn = 'lodging';
+    state.graderOutgoing.sortAsc = false;
+  } else if (filterType === 'summer') {
+    state.graderOutgoing.sortColumn = 'summerFit';
+    state.graderOutgoing.sortAsc = false;
+  } else if (filterType === 'score') {
+    state.graderOutgoing.sortColumn = 'score';
+    state.graderOutgoing.sortAsc = false;
+  }
+
+  renderOutgoingOffersTable();
+
+  if (state.graderOutgoing.gradedOffers && state.graderOutgoing.gradedOffers.length > 0) {
+    const tableContainer = document.querySelector('#view-grader-outgoing .table-container');
+    if (tableContainer) {
+      tableContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+};
 
 function renderOutgoingOffersTable() {
   const tbody = document.getElementById('outgoing-table-body');

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=11">
 
   <!-- PWA & Mobile Web App Meta & Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -786,82 +786,179 @@
          =================================================================== -->
     <section id="view-analyser" class="view-section">
       
-      <!-- Dataset Source Switch -->
-      <div class="controls-bar" style="margin-bottom:1.5rem;">
-        <div class="controls-left">
-          <div id="analyser-source-indicator" style="display:inline-flex; align-items:center; gap:0.4rem; padding:0.35rem 0.85rem; border-radius:var(--radius-full); font-size:0.775rem; font-weight:700; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;">
+      <!-- Redesigned Activity Analyser Hero Section -->
+      <div class="analyser-hero-section">
+        <div class="analyser-hero-left">
+          <div class="analyser-tag-pill">ACTIVITY ANALYSER</div>
+          <h2 class="analyser-hero-title">
+            Analyse. Track. <span class="analyser-hero-highlight">Measure.</span>
+          </h2>
+          <p class="analyser-hero-subtitle">
+            Upload official reports, verify exchange activity and get actionable insights across all committees and regions.
+          </p>
+        </div>
+
+        <!-- Right Side: 3D Layered Reports & Year Badge Illustration -->
+        <div class="analyser-hero-right-stage">
+          <div class="analyser-doc-stack-3d">
+            <div class="doc-layer layer-1"></div>
+            <div class="doc-layer layer-3"></div>
+            <div class="doc-layer layer-2">
+              <div class="doc-layer-crest">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <span>IAESTE</span>
+              </div>
+            </div>
+          </div>
+          <div class="analyser-year-badge">
+            <span class="ayb-year">2026</span>
+            <span class="ayb-label">Reporting Year</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Dataset Source Switch Row (Matching Reference) -->
+      <div class="analyser-source-row">
+        <div class="asr-left">
+          <div id="analyser-source-indicator" class="asr-badge">
             🏛️ Official Historical Archive
           </div>
-          <span id="analyser-active-dataset-desc" style="font-size:0.825rem; color:var(--text-secondary); font-weight:500;">
-            Active: <strong>2026 Reporting Year</strong> (65 active committees, 1,013 trainees)
+          <span id="analyser-active-dataset-desc" class="asr-desc">
+            Active: <strong>2026 Reporting Year</strong> (65 active committees, 1,013 trainees exchanged)
           </span>
         </div>
-        <div class="filter-pills" id="analyser-source-pills">
-          <button type="button" class="filter-pill-btn active" id="btn-source-official" onclick="switchAnalyserDataSource('official')">
-            Official Archive
+        <div class="asr-right" id="analyser-source-pills">
+          <button type="button" class="btn-asr-toggle active" id="btn-source-official" onclick="switchAnalyserDataSource('official')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <span>Official Archive</span>
           </button>
-          <button type="button" class="filter-pill-btn" id="btn-source-custom" onclick="switchAnalyserDataSource('custom')">
-            Upload Custom Files
+          <button type="button" class="btn-asr-toggle" id="btn-source-custom" onclick="switchAnalyserDataSource('custom')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <span>Upload Custom Files</span>
           </button>
         </div>
       </div>
 
-      <!-- Upload Dropzone -->
-      <div class="dropzone-container" id="analyser-dropzone">
-        <div class="dropzone-content">
-          <div class="dropzone-icon">📁</div>
-          <h3 class="dropzone-title">Upload Activity Reports, ZIPs or PDFs</h3>
-          <p class="dropzone-subtitle">Drop files here (<code>.xlsx</code>, <code>.csv</code>, <code>.docx</code>, <code>.pdf</code>, <code>.zip</code>, or scanned images). ZIP files are unpacked automatically into the staging queue.</p>
-          <div class="dropzone-actions">
-            <button type="button" class="btn btn-primary" onclick="document.getElementById('analyser-file-input').click()">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-              Select Files / ZIPs
-            </button>
-            <button type="button" class="btn btn-secondary" onclick="loadPreloadedAnalyserData()">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6"></path><path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path><path d="M3 22v-6h6"></path><path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path></svg>
-              Reset to Official Archive
-            </button>
-            <input type="file" id="analyser-file-input" class="file-input-hidden" multiple accept=".xlsx,.xls,.csv,.docx,.json,.pdf,.zip,.png,.jpg,.jpeg,.webp,.tiff,.bmp,image/*,application/pdf,application/zip">
+      <!-- 3-Column Workflow & Capabilities Card (Matching Reference) -->
+      <div class="analyser-workflow-card">
+        <!-- Column 1: 3-Step Stepper -->
+        <div class="analyser-stepper-col">
+          <div class="stepper-step">
+            <div class="stepper-num-circle blue">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path><polyline points="12 12 12 8 10 10"></polyline><polyline points="12 8 14 10"></polyline><line x1="12" y1="8" x2="12" y2="15"></line></svg>
+            </div>
+            <div class="stepper-info">
+              <span class="stepper-title">1 Upload Files</span>
+              <span class="stepper-sub">CSV, Excel, ZIP or PDF</span>
+            </div>
           </div>
 
-          <!-- Staged Files Queue -->
-          <div id="analyser-staging-wrapper" style="display:none; margin-top:1.25rem; width:100%; text-align:left;">
+          <div class="stepper-step">
+            <div class="stepper-num-circle purple">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
+            <div class="stepper-info">
+              <span class="stepper-title">2 Auto Process</span>
+              <span class="stepper-sub">Files are unpacked and added to queue</span>
+            </div>
+          </div>
+
+          <div class="stepper-step">
+            <div class="stepper-num-circle green">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="18" y1="20" x2="18" y2="4"></line><line x1="12" y1="20" x2="12" y2="10"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </div>
+            <div class="stepper-info">
+              <span class="stepper-title">3 View Insights</span>
+              <span class="stepper-sub">Analyse verified data across committees</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Center Dropzone Box -->
+        <div class="analyser-dropzone-box" id="analyser-dropzone" onclick="document.getElementById('analyser-file-input').click()">
+          <div class="dropzone-3d-docs-icon">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <div class="adb-prompt">Drop your activity reports here</div>
+          <div class="adb-sub">.xlsx, .csv, .docx, .pdf, .zip or scanned images. ZIP files are unpacked automatically into the staging queue.</div>
+
+          <button type="button" class="btn-adb-select" onclick="event.stopPropagation(); document.getElementById('analyser-file-input').click()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <span>Select Files / ZIPs</span>
+          </button>
+          <input type="file" id="analyser-file-input" class="file-input-hidden" multiple accept=".xlsx,.xls,.csv,.docx,.json,.pdf,.zip,.png,.jpg,.jpeg,.webp,.tiff,.bmp,image/*,application/pdf,application/zip">
+
+          <!-- Staged Files Queue inside Analyser -->
+          <div id="analyser-staging-wrapper" style="display:none; margin-top:1rem; width:100%; text-align:left;" onclick="event.stopPropagation()">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem;">
-              <h5 style="font-size:0.85rem; font-weight:700; color:var(--text-main);">Staged Queue (<span id="staged-file-count">0</span> files):</h5>
+              <h5 style="font-size:0.825rem; font-weight:700; color:var(--text-main);">Staged Queue (<span id="staged-file-count">0</span> files):</h5>
               <button type="button" class="btn btn-secondary btn-sm" onclick="clearStagedAnalyserFiles()">Clear Queue</button>
             </div>
-            <div id="analyser-staged-list" class="uploaded-files-pills" style="max-height:160px; overflow-y:auto; padding:0.65rem; background:#ffffff; border:1px solid var(--border-light); border-radius:var(--radius-md);"></div>
+            <div id="analyser-staged-list" class="uploaded-files-pills" style="max-height:120px; overflow-y:auto; padding:0.5rem; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px;"></div>
+            <button type="button" id="btn-start-analysis" class="btn-start-analysis" style="margin-top:0.75rem;" onclick="startAnalyserAnalysis()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <span>Start Analysis &amp; Generate Insights (<span id="staged-count-btn">0</span> files)</span>
+            </button>
+          </div>
+          <div id="analyser-analysis-status" class="analysis-success-box" style="display:none; margin-top:0.65rem; width:100%;"></div>
+        </div>
 
-            <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.4rem;">
-              <button type="button" id="btn-start-analysis" class="btn-start-analysis" onclick="startAnalyserAnalysis()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Start Analysis &amp; Generate Insights (<span id="staged-count-btn">0</span> files)
-              </button>
+        <!-- Column 3: Supported Formats Grid (2x3) -->
+        <div class="analyser-formats-col">
+          <div class="afc-title">Supported Formats</div>
+          <div class="afc-grid">
+            <div class="format-card-pill">
+              <span class="fcp-badge green">.xlsx</span>
+              <span class="fcp-name">Excel Files</span>
+            </div>
+            <div class="format-card-pill">
+              <span class="fcp-badge blue">.csv</span>
+              <span class="fcp-name">CSV Files</span>
+            </div>
+            <div class="format-card-pill">
+              <span class="fcp-badge blue">.docx</span>
+              <span class="fcp-name">Word Files</span>
+            </div>
+            <div class="format-card-pill">
+              <span class="fcp-badge red">.pdf</span>
+              <span class="fcp-name">PDF Files</span>
+            </div>
+            <div class="format-card-pill">
+              <span class="fcp-badge purple">.zip</span>
+              <span class="fcp-name">ZIP Archive</span>
+            </div>
+            <div class="format-card-pill">
+              <span class="fcp-badge cyan">Images</span>
+              <span class="fcp-name">Scanned Files</span>
             </div>
           </div>
-
-          <div id="analyser-analysis-status" class="analysis-success-box" style="display:none;"></div>
         </div>
       </div>
 
       <!-- Controls & Filter Bar -->
       <div class="controls-bar">
         <div class="controls-left">
-          <select id="filter-year" class="input-select" onchange="applyAnalyserFilters()">
-            <option value="2026" selected>2026 Official Report (1,013 Trainees Exchanged - 65 Member Committees)</option>
-            <option value="2025">2025 Reporting Cycle (1,146 Trainees Exchanged - 75 Member Committees)</option>
-            <option value="2024">2024 Reporting Year (1,397 Trainees Exchanged)</option>
-            <option value="2023">2023 Reporting Year (1,464 Trainees Exchanged)</option>
-            <option value="2022">2022 Reporting Year (1,455 Trainees Exchanged)</option>
-            <option value="2021">2021 Reporting Year (1,241 Trainees Exchanged)</option>
-            <option value="2020">2020 Reporting Year (682 Trainees Exchanged)</option>
-            <option value="2019">2019 Reporting Year (3,135 Trainees Exchanged)</option>
-            <option value="all">Cumulative Multi-Year Archive (11,533 Trainees Exchanged)</option>
-          </select>
+          <div class="controls-select-wrapper">
+            <svg class="controls-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <select id="filter-year" class="input-select input-select-modern" onchange="applyAnalyserFilters()">
+              <option value="2026" selected>2026 Official Report (1,013 Trainees Exchanged - 65 Member Committees)</option>
+              <option value="2025">2025 Reporting Cycle (1,146 Trainees Exchanged - 75 Member Committees)</option>
+              <option value="2024">2024 Reporting Year (1,397 Trainees Exchanged)</option>
+              <option value="2023">2023 Reporting Year (1,464 Trainees Exchanged)</option>
+              <option value="2022">2022 Reporting Year (1,455 Trainees Exchanged)</option>
+              <option value="2021">2021 Reporting Year (1,241 Trainees Exchanged)</option>
+              <option value="2020">2020 Reporting Year (682 Trainees Exchanged)</option>
+              <option value="2019">2019 Reporting Year (3,135 Trainees Exchanged)</option>
+              <option value="all">Cumulative Multi-Year Archive (11,533 Trainees Exchanged)</option>
+            </select>
+          </div>
 
-          <select id="filter-committee" class="input-select" onchange="applyAnalyserFilters()">
-            <option value="all">All Member Committees (Global View)</option>
-          </select>
+          <div class="controls-select-wrapper">
+            <svg class="controls-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <select id="filter-committee" class="input-select input-select-modern" onchange="applyAnalyserFilters()">
+              <option value="all">All Member Committees (Global View)</option>
+            </select>
+          </div>
         </div>
 
         <div class="controls-right">
@@ -869,61 +966,163 @@
             <span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
             <input type="text" id="analyser-search" class="input-text" placeholder="Search committee..." onkeyup="applyAnalyserFilters()">
           </div>
-          <button type="button" class="btn btn-secondary btn-sm" onclick="exportAnalyserSummary()">
+          <button type="button" class="btn btn-secondary btn-export-leads" onclick="exportAnalyserSummary()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Export Brief
+            <span>Export Brief</span>
           </button>
         </div>
       </div>
 
-      <!-- KPI Summary Grid -->
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">Students Sent</div>
-          <div class="kpi-value" id="kpi-sent">1,013</div>
-          <div class="kpi-sub" id="kpi-sent-sub">Exchange Internships</div>
+      <!-- 6 Activity Analyser KPI Cards with Wave Graphs -->
+      <div class="act-kpi-grid">
+        <!-- Card 1: Students Sent -->
+        <div class="act-kpi-card blue" onclick="quickFilterAnalyser('sent')" title="Sort by Students Sent">
+          <div class="akc-header">
+            <div class="akc-icon blue">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <span class="akc-label">STUDENTS SENT</span>
+          </div>
+          <div class="akc-val" id="kpi-sent">1,013</div>
+          <div class="akc-sub" id="kpi-sent-sub">2026 Official Report</div>
+          <div class="akc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,28 C40,36 70,16 110,24 C140,30 160,10 180,20 L180,40 L0,40 Z" fill="rgba(37, 99, 235, 0.12)"/>
+              <path d="M0,28 C40,36 70,16 110,24 C140,30 160,10 180,20" fill="none" stroke="#2563eb" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Students Received</div>
-          <div class="kpi-value" id="kpi-received">1,013</div>
-          <div class="kpi-sub" id="kpi-received-sub">Accepted Placements</div>
+
+        <!-- Card 2: Students Received -->
+        <div class="act-kpi-card green" onclick="quickFilterAnalyser('received')" title="Sort by Students Received">
+          <div class="akc-header">
+            <div class="akc-icon green">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+            </div>
+            <span class="akc-label">STUDENTS RECEIVED</span>
+          </div>
+          <div class="akc-val" id="kpi-received">1,013</div>
+          <div class="akc-sub" id="kpi-received-sub">1,014 Accepted Placements</div>
+          <div class="akc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,26 C40,18 70,32 110,18 C140,8 160,22 180,15 L180,40 L0,40 Z" fill="rgba(5, 150, 105, 0.12)"/>
+              <path d="M0,26 C40,18 70,32 110,18 C140,8 160,22 180,15" fill="none" stroke="#059669" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Active Committees</div>
-          <div class="kpi-value" id="kpi-committees">65</div>
-          <div class="kpi-sub" id="kpi-committees-sub">Across 6 Regions</div>
+
+        <!-- Card 3: Active Committees -->
+        <div class="act-kpi-card orange" onclick="quickFilterAnalyser('committees')" title="View Active Committees">
+          <div class="akc-header">
+            <div class="akc-icon orange">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line></svg>
+            </div>
+            <span class="akc-label">ACTIVE COMMITTEES</span>
+          </div>
+          <div class="akc-val" id="kpi-committees">65</div>
+          <div class="akc-sub" id="kpi-committees-sub">Across 6 Regions</div>
+          <div class="akc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,30 C30,22 80,35 120,20 C150,12 170,26 180,18 L180,40 L0,40 Z" fill="rgba(234, 88, 12, 0.12)"/>
+              <path d="M0,30 C30,22 80,35 120,20 C150,12 170,26 180,18" fill="none" stroke="#ea580c" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Bilateral Corridors</div>
-          <div class="kpi-value" id="kpi-corridors">447</div>
-          <div class="kpi-sub" id="kpi-corridors-sub">Active Trade Routes</div>
+
+        <!-- Card 4: Bilateral Corridors -->
+        <div class="act-kpi-card purple" onclick="quickFilterAnalyser('corridors')" title="Scroll to Bilateral Corridors">
+          <div class="akc-header">
+            <div class="akc-icon purple">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            </div>
+            <span class="akc-label">BILATERAL CORRIDORS</span>
+          </div>
+          <div class="akc-val" id="kpi-corridors">455</div>
+          <div class="akc-sub" id="kpi-corridors-sub">Active Trade Routes</div>
+          <div class="akc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,28 C35,36 75,18 115,28 C145,34 165,14 180,22 L180,40 L0,40 Z" fill="rgba(147, 51, 234, 0.12)"/>
+              <path d="M0,28 C35,36 75,18 115,28 C145,34 165,14 180,22" fill="none" stroke="#9333ea" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Placement Rate</div>
-          <div class="kpi-value" id="kpi-placement-rate">32.9%</div>
-          <div class="kpi-sub" id="kpi-placement-sub">1,013 / 3,082 Nominated</div>
+
+        <!-- Card 5: Placement Rate -->
+        <div class="act-kpi-card cyan" onclick="quickFilterAnalyser('placement')" title="Sort by Highest Placement Rate">
+          <div class="akc-header">
+            <div class="akc-icon cyan">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </div>
+            <span class="akc-label">PLACEMENT RATE</span>
+          </div>
+          <div class="akc-val" id="kpi-placement-rate">87.0%</div>
+          <div class="akc-sub" id="kpi-placement-sub">1,014 / 1,166 Nominated</div>
+          <div class="akc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,32 C50,22 80,36 120,24 C150,16 165,28 180,20 L180,40 L0,40 Z" fill="rgba(2, 132, 199, 0.12)"/>
+              <path d="M0,32 C50,22 80,36 120,24 C150,16 165,28 180,20" fill="none" stroke="#0284c7" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Employer Canc. Rate</div>
-          <div class="kpi-value" id="kpi-emp-cancel">19.8%</div>
-          <div class="kpi-sub negative" id="kpi-emp-cancel-sub">415 Cancelled Offers</div>
+
+        <!-- Card 6: Employer Cancellation Rate -->
+        <div class="act-kpi-card red" onclick="quickFilterAnalyser('cancel')" title="Sort by Cancellation Risk">
+          <div class="akc-header">
+            <div class="akc-icon red">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            </div>
+            <span class="akc-label">EMPLOYER CANC. RATE</span>
+          </div>
+          <div class="akc-val" id="kpi-emp-cancel">13.0%</div>
+          <div class="akc-sub negative" id="kpi-emp-cancel-sub">358 Cancelled Offers</div>
+          <div class="akc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,28 C45,36 85,15 125,26 C150,32 165,12 180,20 L180,40 L0,40 Z" fill="rgba(220, 38, 38, 0.12)"/>
+              <path d="M0,28 C45,36 85,15 125,26 C150,32 165,12 180,20" fill="none" stroke="#dc2626" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
       </div>
 
       <!-- Official 2026 Intelligence Panels -->
       <div id="analyser-official-2026-panel" class="official-2026-wrapper">
-        <!-- 2026 Executive Header Banner -->
-        <div class="official-2026-banner">
-          <div class="official-2026-banner-left">
-            <h3><span>🌐</span> Activity Report 2026: The Exchange Year in Numbers</h3>
-            <p>Official verified figures from IAESTE Exchange Platform (SmartSimple). Covers full exchange, bilateral cooperation, cancellations &amp; study fields.</p>
+        <!-- 2026 Executive Header Banner (Matching Reference) -->
+        <div class="official-2026-banner-redesign">
+          <div class="o26b-left">
+            <div class="o26b-title-row">
+              <div class="o26b-crest-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <h3 class="o26b-title">Activity Report 2026: The Exchange Year in Numbers</h3>
+            </div>
+            <p class="o26b-desc">Official verified figures from IAESTE Exchange Platform (SmartSimple). Covers full exchange, bilateral cooperation, cancellations &amp; study fields.</p>
+            <div class="o26b-metrics-row">
+              <span class="o26b-pill">👥 <strong>1,013</strong> Students Sent</span>
+              <span class="o26b-pill">🤝 <strong>519</strong> Combinations</span>
+              <span class="o26b-pill">🏛️ <strong>65</strong> Member Committees</span>
+              <span class="o26b-pill">🌍 <strong>6</strong> Regions</span>
+              <span class="o26b-pill">🌐 <strong>447</strong> Corridors</span>
+            </div>
           </div>
-          <div class="official-2026-badges">
-            <span class="official-stat-pill">🎓 <strong>1,013</strong> Students Sent</span>
-            <span class="official-stat-pill">🤝 <strong>519</strong> Combinations</span>
-            <span class="official-stat-pill">🏛️ <strong>65</strong> Member Committees</span>
-            <span class="official-stat-pill">🌍 <strong>6</strong> Regions</span>
-            <span class="official-stat-pill">🛣️ <strong>447</strong> Corridors</span>
+
+          <div class="o26b-right">
+            <!-- Glowing vector wireframe network sphere -->
+            <svg class="o26b-wireframe-globe" viewBox="0 0 200 90">
+              <circle cx="100" cy="45" r="38" fill="none" stroke="rgba(59, 130, 246, 0.4)" stroke-width="1.2"/>
+              <ellipse cx="100" cy="45" rx="38" ry="14" fill="none" stroke="rgba(96, 165, 250, 0.6)" stroke-width="1.2"/>
+              <ellipse cx="100" cy="45" rx="16" ry="38" fill="none" stroke="rgba(96, 165, 250, 0.6)" stroke-width="1.2"/>
+              <path d="M 68 25 Q 100 45 132 25" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <path d="M 68 65 Q 100 45 132 65" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <circle cx="70" cy="26" r="3" fill="#60a5fa"/>
+              <circle cx="130" cy="26" r="3" fill="#38bdf8"/>
+              <circle cx="100" cy="45" r="3.5" fill="#ffffff"/>
+              <circle cx="80" cy="55" r="2.5" fill="#38bdf8"/>
+              <circle cx="120" cy="60" r="2.5" fill="#60a5fa"/>
+            </svg>
+            <div class="o26b-network-badge">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line></svg>
+              <span>Global Exchange Network</span>
+            </div>
           </div>
         </div>
 
@@ -1747,78 +1946,271 @@
         </button>
       </div>
 
-      <!-- Outgoing Dropzone -->
-      <div class="dropzone-container" id="outgoing-dropzone">
-        <div class="dropzone-content">
-          <div class="dropzone-icon">📤</div>
-          <h3 class="dropzone-title">Upload Foreign Exchange Offers (CSV, Excel, ZIP)</h3>
-          <p class="dropzone-subtitle">Drop international offers received during conference exchange sessions. Scored for Indian students by net purchasing power, guaranteed lodging, vacation fit, and partner reliability.</p>
-          <div class="dropzone-actions">
-            <button type="button" class="btn btn-primary" onclick="document.getElementById('outgoing-file-input').click()">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-              Select Foreign Offers / ZIP
-            </button>
-            <button type="button" class="btn btn-secondary" onclick="loadSampleOutgoingOffersData()">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+      <!-- Redesigned Main Outgoing Hero & Dropzone Card -->
+      <div class="outgoing-hero-card">
+        <!-- Background decorative wave vector -->
+        <div class="outgoing-hero-wave-bg">
+          <svg viewBox="0 0 700 320" preserveAspectRatio="none">
+            <path d="M0,180 C200,280 450,110 700,240 L700,320 L0,320 Z" fill="rgba(224, 242, 254, 0.45)"/>
+            <path d="M0,230 C220,300 480,160 700,270 L700,320 L0,320 Z" fill="rgba(240, 249, 255, 0.7)"/>
+          </svg>
+        </div>
+
+        <!-- Left Column: Title, Subtitle, and 3 Feature Micro-Cards -->
+        <div class="outgoing-hero-left">
+          <div class="outgoing-tag-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>
+            <span>OUTGOING OFFERS</span>
+          </div>
+
+          <h2 class="outgoing-hero-title">
+            Upload <span class="outgoing-hero-highlight">Foreign Exchange Offers</span>
+          </h2>
+
+          <p class="outgoing-hero-subtitle">
+            Upload CSV, Excel or ZIP files to score international offers for Indian students using our trained evaluation model.
+          </p>
+
+          <!-- 3 Feature Micro-Cards Row -->
+          <div class="outgoing-features-row">
+            <div class="out-feature-item">
+              <div class="out-feature-icon purple">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div class="out-feature-info">
+                <span class="out-feature-title">ML Evaluation</span>
+                <span class="out-feature-desc">Trained on 10 official files</span>
+              </div>
+            </div>
+
+            <div class="out-feature-item">
+              <div class="out-feature-icon green">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              </div>
+              <div class="out-feature-info">
+                <span class="out-feature-title">Instant Scoring</span>
+                <span class="out-feature-desc">Priority &amp; tradeability</span>
+              </div>
+            </div>
+
+            <div class="out-feature-item">
+              <div class="out-feature-icon amber">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+              </div>
+              <div class="out-feature-info">
+                <span class="out-feature-title">Auto Analysis</span>
+                <span class="out-feature-desc">Stipends, housing, visa fit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center: Interactive Dropzone -->
+        <div class="outgoing-dropzone-box" id="outgoing-dropzone" onclick="document.getElementById('outgoing-file-input').click()">
+          <div class="out-cloud-icon-circle">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path><polyline points="12 12 12 8 10 10"></polyline><polyline points="12 8 14 10"></polyline><line x1="12" y1="8" x2="12" y2="15"></line></svg>
+          </div>
+          <div class="out-drop-prompt">Drag &amp; drop your file here</div>
+          <div class="out-drop-sub">or click to browse</div>
+
+          <button type="button" class="btn-outgoing-select" onclick="event.stopPropagation(); document.getElementById('outgoing-file-input').click()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <span>Select Foreign Offers (CSV, Excel, ZIP)</span>
+          </button>
+          <input type="file" id="outgoing-file-input" class="file-input-hidden" multiple accept=".csv,.xlsx,.xls,.zip,application/zip">
+
+          <div class="out-drop-support">Supports .csv, .xlsx, .xls, .zip • Max size: 50MB</div>
+
+          <!-- Quick Action Buttons for demo & modal -->
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-top:0.75rem;" onclick="event.stopPropagation()">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="loadSampleOutgoingOffersData()" title="Preload built-in 25 demo foreign offers">
               Stage Demo (25 Offers)
             </button>
-            <button type="button" class="btn btn-secondary" onclick="openLiveEvaluatorModal()" style="border-color:var(--primary); color:var(--primary); font-weight:700;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="openLiveEvaluatorModal()" style="border-color:#2563eb; color:#2563eb; font-weight:700;">
               ⚡ Instant Table Scorer
             </button>
-            <input type="file" id="outgoing-file-input" class="file-input-hidden" multiple accept=".csv,.xlsx,.xls,.zip,application/zip">
           </div>
 
-          <div id="outgoing-staging-wrapper" style="display:none; margin-top:1.25rem; width:100%; text-align:left;">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem;">
-              <h5 style="font-size:0.85rem; font-weight:700; color:var(--text-main);">Staged Queue (<span id="outgoing-staged-file-count">0</span> ready):</h5>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="clearStagedOutgoingFiles()">Clear Queue</button>
-            </div>
-            <div id="outgoing-staged-list" class="uploaded-files-pills" style="max-height:160px; overflow-y:auto; padding:0.65rem; background:#ffffff; border:1px solid var(--border-light); border-radius:var(--radius-md);"></div>
-
-            <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.4rem;">
-              <button type="button" id="btn-start-outgoing-grading" class="btn-start-analysis" onclick="startOutgoingGrading()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Score Foreign Offers for Indian Students (<span id="outgoing-staged-count-btn">0</span> ready)
-              </button>
-            </div>
-          </div>
-
-          <div id="outgoing-analysis-status" class="analysis-success-box" style="display:none;"></div>
+          <div id="outgoing-analysis-status" class="analysis-success-box" style="display:none; margin-top:0.65rem; width:100%;"></div>
           <div id="outgoing-file-info" class="uploaded-files-pills" style="margin-top:0.5rem;"></div>
+        </div>
+
+        <!-- Right Side: 3D Globe & Flying Airplane Illustration -->
+        <div class="outgoing-3d-globe-stage" onclick="document.getElementById('outgoing-file-input').click()" title="Click to upload foreign exchange offers">
+          <!-- Floating File Badges -->
+          <div class="floating-file-badge ffb-out-csv" title="CSV Spreadsheets">
+            <div class="ffb-icon green">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            </div>
+            <div class="ffb-label">CSV</div>
+            <div class="ffb-preview-lines"><span></span><span></span><span></span></div>
+          </div>
+
+          <div class="floating-file-badge ffb-out-xlsx" title="Excel Workbooks">
+            <div class="ffb-icon blue">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+            </div>
+            <div class="ffb-label">XLSX</div>
+            <div class="ffb-preview-lines"><span></span><span></span><span></span></div>
+          </div>
+
+          <div class="floating-file-badge ffb-out-zip" title="ZIP Offer Archives">
+            <div class="ffb-icon purple">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+            </div>
+            <div class="ffb-label">ZIP</div>
+            <div class="ffb-preview-lines"><span></span><span></span><span></span></div>
+          </div>
+
+          <!-- Curved Flight Trajectory -->
+          <svg class="airplane-flight-track" viewBox="0 0 220 160">
+            <path class="airplane-flight-line" d="M 15 130 Q 90 40 185 30"/>
+          </svg>
+
+          <!-- Flying Airplane -->
+          <div class="flying-airplane-badge">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>
+          </div>
+
+          <!-- 3D Globe Sphere -->
+          <div class="globe-sphere-container">
+            <div class="globe-atmosphere-glow"></div>
+            <!-- Continents SVG overlay -->
+            <svg class="globe-continents-svg" viewBox="0 0 100 100">
+              <path d="M20,35 Q25,25 35,28 Q45,30 40,42 Q32,48 24,42 Z" fill="#93c5fd" opacity="0.9"/>
+              <path d="M50,22 Q65,18 72,28 Q78,40 68,48 Q55,42 50,30 Z" fill="#93c5fd" opacity="0.9"/>
+              <path d="M42,52 Q58,48 65,60 Q62,75 50,78 Q40,70 42,52 Z" fill="#93c5fd" opacity="0.9"/>
+              <path d="M72,55 Q85,52 88,65 Q82,78 74,70 Z" fill="#93c5fd" opacity="0.9"/>
+            </svg>
+          </div>
         </div>
       </div>
 
-      <!-- Outgoing Summary Stats -->
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">Foreign Offers</div>
-          <div class="kpi-value" id="out-stat-total">0</div>
-          <div class="kpi-sub">Available at table</div>
+      <!-- Staged Queue Panel (Matching Reference) -->
+      <div id="outgoing-staging-wrapper" class="outgoing-staged-panel" style="display:none;">
+        <div class="osp-header">
+          <div class="osp-title">Staged Queue (<span id="outgoing-staged-file-count">0</span> file)</div>
+          <button type="button" class="btn-osp-clear" onclick="clearStagedOutgoingFiles()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+            <span>Clear Queue</span>
+          </button>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Grade A+ (Elite)</div>
-          <div class="kpi-value" style="color:var(--grade-aplus);" id="out-stat-aplus">0</div>
-          <div class="kpi-sub">Priority Targets</div>
+        <div id="outgoing-staged-list" class="osp-file-list"></div>
+        <button type="button" id="btn-start-outgoing-grading" class="btn-osp-score" onclick="startOutgoingGrading()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Score Foreign Offers for Indian Students ( <span id="outgoing-staged-count-btn">0</span> ready )</span>
+          <span class="osp-arrow">➔</span>
+        </button>
+      </div>
+
+      <!-- 6 Outgoing KPI Cards with Wave Graphs -->
+      <div class="out-kpi-grid">
+        <!-- Card 1: Total Foreign Offers -->
+        <div class="out-kpi-card blue" onclick="quickFilterOutgoing('all')" title="Show All Foreign Offers">
+          <div class="okc-header">
+            <div class="okc-icon blue">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <span class="okc-label">FOREIGN OFFERS</span>
+          </div>
+          <div class="okc-val" id="out-stat-total">0</div>
+          <div class="okc-sub">Available at table</div>
+          <div class="okc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,28 C40,36 70,16 110,24 C140,30 160,10 180,20 L180,40 L0,40 Z" fill="rgba(37, 99, 235, 0.12)"/>
+              <path d="M0,28 C40,36 70,16 110,24 C140,30 160,10 180,20" fill="none" stroke="#2563eb" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Grade A (Strong)</div>
-          <div class="kpi-value" style="color:var(--grade-a);" id="out-stat-a">0</div>
-          <div class="kpi-sub">Solid Tradeables</div>
+
+        <!-- Card 2: Grade A+ -->
+        <div class="out-kpi-card orange" onclick="quickFilterOutgoing('A+')" title="Filter by Grade A+ (Elite)">
+          <div class="okc-header">
+            <div class="okc-icon orange">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <span class="okc-label">GRADE A+ (ELITE)</span>
+          </div>
+          <div class="okc-val" id="out-stat-aplus" style="color:#ea580c;">0</div>
+          <div class="okc-sub">Priority Targets</div>
+          <div class="okc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,30 C30,22 80,35 120,20 C150,12 170,26 180,18 L180,40 L0,40 Z" fill="rgba(234, 88, 12, 0.12)"/>
+              <path d="M0,30 C30,22 80,35 120,20 C150,12 170,26 180,18" fill="none" stroke="#ea580c" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Guaranteed Housing</div>
-          <div class="kpi-value" style="color:#059669;" id="out-stat-housing">0%</div>
-          <div class="kpi-sub">Arranged by host</div>
+
+        <!-- Card 3: Grade A -->
+        <div class="out-kpi-card purple" onclick="quickFilterOutgoing('A')" title="Filter by Grade A (Strong)">
+          <div class="okc-header">
+            <div class="okc-icon purple">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </div>
+            <span class="okc-label">GRADE A (STRONG)</span>
+          </div>
+          <div class="okc-val" id="out-stat-a" style="color:#9333ea;">0</div>
+          <div class="okc-sub">Solid Tradeables</div>
+          <div class="okc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,28 C35,36 75,18 115,28 C145,34 165,14 180,22 L180,40 L0,40 Z" fill="rgba(147, 51, 234, 0.12)"/>
+              <path d="M0,28 C35,36 75,18 115,28 C145,34 165,14 180,22" fill="none" stroke="#9333ea" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Summer Break Fit</div>
-          <div class="kpi-value" style="color:var(--primary);" id="out-stat-summer">0%</div>
-          <div class="kpi-sub">May–Aug Window</div>
+
+        <!-- Card 4: Guaranteed Housing -->
+        <div class="out-kpi-card green" onclick="quickFilterOutgoing('housing')" title="Filter by Guaranteed Housing">
+          <div class="okc-header">
+            <div class="okc-icon green">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            </div>
+            <span class="okc-label">GUARANTEED HOUSING</span>
+          </div>
+          <div class="okc-val" id="out-stat-housing" style="color:#059669;">0%</div>
+          <div class="okc-sub">Arranged by host</div>
+          <div class="okc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,26 C40,18 70,32 110,18 C140,8 160,22 180,15 L180,40 L0,40 Z" fill="rgba(5, 150, 105, 0.12)"/>
+              <path d="M0,26 C40,18 70,32 110,18 C140,8 160,22 180,15" fill="none" stroke="#059669" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Average Score</div>
-          <div class="kpi-value" id="out-stat-avg">0.0</div>
-          <div class="kpi-sub">Out of 100 points</div>
+
+        <!-- Card 5: Summer Break Fit -->
+        <div class="out-kpi-card pink" onclick="quickFilterOutgoing('summer')" title="Filter by Summer Break Window">
+          <div class="okc-header">
+            <div class="okc-icon pink">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </div>
+            <span class="okc-label">SUMMER BREAK FIT</span>
+          </div>
+          <div class="okc-val" id="out-stat-summer" style="color:#db2777;">0%</div>
+          <div class="okc-sub">May–Aug Window</div>
+          <div class="okc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,28 C45,36 85,15 125,26 C150,32 165,12 180,20 L180,40 L0,40 Z" fill="rgba(219, 39, 119, 0.12)"/>
+              <path d="M0,28 C45,36 85,15 125,26 C150,32 165,12 180,20" fill="none" stroke="#db2777" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 6: Average Score -->
+        <div class="out-kpi-card cyan" onclick="quickFilterOutgoing('score')" title="Sort by Highest Overall Score">
+          <div class="okc-header">
+            <div class="okc-icon cyan">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            </div>
+            <span class="okc-label">AVERAGE SCORE</span>
+          </div>
+          <div class="okc-val" id="out-stat-avg">0.0</div>
+          <div class="okc-sub">Out of 100 points</div>
+          <div class="okc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,32 C50,22 80,36 120,24 C150,16 165,28 180,20 L180,40 L0,40 Z" fill="rgba(2, 132, 199, 0.12)"/>
+              <path d="M0,32 C50,22 80,36 120,24 C150,16 165,28 180,20" fill="none" stroke="#0284c7" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
       </div>
 
@@ -3202,7 +3594,7 @@
   <script src="country_strategies_data.js"></script>
 
   <!-- Main Engine Logic -->
-  <script src="app.js?v=10"></script>
+  <script src="app.js?v=11"></script>
 
 </body>
 </html>
