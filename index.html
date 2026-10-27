@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 
   <!-- PWA & Mobile Web App Meta & Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -89,23 +89,316 @@
          1. OVERVIEW VIEW
          =================================================================== -->
     <section id="view-overview" class="view-section active">
-      <div class="hero-banner">
+      <!-- ===================================================================
+           REDESIGNED HERO SECTION (Split Hero with Perspective Dashboard)
+           =================================================================== -->
+      <div class="hero-banner hero-redesign">
+        <!-- Left Content Column -->
         <div class="hero-content">
           <div class="hero-tag">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            Phase-II &amp; Annual Conference Suite
+            <svg class="hero-tag-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/>
+            </svg>
+            <span>PHASE-II &amp; ANNUAL CONFERENCE SUITE</span>
           </div>
-          <h2>Exchange Intelligence &amp; Offer Grading Platform</h2>
-          <p>
+
+          <h2 class="hero-headline">
+            Exchange Intelligence &amp;<br>
+            <span class="hero-headline-highlight">Offer Grading Platform</span>
+          </h2>
+
+          <p class="hero-desc">
             Eliminate manual friction during international exchange sessions. Ingest multi-year activity datasets, auto-grade incoming and outgoing offers, and discover fact-backed country leads with verified materialization rates.
           </p>
+
+          <!-- 3-Pill Highlights Row (Interactive) -->
+          <div class="hero-stats-row">
+            <div class="hero-stat-pill" onclick="switchTab('analyser')" title="Click to view 69+ Committees in Activity Analyser">
+              <div class="stat-pill-icon blue">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              </div>
+              <div class="stat-pill-info">
+                <div class="stat-pill-num">69+</div>
+                <div class="stat-pill-lbl">Committees</div>
+              </div>
+            </div>
+
+            <div class="hero-stat-pill" onclick="switchTab('strategies')" title="Click to explore Global Partner Network Strategies">
+              <div class="stat-pill-icon green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div class="stat-pill-info">
+                <div class="stat-pill-num">Global</div>
+                <div class="stat-pill-lbl">Partner Network</div>
+              </div>
+            </div>
+
+            <div class="hero-stat-pill" onclick="switchTab('grader-incoming')" title="Click to open Data-Driven Offer Intelligence">
+              <div class="stat-pill-icon amber">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <div class="stat-pill-info">
+                <div class="stat-pill-num">Data-Driven</div>
+                <div class="stat-pill-lbl">Offer Intelligence</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Action Buttons -->
           <div class="hero-actions">
-            <button type="button" class="btn btn-primary" onclick="switchTab('analyser')">Launch Activity Analyser</button>
-            <button type="button" class="btn btn-secondary" onclick="switchTab('grader-incoming')">Indian LC Grader</button>
-            <button type="button" class="btn btn-secondary" onclick="switchTab('leads')">View Trade Leads</button>
+            <button type="button" class="btn-hero-primary" onclick="switchTab('analyser')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              <span>Launch Activity Analyser</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <button type="button" class="btn-hero-secondary" onclick="switchTab('grader-incoming')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span>Indian LC Grader</span>
+            </button>
+            <button type="button" class="btn-hero-secondary" onclick="switchTab('leads')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              <span>View Trade Leads</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Visual Showcase: 3D Perspective Dashboard -->
+        <div class="hero-showcase">
+          <!-- Background Glow & Flight Lines -->
+          <div class="hero-showcase-backdrop">
+            <svg class="flight-arcs-svg" viewBox="0 0 540 380" fill="none">
+              <!-- World Map Subtle Silhouette Dots & Outlines -->
+              <path d="M70 120 C100 110, 140 115, 170 130 C200 145, 230 140, 260 110 C290 85, 330 80, 360 95 C390 110, 420 100, 460 90" stroke="#bfdbfe" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.6"/>
+              <path d="M180 180 C240 140, 320 130, 410 160 C440 170, 480 150, 520 120" stroke="#bfdbfe" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.5"/>
+              <path d="M220 220 C270 180, 350 170, 420 130" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.7"/>
+            </svg>
+          </div>
+
+          <!-- Floating Country Flag Pins -->
+          <div class="floating-country-pin pin-de" onclick="navigateToCountryLead('Germany')" title="Germany • 78% Materialization Rate">
+            <span class="flag-pill flag-de"></span>
+          </div>
+
+          <div class="floating-country-pin pin-jp" onclick="navigateToCountryLead('Japan')" title="Japan • 80% Materialization Rate">
+            <span class="flag-pill flag-jp"></span>
+          </div>
+
+          <div class="floating-country-pin pin-at" onclick="navigateToCountryLead('Austria')" title="Austria • 78% Materialization Rate">
+            <span class="flag-pill flag-at"></span>
+          </div>
+
+          <div class="floating-country-pin pin-cz" onclick="navigateToCountryLead('Czechia')" title="Czechia • 79% Materialization Rate">
+            <span class="flag-pill flag-cz"></span>
+          </div>
+
+          <!-- Floating Glass Card 1: Incoming Offers -->
+          <div class="floating-glass-card card-incoming-offers" onclick="switchTab('grader-incoming')" title="Click to view Incoming Offers Grader">
+            <div class="glass-header">
+              <div class="glass-icon blue">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </div>
+              <span class="glass-title">Incoming Offers</span>
+            </div>
+            <div class="glass-metrics">
+              <span class="glass-number">246</span>
+              <span class="glass-badge green"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"></polyline></svg> 12%</span>
+            </div>
+            <div class="glass-sparkline">
+              <svg viewBox="0 0 110 26" fill="none" preserveAspectRatio="none">
+                <path d="M2 18 C25 20, 42 10, 60 14 C78 18, 92 4, 108 6" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M2 18 C25 20, 42 10, 60 14 C78 18, 92 4, 108 6 L108 26 L2 26 Z" fill="url(#spark-blue-grad)" opacity="0.2"/>
+                <defs>
+                  <linearGradient id="spark-blue-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3b82f6"/>
+                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Floating Glass Card 2: Outgoing Offers -->
+          <div class="floating-glass-card card-outgoing-offers" onclick="switchTab('grader-outgoing')" title="Click to view Outgoing Offers Grader">
+            <div class="glass-header">
+              <div class="glass-icon purple">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+              </div>
+              <span class="glass-title">Outgoing Offers</span>
+            </div>
+            <div class="glass-metrics">
+              <span class="glass-number">189</span>
+              <span class="glass-badge green"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="18 15 12 9 6 15"></polyline></svg> 18%</span>
+            </div>
+            <div class="glass-sparkline">
+              <svg viewBox="0 0 110 26" fill="none" preserveAspectRatio="none">
+                <path d="M2 20 C22 22, 38 14, 58 16 C76 18, 88 6, 108 4" stroke="#8b5cf6" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M2 20 C22 22, 38 14, 58 16 C76 18, 88 6, 108 4 L108 26 L2 26 Z" fill="url(#spark-purple-grad)" opacity="0.2"/>
+                <defs>
+                  <linearGradient id="spark-purple-grad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#8b5cf6"/>
+                    <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 3D Perspective Screen Frame -->
+          <div class="hero-screen-perspective">
+            <div class="mockup-window">
+              <!-- Window Top Navigation Mockup -->
+              <div class="window-nav-bar">
+                <div class="window-brand" onclick="switchTab('overview')">
+                  <span class="window-brand-badge">IAESTE</span>
+                  <div class="window-brand-titles">
+                    <strong>EXCHANGE SUITE</strong>
+                    <small>OPERATIONS &amp; INTELLIGENCE</small>
+                  </div>
+                </div>
+
+                <div class="window-nav-links">
+                  <span class="win-link active" onclick="switchTab('overview')">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                    Overview
+                  </span>
+                  <span class="win-link" onclick="switchTab('analyser')">Activity</span>
+                  <span class="win-link" onclick="switchTab('grader-incoming')">Incoming</span>
+                  <span class="win-link" onclick="switchTab('grader-outgoing')">Outgoing</span>
+                  <span class="win-link" onclick="switchTab('leads')">Trade Leads</span>
+                </div>
+              </div>
+
+              <!-- Window World Map Canvas -->
+              <div class="window-map-canvas">
+                <!-- SVG World Map Dotted Continents -->
+                <svg class="map-silhouette-svg" viewBox="0 0 680 230" fill="none">
+                  <path d="M90 60 Q120 40 150 70 Q140 110 110 130 Q80 100 90 60 Z" fill="#e2e8f0" opacity="0.6"/>
+                  <path d="M130 140 Q150 160 140 200 Q120 180 130 140 Z" fill="#e2e8f0" opacity="0.5"/>
+                  <path d="M250 50 Q310 30 350 55 Q360 90 320 110 Q280 100 250 50 Z" fill="#cbd5e1" opacity="0.7"/>
+                  <path d="M370 60 Q450 40 500 80 Q480 130 430 120 Q390 100 370 60 Z" fill="#cbd5e1" opacity="0.6"/>
+                  <path d="M280 120 Q320 130 330 180 Q290 190 280 120 Z" fill="#e2e8f0" opacity="0.5"/>
+                  <path d="M470 140 Q510 150 500 180 Q460 170 470 140 Z" fill="#e2e8f0" opacity="0.5"/>
+                  <!-- Curved Connecting Arcs -->
+                  <path d="M310 75 Q380 40 460 85" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="3 3" opacity="0.8"/>
+                  <path d="M310 75 Q360 110 410 100" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="3 3" opacity="0.7"/>
+                  <!-- Hub Dots -->
+                  <circle cx="310" cy="75" r="4" fill="#2563eb"/>
+                  <circle cx="460" cy="85" r="4" fill="#2563eb"/>
+                  <circle cx="410" cy="100" r="3.5" fill="#10b981"/>
+                </svg>
+
+                <!-- Floating Germany Callout Card on the Map -->
+                <div class="map-germany-callout" onclick="navigateToCountryLead('Germany')" title="Click to view Germany detailed dossier">
+                  <div class="callout-top">
+                    <span class="flag-pill-mini flag-de"></span>
+                    <span class="callout-title">Germany</span>
+                  </div>
+                  <div class="callout-middle">
+                    <span class="callout-sub">Materialization Rate</span>
+                    <span class="callout-trend">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                    </span>
+                  </div>
+                  <div class="callout-bottom">
+                    <span class="callout-rate">78%</span>
+                    <div class="callout-mini-bars">
+                      <span style="height: 40%;"></span>
+                      <span style="height: 60%;"></span>
+                      <span style="height: 80%;"></span>
+                      <span style="height: 100%;"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Window Lower Row: Activity Trend & Success Rate -->
+              <div class="window-bottom-row">
+                <!-- Activity Trend Widget -->
+                <div class="window-widget trend-widget" onclick="switchTab('analyser')" title="Click to open Activity Analyser">
+                  <div class="widget-header">
+                    <span class="widget-title">Activity Trend</span>
+                    <span class="widget-dropdown">Last 6 Months <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+                  </div>
+                  <div class="widget-barchart">
+                    <div class="bar-col"><div class="bar-fill" style="height: 40%;"></div><span>Jan</span></div>
+                    <div class="bar-col"><div class="bar-fill" style="height: 55%;"></div><span>Feb</span></div>
+                    <div class="bar-col"><div class="bar-fill" style="height: 70%;"></div><span>Mar</span></div>
+                    <div class="bar-col"><div class="bar-fill" style="height: 92%;"></div><span>Apr</span></div>
+                    <div class="bar-col"><div class="bar-fill" style="height: 65%;"></div><span>May</span></div>
+                    <div class="bar-col"><div class="bar-fill" style="height: 98%;"></div><span>Jun</span></div>
+                  </div>
+                </div>
+
+                <!-- Success Rate Widget -->
+                <div class="window-widget success-widget" onclick="switchTab('leads')" title="Click to view Materialization Trade Leads">
+                  <div class="widget-header">
+                    <span class="widget-title">Success Rate</span>
+                  </div>
+                  <div class="widget-donut-row">
+                    <div class="donut-chart-box">
+                      <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="circle-fill" stroke-dasharray="78, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      </svg>
+                      <span class="donut-val">78%</span>
+                    </div>
+                    <div class="donut-legend-list">
+                      <div class="legend-row"><span class="legend-dot green"></span> Materialized</div>
+                      <div class="legend-row"><span class="legend-dot red"></span> Cancelled</div>
+                      <div class="legend-row"><span class="legend-dot gray"></span> Pending</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating Glass Card 3: Top Trade Leads -->
+          <div class="floating-glass-card card-top-leads" title="Top Trade Leads">
+            <div class="glass-header" onclick="switchTab('leads')" style="cursor: pointer;">
+              <div class="glass-icon green-circle">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <span class="glass-title">Top Trade Leads</span>
+            </div>
+            <div class="leads-ranking-list">
+              <div class="lead-rank-item" onclick="navigateToCountryLead('Austria')" title="Inspect Austria dossier">
+                <div class="lead-country">
+                  <span class="flag-pill-mini flag-at"></span>
+                  <span>Austria</span>
+                </div>
+                <div class="lead-score">
+                  <span class="score-pct">78%</span>
+                  <span class="score-arrow">&rsaquo;</span>
+                </div>
+              </div>
+
+              <div class="lead-rank-item" onclick="navigateToCountryLead('Czechia')" title="Inspect Czechia dossier">
+                <div class="lead-country">
+                  <span class="flag-pill-mini flag-cz"></span>
+                  <span>Czechia</span>
+                </div>
+                <div class="lead-score">
+                  <span class="score-pct">79%</span>
+                  <span class="score-arrow">&rsaquo;</span>
+                </div>
+              </div>
+
+              <div class="lead-rank-item" onclick="navigateToCountryLead('Japan')" title="Inspect Japan dossier">
+                <div class="lead-country">
+                  <span class="flag-pill-mini flag-jp"></span>
+                  <span>Japan</span>
+                </div>
+                <div class="lead-score">
+                  <span class="score-pct">80%</span>
+                  <span class="score-arrow">&rsaquo;</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
 
       <!-- Core Tools Grid -->
       <div class="tools-grid">
@@ -1977,7 +2270,7 @@
   <script src="country_strategies_data.js"></script>
 
   <!-- Main Engine Logic -->
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 
 </body>
 </html>

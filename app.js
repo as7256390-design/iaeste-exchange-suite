@@ -275,6 +275,27 @@ function switchTab(tabId) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+/**
+ * Quick navigation helper for hero section interactive pins and cards
+ */
+function navigateToCountryLead(countryName) {
+  switchTab('leads');
+  setTimeout(() => {
+    if (typeof lookupCountryStrategy === 'function') {
+      lookupCountryStrategy(countryName);
+    }
+    const select = document.getElementById('country-dossier-select');
+    if (select) {
+      select.value = countryName;
+    }
+    const dossier = document.getElementById('country-dossier-result');
+    if (dossier) {
+      dossier.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 120);
+}
+window.navigateToCountryLead = navigateToCountryLead;
+
 // ===================================================================
 // GUIDE & REFERENCE TAB SWITCHING
 // ===================================================================

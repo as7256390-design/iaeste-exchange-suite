@@ -1,5 +1,5 @@
 // IAESTE Exchange Suite - Service Worker (Offline & PWA Install Support)
-const CACHE_NAME = 'iaeste-exchange-suite-v2';
+const CACHE_NAME = 'iaeste-exchange-suite-v3';
 
 const PRECACHE_ASSETS = [
   './',
