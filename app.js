@@ -2559,6 +2559,55 @@ function updateIncomingKPIs() {
   if (document.getElementById('inc-sub-smu')) document.getElementById('inc-sub-smu').textContent = `Avg Score: ${getAvg(byLC.smu)}`;
 }
 
+window.quickFilterIncomingLC = function(lcKey) {
+  const select = document.getElementById('filter-incoming-lc');
+  if (!select) return;
+
+  if (lcKey === 'all') {
+    select.value = 'all';
+  } else if (lcKey === 'Manipal') {
+    select.value = 'LC Manipal University';
+  } else if (lcKey === 'Karunya') {
+    select.value = 'LC Karunya University';
+  } else if (lcKey === 'JECRC') {
+    select.value = 'LC JECRC';
+  } else if (lcKey === 'MUJ') {
+    select.value = 'LC MUJ';
+  } else if (lcKey === 'SMU') {
+    select.value = 'CI - SMU';
+  } else {
+    for (let i = 0; i < select.options.length; i++) {
+      if (select.options[i].value.toLowerCase().includes(lcKey.toLowerCase())) {
+        select.selectedIndex = i;
+        break;
+      }
+    }
+  }
+
+  // Active ring highlight on clicked KPI card
+  document.querySelectorAll('.inc-kpi-card').forEach(c => c.classList.remove('selected-filter'));
+  const cardMap = {
+    'all': '.inc-kpi-card.blue',
+    'Manipal': '.inc-kpi-card.orange',
+    'Karunya': '.inc-kpi-card.green',
+    'JECRC': '.inc-kpi-card.cyan',
+    'MUJ': '.inc-kpi-card.purple',
+    'SMU': '.inc-kpi-card.teal'
+  };
+  const targetCard = document.querySelector(cardMap[lcKey]);
+  if (targetCard) targetCard.classList.add('selected-filter');
+
+  renderIncomingOffersTable();
+
+  // Smooth scroll to table if offers exist
+  if (state.graderIncoming.gradedOffers && state.graderIncoming.gradedOffers.length > 0) {
+    const tableContainer = document.querySelector('#view-grader-incoming .table-container');
+    if (tableContainer) {
+      tableContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+};
+
 function renderIncomingOffersTable() {
   const tbody = document.getElementById('incoming-table-body');
   if (!tbody) return;

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="styles.css?v=10">
 
   <!-- PWA & Mobile Web App Meta & Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -1255,149 +1255,355 @@
          =================================================================== -->
     <section id="view-grader-incoming" class="view-section">
       
-      <!-- Dual Grader Switcher -->
-      <div class="grader-dual-mode-header">
-        <div class="grader-dual-mode-pills">
-          <button type="button" class="dual-mode-pill active" onclick="switchTab('grader-incoming')">
-            📥 Incoming Offers (Indian LCs: Manipal, Karunya, JECRC, MUJ, CI-SMU)
-          </button>
-          <button type="button" class="dual-mode-pill" onclick="switchTab('grader-outgoing')">
-            📤 Outgoing Offers (Conference Trading &amp; Student Abroad Fit)
-          </button>
-        </div>
+      <!-- Dual Grader Switcher (Two Wide Cards Matching Reference) -->
+      <div class="grader-dual-card-switcher">
+        <button type="button" class="dual-card-btn active" onclick="switchTab('grader-incoming')">
+          <div class="dual-card-icon-box blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <div class="dual-card-text">
+            <span class="dual-card-title">Incoming Offers</span>
+            <span class="dual-card-subtitle">Indian LCs: Manipal, Karunya, JECRC, MUJ, CI-SMU</span>
+          </div>
+        </button>
+
+        <button type="button" class="dual-card-btn" onclick="switchTab('grader-outgoing')">
+          <div class="dual-card-icon-box gray">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>
+          </div>
+          <div class="dual-card-text">
+            <span class="dual-card-title">Outgoing Offers</span>
+            <span class="dual-card-subtitle">Conference Trading &amp; Student Abroad Fit</span>
+          </div>
+        </button>
       </div>
 
-      <!-- Incoming Dropzone -->
-      <div class="dropzone-container" id="incoming-dropzone">
-        <div class="dropzone-content">
-          <div class="dropzone-icon">📥</div>
-          <h3 class="dropzone-title">Upload Indian LC Offers (CSV, Excel, ZIP)</h3>
-          <p class="dropzone-subtitle">Audit internal offers from LC Manipal, Karunya, JECRC, MUJ, and CI-SMU. Evaluates stipends, on-campus lodging bonusing, and Phase-II conference tradeability.</p>
-          <div class="dropzone-actions">
-            <button type="button" class="btn btn-primary" onclick="document.getElementById('incoming-file-input').click()">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-              Select Indian Offers (CSV, Excel, ZIP)
-            </button>
-            <input type="file" id="incoming-file-input" class="file-input-hidden" multiple accept=".csv,.xlsx,.xls,.zip,application/zip">
+      <!-- Redesigned Main Incoming Hero & Dropzone Card -->
+      <div class="incoming-hero-card">
+        <!-- Background decorative wave vector -->
+        <div class="incoming-hero-wave-bg">
+          <svg viewBox="0 0 700 320" preserveAspectRatio="none">
+            <path d="M0,180 C200,280 450,110 700,240 L700,320 L0,320 Z" fill="rgba(224, 242, 254, 0.45)"/>
+            <path d="M0,230 C220,300 480,160 700,270 L700,320 L0,320 Z" fill="rgba(240, 249, 255, 0.7)"/>
+          </svg>
+        </div>
+
+        <!-- Left Column: Title, Subtitle, and 4 Feature Micro-Cards -->
+        <div class="incoming-hero-left">
+          <div class="incoming-tag-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>INCOMING OFFERS</span>
           </div>
 
-          <div id="incoming-staging-wrapper" style="display:none; margin-top:1.25rem; width:100%; text-align:left;">
+          <h2 class="incoming-hero-title">
+            Upload <span class="incoming-hero-highlight">Indian LC Offers</span>
+          </h2>
+
+          <p class="incoming-hero-subtitle">
+            Upload CSV, Excel or ZIP files to audit internal offers from LC Manipal, Karunya, JECRC, MUJ, and CI-SMU.
+          </p>
+
+          <!-- 4 Feature Micro-Cards Row -->
+          <div class="incoming-features-row">
+            <div class="inc-feature-item">
+              <div class="inc-feature-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <span class="inc-feature-text">Auto Evaluation</span>
+            </div>
+
+            <div class="inc-feature-item">
+              <div class="inc-feature-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              </div>
+              <span class="inc-feature-text">Stipend Analysis</span>
+            </div>
+
+            <div class="inc-feature-item">
+              <div class="inc-feature-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              </div>
+              <span class="inc-feature-text">Bonus &amp; Lodging</span>
+            </div>
+
+            <div class="inc-feature-item">
+              <div class="inc-feature-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <span class="inc-feature-text">Phase-II Ready</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Center: Interactive Dropzone -->
+        <div class="incoming-dropzone-box" id="incoming-dropzone" onclick="document.getElementById('incoming-file-input').click()">
+          <div class="inc-cloud-icon-circle">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path><polyline points="12 12 12 8 10 10"></polyline><polyline points="12 8 14 10"></polyline><line x1="12" y1="8" x2="12" y2="15"></line></svg>
+          </div>
+          <div class="inc-drop-prompt">Drag &amp; drop your file here</div>
+          <div class="inc-drop-sub">or click to browse</div>
+
+          <button type="button" class="btn-incoming-select" onclick="event.stopPropagation(); document.getElementById('incoming-file-input').click()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <span>Select Indian Offers (CSV, Excel, ZIP)</span>
+          </button>
+          <input type="file" id="incoming-file-input" class="file-input-hidden" multiple accept=".csv,.xlsx,.xls,.zip,application/zip">
+
+          <div class="inc-drop-support">Supports .csv, .xlsx, .xls, .zip • Max size: 50MB</div>
+
+          <!-- Staged files queue wrapper -->
+          <div id="incoming-staging-wrapper" style="display:none; margin-top:1rem; width:100%; text-align:left;" onclick="event.stopPropagation();">
             <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem;">
-              <h5 style="font-size:0.85rem; font-weight:700; color:var(--text-main);">Staged Files (<span id="incoming-staged-file-count">0</span>):</h5>
+              <h5 style="font-size:0.825rem; font-weight:700; color:var(--text-main);">Staged Files (<span id="incoming-staged-file-count">0</span>):</h5>
               <button type="button" class="btn btn-secondary btn-sm" onclick="clearStagedIncomingFiles()">Clear Queue</button>
             </div>
-            <div id="incoming-staged-list" class="uploaded-files-pills" style="max-height:160px; overflow-y:auto; padding:0.65rem; background:#ffffff; border:1px solid var(--border-light); border-radius:var(--radius-md);"></div>
-
-            <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.4rem;">
-              <button type="button" id="btn-start-incoming-grading" class="btn-start-analysis" onclick="startIncomingGrading()">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                <span id="btn-incoming-grade-text">Grade the Offers</span>
-              </button>
-            </div>
+            <div id="incoming-staged-list" class="uploaded-files-pills" style="max-height:120px; overflow-y:auto; padding:0.5rem; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px;"></div>
+            <button type="button" id="btn-start-incoming-grading" class="btn-start-analysis" style="margin-top:0.75rem;" onclick="startIncomingGrading()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <span id="btn-incoming-grade-text">Grade the Offers</span>
+            </button>
           </div>
-
           <div id="incoming-analysis-status" class="analysis-success-box" style="display:none;"></div>
           <div id="incoming-file-info" class="uploaded-files-pills" style="margin-top:0.5rem;"></div>
         </div>
+
+        <!-- Right Side: 3D IAESTE Folder & Floating File Cards Illustration -->
+        <div class="incoming-3d-folder-stage" onclick="document.getElementById('incoming-file-input').click()" title="Click to upload Indian LC Offers">
+          <!-- Floating Badges -->
+          <div class="floating-file-badge ffb-csv" title="CSV Spreadsheets">
+            <div class="ffb-icon green">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            </div>
+            <div class="ffb-label">CSV</div>
+            <div class="ffb-preview-lines">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="floating-file-badge ffb-xlsx" title="Excel Workbooks">
+            <div class="ffb-icon blue">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+            </div>
+            <div class="ffb-label">XLSX</div>
+            <div class="ffb-preview-lines">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="floating-file-badge ffb-zip" title="ZIP Offer Archives">
+            <div class="ffb-icon purple">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <div class="ffb-label">ZIP</div>
+            <div class="ffb-preview-lines">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <!-- Curved Dashed Trajectory Lines -->
+          <svg class="folder-flow-svg" viewBox="0 0 260 180">
+            <path class="flow-path-line" d="M 50 40 Q 110 90 140 120"/>
+            <path class="flow-path-line" d="M 130 30 Q 140 70 150 115"/>
+            <path class="flow-path-line" d="M 210 45 Q 180 85 160 120"/>
+          </svg>
+
+          <!-- 3D Folder Body with IAESTE Logo Crest -->
+          <div class="iaeste-3d-folder">
+            <div class="folder-tab-top"></div>
+            <div class="folder-front-face">
+              <div class="folder-iaeste-crest">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <span class="crest-text">IAESTE</span>
+              </div>
+              <div class="folder-cloud-badge">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.3"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path><polyline points="12 13 12 9 10 11"></polyline><polyline points="12 9 14 11"></polyline></svg>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- ML Model Calibration Status Banner -->
-      <div class="ml-model-banner" style="background:linear-gradient(135deg, #fff7ed 0%, #ffffff 100%); border:1px solid #fed7aa; border-radius:var(--radius-lg); padding:1.25rem 1.5rem; margin-bottom:1.75rem; box-shadow:var(--shadow-xs);">
-        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:0.75rem;">
-          <div style="display:flex; align-items:flex-start; gap:0.85rem; max-width:760px;">
-            <span style="font-size:1.6rem; line-height:1;">🎓</span>
-            <div>
-              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
-                <h4 style="font-size:0.975rem; font-weight:800; color:#9a3412;">Empirical ML Model Trained on 10 Official Files (18 Sheets)</h4>
-                <span style="font-size:0.7rem; font-weight:700; background:#ea580c; color:#ffffff; padding:0.15rem 0.55rem; border-radius:var(--radius-full);">544 Reviews • 500 Unique Offers</span>
-              </div>
-              <p style="font-size:0.825rem; color:#7c2d12; line-height:1.55;">
-                Trained directly on all 10 verified Excel files across LC Manipal, LC MUJ, LC Karunya, LC JECRC &amp; CI-SMU (Phase 1, Phase 2 &amp; Autumn Exchange). Learns research keyword prestige, lodging bonusing, and evaluator feedback.
-              </p>
-            </div>
+      <!-- ML Model Calibration Status Banner (Matching Reference) -->
+      <div class="ml-model-banner-redesign">
+        <!-- Left Column: Icon & Descriptive Details -->
+        <div class="mlb-left-col">
+          <div class="mlb-icon-badge">
+            <span>🎓</span>
           </div>
-          <div style="display:flex; align-items:center; gap:0.6rem;">
-            <button type="button" class="btn btn-secondary btn-sm" onclick="applyIncomingPreset('ml_trained')" style="border-color:#fed7aa; background:#ffffff; color:#9a3412; font-weight:700;">
-              Apply 2025 ML Weights
-            </button>
+          <div class="mlb-info">
+            <div class="mlb-title-row">
+              <h4 class="mlb-title">Empirical ML Model</h4>
+              <span class="mlb-tag-orange">Trained on 10 Official Files (18 Sheets)</span>
+            </div>
+            <p class="mlb-desc">
+              Trained directly on all 10 verified Excel files across LC Manipal, LC MUJ, LC Karunya, LC JECRC &amp; CI-SMU (Phase 1, Phase 2 &amp; Autumn Exchange).
+            </p>
+            <div class="mlb-metrics-pills">
+              <span class="mlb-pill amber">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                544 Reviews
+              </span>
+              <span class="mlb-pill blue">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                500 Unique Offers
+              </span>
+              <span class="mlb-pill green">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                5 Indian LCs
+              </span>
+            </div>
           </div>
         </div>
 
-        <details style="margin-top:0.75rem; border-top:1px solid #fed7aa; padding-top:0.65rem; font-size:0.8rem; color:#7c2d12;">
-          <summary style="cursor:pointer; font-weight:700; color:#9a3412; display:flex; align-items:center; gap:0.4rem;">
-            <span>📂 View All 10 Training Files &amp; Extracted Evaluations (544 Reviews across 5 Indian LCs)</span>
-          </summary>
-          <div style="margin-top:0.6rem; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.6rem;">
-            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
-              <div style="font-weight:700; color:#c2410c; margin-bottom:0.25rem;">LC Manipal (159 reviews)</div>
-              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
-                • <code>LC_MU_OfferGrading 2025.xlsx</code> (64)<br>
-                • <code>Copy of LC_MU_OfferGrading.xlsx</code> (95: P1, P2, Autumn)
-              </div>
-            </div>
-            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
-              <div style="font-weight:700; color:#059669; margin-bottom:0.25rem;">LC Karunya (181 reviews)</div>
-              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
-                • <code>LC_KU_OfferGrading 2025.xlsx</code> (84)<br>
-                • <code>Copy of LC_KU_OfferGrading.xlsx</code> (97: P1, P2, Autumn)
-              </div>
-            </div>
-            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
-              <div style="font-weight:700; color:#2563eb; margin-bottom:0.25rem;">LC MUJ (139 reviews)</div>
-              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
-                • <code>LC_MUJ_OfferGrading 2025.xlsx</code> (65)<br>
-                • <code>Copy of LC_MUJ_OfferGrading.xlsx</code> (74: P1, P2, Autumn)
-              </div>
-            </div>
-            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
-              <div style="font-weight:700; color:#7c3aed; margin-bottom:0.25rem;">LC JECRC (52 reviews)</div>
-              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
-                • <code>LC_JECRC_OfferGrading 2025.xlsx</code> (32)<br>
-                • <code>Copy of LC_JECRC_OfferGrading.xlsx</code> (20: P1, Autumn)
-              </div>
-            </div>
-            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
-              <div style="font-weight:700; color:#0d9488; margin-bottom:0.25rem;">CI - SMU (13 reviews)</div>
-              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
-                • <code>CI_SMU_OfferGrading 2025.xlsx</code> (8: P1, Autumn)<br>
-                • <code>Copy of CI SMU.xlsx</code> (5)
-              </div>
-            </div>
+        <!-- Center Column: 3 Capabilities -->
+        <div class="mlb-center-col">
+          <div class="mlb-feature-point">
+            <span class="mfp-dot purple">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+            <span>Learns research keyword prestige</span>
           </div>
-        </details>
+          <div class="mlb-feature-point">
+            <span class="mfp-dot blue">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+            </span>
+            <span>Understands lodging bonusing</span>
+          </div>
+          <div class="mlb-feature-point">
+            <span class="mfp-dot green">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </span>
+            <span>Evaluator feedback integration</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Actions -->
+        <div class="mlb-right-col">
+          <button type="button" class="btn-mlb-weights" onclick="applyIncomingPreset('ml_trained')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+            <span>Apply 2025 ML Weights</span>
+          </button>
+          <button type="button" class="btn-mlb-viewfiles" onclick="openTrainedFilesModal()" title="View all 10 verified training files">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            <span>View All Training Files &amp; Evaluations ➔</span>
+          </button>
+        </div>
       </div>
 
-      <!-- Committee Stats Cards -->
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">Total Indian Offers</div>
-          <div class="kpi-value" id="inc-stat-total">0</div>
-          <div class="kpi-sub">Across 4 LCs + 1 CI</div>
+      <!-- Committee Stats Cards (6 KPI Cards with Wave Graphs) -->
+      <div class="inc-kpi-grid">
+        <!-- Card 1: Total -->
+        <div class="inc-kpi-card blue" onclick="quickFilterIncomingLC('all')" title="Filter by All Indian Offers">
+          <div class="ikc-header">
+            <div class="ikc-icon blue">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <span class="ikc-label">TOTAL INDIAN OFFERS</span>
+            <span class="ikc-chevron">›</span>
+          </div>
+          <div class="ikc-val" id="inc-stat-total">0</div>
+          <div class="ikc-sub">Across 4 LCs + 1 CI</div>
+          <div class="ikc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,28 C40,36 70,16 110,24 C140,30 160,10 180,20 L180,40 L0,40 Z" fill="rgba(37, 99, 235, 0.12)"/>
+              <path d="M0,28 C40,36 70,16 110,24 C140,30 160,10 180,20" fill="none" stroke="#2563eb" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card" style="border-left: 3px solid #ea580c;">
-          <div class="kpi-label">LC Manipal</div>
-          <div class="kpi-value" id="inc-stat-manipal">0</div>
-          <div class="kpi-sub" id="inc-sub-manipal">Avg Score: 0.0</div>
+
+        <!-- Card 2: Manipal -->
+        <div class="inc-kpi-card orange" onclick="quickFilterIncomingLC('Manipal')" title="Filter by LC Manipal">
+          <div class="ikc-header">
+            <div class="ikc-icon orange">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="8" y1="6" x2="8" y2="6.01"></line><line x1="16" y1="6" x2="16" y2="6.01"></line><line x1="8" y1="10" x2="8" y2="10.01"></line><line x1="16" y1="10" x2="16" y2="10.01"></line><line x1="8" y1="14" x2="8" y2="14.01"></line><line x1="16" y1="14" x2="16" y2="14.01"></line></svg>
+            </div>
+            <span class="ikc-label">LC MANIPAL</span>
+            <span class="ikc-chevron">›</span>
+          </div>
+          <div class="ikc-val" id="inc-stat-manipal">0</div>
+          <div class="ikc-sub" id="inc-sub-manipal">Avg Score: 0.0</div>
+          <div class="ikc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,30 C30,22 80,35 120,20 C150,12 170,26 180,18 L180,40 L0,40 Z" fill="rgba(234, 88, 12, 0.12)"/>
+              <path d="M0,30 C30,22 80,35 120,20 C150,12 170,26 180,18" fill="none" stroke="#ea580c" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card" style="border-left: 3px solid #059669;">
-          <div class="kpi-label">LC Karunya</div>
-          <div class="kpi-value" id="inc-stat-karunya">0</div>
-          <div class="kpi-sub" id="inc-sub-karunya">Avg Score: 0.0</div>
+
+        <!-- Card 3: Karunya -->
+        <div class="inc-kpi-card green" onclick="quickFilterIncomingLC('Karunya')" title="Filter by LC Karunya">
+          <div class="ikc-header">
+            <div class="ikc-icon green">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="8" y1="6" x2="8" y2="6.01"></line><line x1="16" y1="6" x2="16" y2="6.01"></line><line x1="8" y1="10" x2="8" y2="10.01"></line><line x1="16" y1="10" x2="16" y2="10.01"></line></svg>
+            </div>
+            <span class="ikc-label">LC KARUNYA</span>
+            <span class="ikc-chevron">›</span>
+          </div>
+          <div class="ikc-val" id="inc-stat-karunya">0</div>
+          <div class="ikc-sub" id="inc-sub-karunya">Avg Score: 0.0</div>
+          <div class="ikc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,26 C40,18 70,32 110,18 C140,8 160,22 180,15 L180,40 L0,40 Z" fill="rgba(5, 150, 105, 0.12)"/>
+              <path d="M0,26 C40,18 70,32 110,18 C140,8 160,22 180,15" fill="none" stroke="#059669" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card" style="border-left: 3px solid #2563eb;">
-          <div class="kpi-label">LC JECRC</div>
-          <div class="kpi-value" id="inc-stat-jecrc">0</div>
-          <div class="kpi-sub" id="inc-sub-jecrc">Avg Score: 0.0</div>
+
+        <!-- Card 4: JECRC -->
+        <div class="inc-kpi-card cyan" onclick="quickFilterIncomingLC('JECRC')" title="Filter by LC JECRC">
+          <div class="ikc-header">
+            <div class="ikc-icon cyan">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="8" y1="6" x2="8" y2="6.01"></line><line x1="16" y1="6" x2="16" y2="6.01"></line></svg>
+            </div>
+            <span class="ikc-label">LC JECRC</span>
+            <span class="ikc-chevron">›</span>
+          </div>
+          <div class="ikc-val" id="inc-stat-jecrc">0</div>
+          <div class="ikc-sub" id="inc-sub-jecrc">Avg Score: 0.0</div>
+          <div class="ikc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,32 C50,22 80,36 120,24 C150,16 165,28 180,20 L180,40 L0,40 Z" fill="rgba(2, 132, 199, 0.12)"/>
+              <path d="M0,32 C50,22 80,36 120,24 C150,16 165,28 180,20" fill="none" stroke="#0284c7" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card" style="border-left: 3px solid #7e22ce;">
-          <div class="kpi-label">LC MUJ</div>
-          <div class="kpi-value" id="inc-stat-muj">0</div>
-          <div class="kpi-sub" id="inc-sub-muj">Avg Score: 0.0</div>
+
+        <!-- Card 5: MUJ -->
+        <div class="inc-kpi-card purple" onclick="quickFilterIncomingLC('MUJ')" title="Filter by LC MUJ">
+          <div class="ikc-header">
+            <div class="ikc-icon purple">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="8" y1="6" x2="8" y2="6.01"></line><line x1="16" y1="6" x2="16" y2="6.01"></line></svg>
+            </div>
+            <span class="ikc-label">LC MUJ</span>
+            <span class="ikc-chevron">›</span>
+          </div>
+          <div class="ikc-val" id="inc-stat-muj">0</div>
+          <div class="ikc-sub" id="inc-sub-muj">Avg Score: 0.0</div>
+          <div class="ikc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,28 C35,36 75,18 115,28 C145,34 165,14 180,22 L180,40 L0,40 Z" fill="rgba(147, 51, 234, 0.12)"/>
+              <path d="M0,28 C35,36 75,18 115,28 C145,34 165,14 180,22" fill="none" stroke="#9333ea" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
-        <div class="kpi-card" style="border-left: 3px solid #0d9488;">
-          <div class="kpi-label">CI - SMU</div>
-          <div class="kpi-value" id="inc-stat-smu">0</div>
-          <div class="kpi-sub" id="inc-sub-smu">Avg Score: 0.0</div>
+
+        <!-- Card 6: SMU -->
+        <div class="inc-kpi-card teal" onclick="quickFilterIncomingLC('SMU')" title="Filter by CI - SMU">
+          <div class="ikc-header">
+            <div class="ikc-icon teal">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="8" y1="6" x2="8" y2="6.01"></line><line x1="16" y1="6" x2="16" y2="6.01"></line></svg>
+            </div>
+            <span class="ikc-label">CI - SMU</span>
+            <span class="ikc-chevron">›</span>
+          </div>
+          <div class="ikc-val" id="inc-stat-smu">0</div>
+          <div class="ikc-sub" id="inc-sub-smu">Avg Score: 0.0</div>
+          <div class="ikc-wave">
+            <svg viewBox="0 0 180 40" preserveAspectRatio="none">
+              <path d="M0,25 C45,35 85,15 125,25 C150,30 165,12 180,20 L180,40 L0,40 Z" fill="rgba(13, 148, 136, 0.12)"/>
+              <path d="M0,25 C45,35 85,15 125,25 C150,30 165,12 180,20" fill="none" stroke="#0d9488" stroke-width="2"/>
+            </svg>
+          </div>
         </div>
       </div>
 
@@ -1518,16 +1724,27 @@
          =================================================================== -->
     <section id="view-grader-outgoing" class="view-section">
       
-      <!-- Dual Grader Switcher -->
-      <div class="grader-dual-mode-header">
-        <div class="grader-dual-mode-pills">
-          <button type="button" class="dual-mode-pill" onclick="switchTab('grader-incoming')">
-            📥 Incoming Offers (Indian LCs: Manipal, Karunya, JECRC, MUJ, CI-SMU)
-          </button>
-          <button type="button" class="dual-mode-pill active" onclick="switchTab('grader-outgoing')">
-            📤 Outgoing Offers (Conference Trading &amp; Student Abroad Fit)
-          </button>
-        </div>
+      <!-- Dual Grader Switcher (Two Wide Cards Matching Reference) -->
+      <div class="grader-dual-card-switcher">
+        <button type="button" class="dual-card-btn" onclick="switchTab('grader-incoming')">
+          <div class="dual-card-icon-box gray">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <div class="dual-card-text">
+            <span class="dual-card-title">Incoming Offers</span>
+            <span class="dual-card-subtitle">Indian LCs: Manipal, Karunya, JECRC, MUJ, CI-SMU</span>
+          </div>
+        </button>
+
+        <button type="button" class="dual-card-btn active" onclick="switchTab('grader-outgoing')">
+          <div class="dual-card-icon-box blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>
+          </div>
+          <div class="dual-card-text">
+            <span class="dual-card-title">Outgoing Offers</span>
+            <span class="dual-card-subtitle">Conference Trading &amp; Student Abroad Fit</span>
+          </div>
+        </button>
       </div>
 
       <!-- Outgoing Dropzone -->
@@ -2985,7 +3202,7 @@
   <script src="country_strategies_data.js"></script>
 
   <!-- Main Engine Logic -->
-  <script src="app.js?v=9"></script>
+  <script src="app.js?v=10"></script>
 
 </body>
 </html>
