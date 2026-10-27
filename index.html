@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 
   <!-- PWA & Mobile Web App Meta & Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -1783,168 +1783,281 @@
          =================================================================== -->
     <section id="view-leads" class="view-section">
       
-      <!-- Leads Banner -->
-      <div class="lead-hero-banner">
-        <div class="lead-tag">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
-          Exchange Intelligence
+      <!-- ===================================================================
+           REDESIGNED TRADE LEADS HERO BANNER (Split Hero with Flight Map)
+           =================================================================== -->
+      <div class="lead-hero-banner leads-hero-redesign">
+        <!-- Left Column: Title & 4 Stat Cards -->
+        <div class="leads-hero-left">
+          <div class="lead-tag">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
+            <span>TRADE LEADS</span>
+          </div>
+
+          <h2 class="leads-hero-title">
+            High-Materialization<br>
+            <span class="leads-hero-highlight">Partner Recommendations</span>
+          </h2>
+
+          <!-- 4 Stat Cards Row -->
+          <div class="leads-stats-row">
+            <div class="leads-stat-card" onclick="openTrainedFilesModal()" title="View 37 Ingested Training Documents">
+              <div class="leads-stat-icon blue">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+              <div class="leads-stat-content">
+                <div class="leads-stat-num">37</div>
+                <div class="leads-stat-lbl">Files</div>
+              </div>
+            </div>
+
+            <div class="leads-stat-card">
+              <div class="leads-stat-icon green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </div>
+              <div class="leads-stat-content">
+                <div class="leads-stat-num">2019 – 2025</div>
+                <div class="leads-stat-lbl">Archive</div>
+              </div>
+            </div>
+
+            <div class="leads-stat-card">
+              <div class="leads-stat-icon amber">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </div>
+              <div class="leads-stat-content">
+                <div class="leads-stat-num">9,374+</div>
+                <div class="leads-stat-lbl">Trainees</div>
+              </div>
+            </div>
+
+            <div class="leads-stat-card">
+              <div class="leads-stat-icon purple">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+              </div>
+              <div class="leads-stat-content">
+                <div class="leads-stat-num">577</div>
+                <div class="leads-stat-lbl">Corridors</div>
+              </div>
+            </div>
+          </div>
         </div>
-        <h2 style="font-size:1.85rem; font-weight:800; color:var(--text-main); margin-bottom:0.4rem; letter-spacing:-0.02em;">
-          High-Materialization Partner Recommendations
-        </h2>
-        <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.6; max-width:780px;">
-          Exchanging offers that fail to materialize wastes valuable quota. The recommendations below identify committees where exchanged positions achieve the highest verifiable rate of turning into <strong>completed traineeships</strong>.
-        </p>
+
+        <!-- Right Column: World Map Network Graphic with Floating Country Badges -->
+        <div class="leads-hero-right">
+          <div class="leads-map-showcase">
+            <svg class="leads-flight-svg" viewBox="0 0 540 280" fill="none">
+              <!-- Continents Silhouette Dots/Paths -->
+              <path d="M70 70 Q100 45 140 80 Q130 130 90 150 Q60 110 70 70 Z" fill="#e2e8f0" opacity="0.5"/>
+              <path d="M220 50 Q280 30 330 55 Q340 95 290 120 Q240 100 220 50 Z" fill="#cbd5e1" opacity="0.6"/>
+              <path d="M350 60 Q430 40 480 80 Q460 140 400 130 Q360 100 350 60 Z" fill="#cbd5e1" opacity="0.6"/>
+              <path d="M250 130 Q290 140 300 190 Q260 200 250 130 Z" fill="#e2e8f0" opacity="0.5"/>
+              <path d="M430 150 Q480 160 460 200 Q420 180 430 150 Z" fill="#e2e8f0" opacity="0.45"/>
+
+              <!-- Radiating Curved Flight Arcs from India (360, 145) -->
+              <path class="flight-arc arc-de" d="M360 145 C320 90, 260 70, 230 65" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4 4"/>
+              <path class="flight-arc arc-cz" d="M360 145 C310 120, 260 110, 215 115" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4 4"/>
+              <path class="flight-arc arc-at" d="M360 145 C340 180, 290 200, 250 195" stroke="#93c5fd" stroke-width="1.8" stroke-dasharray="4 4"/>
+              <path class="flight-arc arc-jp" d="M360 145 C390 110, 440 95, 475 90" stroke="#3b82f6" stroke-width="1.8" stroke-dasharray="4 4"/>
+
+              <!-- Connection Dots & Hub Nodes -->
+              <circle cx="360" cy="145" r="4.5" fill="#2563eb"/>
+              <circle cx="230" cy="65" r="4" fill="#3b82f6"/>
+              <circle cx="215" cy="115" r="4" fill="#3b82f6"/>
+              <circle cx="250" cy="195" r="4" fill="#3b82f6"/>
+              <circle cx="475" cy="90" r="4" fill="#ef4444"/>
+            </svg>
+
+            <!-- Floating Country Flags around Map -->
+            <div class="leads-map-flag flag-pos-de" onclick="navigateToCountryLead('Germany')" title="Germany">
+              <span class="flag-pill flag-de"></span>
+            </div>
+            <div class="leads-map-flag flag-pos-cz" onclick="navigateToCountryLead('Czechia')" title="Czechia">
+              <span class="flag-pill flag-cz"></span>
+            </div>
+            <div class="leads-map-flag flag-pos-in" title="India Hub">
+              <span class="flag-pill flag-in"></span>
+            </div>
+            <div class="leads-map-flag flag-pos-jp" onclick="navigateToCountryLead('Japan')" title="Japan">
+              <span class="flag-pill flag-jp"></span>
+            </div>
+            <div class="leads-map-flag flag-pos-at" onclick="navigateToCountryLead('Austria')" title="Austria">
+              <span class="flag-pill flag-at"></span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Trained Model Knowledge Base Status Bar -->
-      <div class="trained-status-bar">
-        <div class="trained-status-left">
-          <div class="trained-pulse-badge">
-            <span class="trained-pulse-dot"></span>
-            <strong>Leads Generator Model: Fully Trained</strong>
-          </div>
-          <div class="trained-stats-pills">
-            <span class="trained-stat-pill"><strong>37</strong> Official Files Ingested</span>
-            <span class="trained-stat-pill"><strong>2019–2025</strong> Multi-Year Archive</span>
-            <span class="trained-stat-pill"><strong>9,374+</strong> Trainees Tracked</span>
-            <span class="trained-stat-pill"><strong>577</strong> Bilateral Corridors</span>
-            <span class="trained-stat-pill"><strong>15</strong> Disciplines Mapped</span>
-          </div>
-        </div>
-        <div class="trained-status-right">
-          <button type="button" class="btn btn-secondary btn-sm" onclick="openTrainedFilesModal()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-            View 37 Trained Documents
-          </button>
-        </div>
-      </div>
-
-      <!-- Delegation Perspective Bar -->
-      <div class="controls-bar">
+      <!-- Delegation Perspective Controls Bar -->
+      <div class="controls-bar leads-controls-bar">
         <div class="controls-left">
-          <select id="lead-year-select" class="input-select" onchange="onLeadYearChange(this.value)">
-            <option value="all" selected>Cumulative 8-Year Archive (11,533 Trainees Exchanged)</option>
-            <option value="2026">2026 Active Cycle (1,013 Trainees Exchanged)</option>
-            <option value="2025">2025 Reporting Cycle (1,146 Trainees Exchanged)</option>
-            <option value="2024">2024 Reporting Year (1,397 Trainees Exchanged)</option>
-            <option value="2023">2023 Reporting Year (1,464 Trainees Exchanged)</option>
-            <option value="2022">2022 Reporting Year (1,455 Trainees Exchanged)</option>
-            <option value="2021">2021 Reporting Year (1,241 Trainees Exchanged)</option>
-            <option value="2020">2020 Reporting Year (682 Trainees Exchanged)</option>
-            <option value="2019">2019 Reporting Year (3,135 Trainees Exchanged)</option>
-          </select>
+          <div class="controls-select-wrapper">
+            <svg class="controls-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <select id="lead-year-select" class="input-select input-select-modern" onchange="onLeadYearChange(this.value)">
+              <option value="2026" selected>2026 Active Cycle (1,013 Exchanges)</option>
+              <option value="all">Cumulative 8-Year Archive (11,533 Trainees Exchanged)</option>
+              <option value="2025">2025 Reporting Cycle (1,146 Trainees Exchanged)</option>
+              <option value="2024">2024 Reporting Year (1,397 Trainees Exchanged)</option>
+              <option value="2023">2023 Reporting Year (1,464 Trainees Exchanged)</option>
+              <option value="2022">2022 Reporting Year (1,455 Trainees Exchanged)</option>
+              <option value="2021">2021 Reporting Year (1,241 Trainees Exchanged)</option>
+              <option value="2020">2020 Reporting Year (682 Trainees Exchanged)</option>
+              <option value="2019">2019 Reporting Year (3,135 Trainees Exchanged)</option>
+            </select>
+          </div>
 
-          <select id="lead-perspective-select" class="input-select" onchange="updateDelegationPerspective()">
-            <option value="india" selected>IAESTE India</option>
-            <option value="global">Global Strategy (All Committees)</option>
-          </select>
+          <div class="controls-select-wrapper">
+            <svg class="controls-select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <select id="lead-perspective-select" class="input-select input-select-modern" onchange="updateDelegationPerspective()">
+              <option value="india" selected>IAESTE India</option>
+              <option value="global">Global Strategy (All Committees)</option>
+            </select>
+          </div>
         </div>
+
         <div class="controls-right">
-          <button type="button" class="btn btn-primary btn-sm" onclick="exportMaterializationReport()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Export Fact Sheet (CSV)
+          <button type="button" class="btn btn-primary btn-export-leads" onclick="exportMaterializationReport()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Export CSV</span>
           </button>
         </div>
       </div>
 
-      <!-- Strategic Callout Box -->
-      <div id="delegation-strategic-callout" style="background:var(--bg-surface); border:1px solid var(--border-light); border-left:4px solid var(--primary); border-radius:var(--radius-lg); padding:1.25rem 1.5rem; margin-bottom:1.75rem; box-shadow:var(--shadow-xs);">
-        <div style="display:flex; align-items:flex-start; gap:0.85rem;">
-          <span style="font-size:1.35rem; line-height:1;">🎯</span>
-          <div>
-            <h4 style="font-size:0.95rem; font-weight:800; color:var(--text-main); margin-bottom:0.25rem;">
-              Strategic Trade Focus for IAESTE India
-            </h4>
-            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.55;">
-              Across the 6-year multi-year archive, India sent <strong>595 trainees</strong> and hosted <strong>538 international trainees</strong>. To maximize yield and eliminate deficits, prioritize net-capacity European importers: <strong>Austria (+346 net capacity, 77.6% mat.)</strong> and <strong>Czech Republic (+100 net capacity, 78.8% mat.)</strong>, while capitalizing on volume trades with <strong>Germany (990 hosted, 25 sent from India)</strong>.
-            </p>
-          </div>
-        </div>
-      </div>
+      <!-- Hidden hook for background JS updates -->
+      <div id="delegation-strategic-callout" style="display:none;"></div>
 
       <!-- Interactive AI Trade Lead Generator & Matcher Card -->
-      <div class="leads-generator-card">
+      <div class="leads-generator-card leads-generator-redesign">
         <div class="leads-generator-header">
-          <div style="display:flex; align-items:center; gap:0.6rem;">
+          <div class="gen-header-left">
             <div class="leads-generator-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             </div>
-            <div>
-              <h3 style="font-size:1.15rem; font-weight:800; color:var(--text-main); margin:0;">AI Trade Lead Generator</h3>
-              <p style="font-size:0.775rem; color:var(--text-muted); margin:0.15rem 0 0 0;">
-                Trained on 37 official IAESTE documents (2019–2025). Select criteria to generate empirically scored partner leads:
-              </p>
-            </div>
+            <h3 class="gen-title">AI Trade Lead Generator</h3>
           </div>
-          <span class="leads-model-tag">Empirical Multi-Factor Model</span>
+          <div class="leads-model-pill">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span>Empirical Model</span>
+          </div>
         </div>
 
         <div class="generator-controls-grid">
           <div class="gen-control-field">
-            <label for="gen-discipline-select">Academic Discipline Focus</label>
-            <select id="gen-discipline-select" class="input-select">
-              <option value="all" selected>All Engineering &amp; Sciences</option>
-              <option value="Computer and Information Sciences">Computer &amp; Information Sciences (IT)</option>
-              <option value="Mechanical Engineering">Mechanical &amp; Industrial Engineering</option>
-              <option value="Electrical and Electronics Engineering">Electrical &amp; Electronics Engineering</option>
-              <option value="Biological and Biomedical Sciences">Biological &amp; Biomedical Sciences</option>
-              <option value="Civil Engineering, Geology and Mining">Civil Engineering &amp; Architecture</option>
-              <option value="Chemistry, Material Science, and Chemical Engineering">Chemistry &amp; Material Science</option>
-              <option value="Agriculture and Food Science">Agriculture &amp; Food Science</option>
-              <option value="Business, Management, and Marketing">Business &amp; Management</option>
-            </select>
+            <label for="gen-discipline-select">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 6h10"></path><path d="M6 10h10"></path></svg>
+              Academic Discipline
+            </label>
+            <div class="gen-select-box">
+              <svg class="field-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 6h10"></path><path d="M6 10h10"></path></svg>
+              <select id="gen-discipline-select" class="input-select gen-select">
+                <option value="all" selected>All Fields</option>
+                <option value="Computer and Information Sciences">Computer &amp; Information Sciences (IT)</option>
+                <option value="Mechanical Engineering">Mechanical &amp; Industrial Engineering</option>
+                <option value="Electrical and Electronics Engineering">Electrical &amp; Electronics Engineering</option>
+                <option value="Biological and Biomedical Sciences">Biological &amp; Biomedical Sciences</option>
+                <option value="Civil Engineering, Geology and Mining">Civil Engineering &amp; Architecture</option>
+                <option value="Chemistry, Material Science, and Chemical Engineering">Chemistry &amp; Material Science</option>
+                <option value="Agriculture and Food Science">Agriculture &amp; Food Science</option>
+                <option value="Business, Management, and Marketing">Business &amp; Management</option>
+              </select>
+            </div>
           </div>
 
           <div class="gen-control-field">
-            <label for="gen-capacity-select">Capacity Balance Target</label>
-            <select id="gen-capacity-select" class="input-select">
-              <option value="all" selected>Any Capacity Balance</option>
-              <option value="surplus">Net Capacity Surplus (+ Importers)</option>
-              <option value="volume">High Volume Exchange (>50 Trainees)</option>
-              <option value="balanced">Balanced Corridors (Zero Net Deficit)</option>
-            </select>
+            <label for="gen-capacity-select">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg>
+              Capacity Balance
+            </label>
+            <div class="gen-select-box">
+              <svg class="field-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"></path><path d="M7 21h10"></path><path d="M12 3v18"></path><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"></path></svg>
+              <select id="gen-capacity-select" class="input-select gen-select">
+                <option value="all" selected>Any Balance</option>
+                <option value="surplus">Net Capacity Surplus (+ Importers)</option>
+                <option value="volume">High Volume Exchange (&gt;50 Trainees)</option>
+                <option value="balanced">Balanced Corridors (Zero Net Deficit)</option>
+              </select>
+            </div>
           </div>
 
           <div class="gen-control-field">
-            <label for="gen-risk-select">Cancellation Risk Threshold</label>
-            <select id="gen-risk-select" class="input-select">
-              <option value="all" selected>All Risk Levels</option>
-              <option value="strict">Ultra-Low Risk (&lt;15% Cancellation)</option>
-              <option value="moderate">Moderate Risk (&lt;25% Cancellation)</option>
-            </select>
+            <label for="gen-risk-select">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              Cancellation Risk
+            </label>
+            <div class="gen-select-box">
+              <svg class="field-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <select id="gen-risk-select" class="input-select gen-select">
+                <option value="all" selected>All Levels</option>
+                <option value="strict">Ultra-Low Risk (&lt;15% Cancellation)</option>
+                <option value="moderate">Moderate Risk (&lt;25% Cancellation)</option>
+              </select>
+            </div>
           </div>
 
           <div class="gen-control-field">
-            <label for="gen-region-select">Target Region</label>
-            <select id="gen-region-select" class="input-select">
-              <option value="all" selected>All Global Regions</option>
-              <option value="europe">Europe (Western &amp; Central)</option>
-              <option value="asia">Asia-Pacific</option>
-              <option value="americas">Americas</option>
-              <option value="other">Middle East &amp; Africa</option>
-            </select>
+            <label for="gen-region-select">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              Target Region
+            </label>
+            <div class="gen-select-box">
+              <svg class="field-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              <select id="gen-region-select" class="input-select gen-select">
+                <option value="all" selected>All Regions</option>
+                <option value="europe">Europe (Western &amp; Central)</option>
+                <option value="asia">Asia-Pacific</option>
+                <option value="americas">Americas</option>
+                <option value="other">Middle East &amp; Africa</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        <div class="generator-actions-row">
-          <div style="font-size:0.775rem; color:var(--text-secondary); display:flex; align-items:center; gap:0.4rem;">
-            <span>💡</span>
-            <span>Weights: Materialization (35%) &bull; Capacity Balance (25%) &bull; Completion Reliability (20%) &bull; India Corridor (15%) &bull; Discipline Match (5%)</span>
+        <!-- Generator Bottom Row: Weights Badge Bar & Action Button -->
+        <div class="generator-actions-row gen-actions-redesign">
+          <div class="weights-display-group">
+            <div class="weights-filter-icon" title="Tuned Weighting Profile">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+            </div>
+            <div class="weights-pills-bar">
+              <span class="weight-item"><span class="w-dot blue"></span> Materialization <strong>35%</strong></span>
+              <span class="weight-item"><span class="w-dot green"></span> Capacity Balance <strong>25%</strong></span>
+              <span class="weight-item"><span class="w-dot amber"></span> Completion Reliability <strong>20%</strong></span>
+              <span class="weight-item"><span class="w-dot purple"></span> India Corridor <strong>15%</strong></span>
+              <span class="weight-item"><span class="w-dot pink"></span> Discipline Match <strong>5%</strong></span>
+            </div>
           </div>
-          <button type="button" class="btn btn-primary" id="btn-generate-leads" onclick="runTradeLeadGenerator()">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            Generate Empirical Trade Leads
+
+          <button type="button" class="btn-generate-leads-primary" id="btn-generate-leads" onclick="runTradeLeadGenerator()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>
+            <span>Generate Trade Leads</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
 
         <!-- Dynamic Results Container -->
-        <div id="generator-results-wrapper" style="display:none; margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid var(--border-light);">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem;">
-            <h4 style="font-size:0.95rem; font-weight:800; color:var(--text-main); margin:0;">
-              Generated Partner Recommendations (Ranked by Model Fit)
-            </h4>
-            <span id="gen-results-count" style="font-size:0.75rem; color:var(--text-muted); font-weight:600;"></span>
+        <div id="generator-results-wrapper" class="rec-partners-wrapper" style="display:none;">
+          <div class="rec-partners-header">
+            <div class="rec-header-left">
+              <div class="rec-header-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.3">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="22" y1="12" x2="18" y2="12"></line>
+                  <line x1="6" y1="12" x2="2" y2="12"></line>
+                  <line x1="12" y1="6" x2="12" y2="2"></line>
+                  <line x1="12" y1="22" x2="12" y2="18"></line>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+              </div>
+              <h3 class="rec-title">Recommended Trade Partners</h3>
+              <span id="gen-results-count" class="rec-count-pill">9 partners</span>
+            </div>
+            <div class="rec-header-right">
+              <div class="rec-sort-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+                <span>Sort by: <strong>Match Fit</strong></span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </div>
           </div>
           <div id="generator-results-grid" class="generator-results-grid"></div>
         </div>
@@ -2479,7 +2592,7 @@
   <script src="country_strategies_data.js"></script>
 
   <!-- Main Engine Logic -->
-  <script src="app.js?v=4"></script>
+  <script src="app.js?v=5"></script>
 
 </body>
 </html>

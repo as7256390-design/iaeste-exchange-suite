@@ -4128,6 +4128,47 @@ function closeTrainedFilesModal() {
   if (modal) modal.classList.remove('open');
 }
 
+function getPartnerFlagElement(country, flagEmoji) {
+  const c = (country || '').toLowerCase();
+  if (c.includes('argentina')) {
+    return `<div class="rec-flag-globe"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>`;
+  }
+  if (c.includes('austria')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="6.66" fill="#ed2939"/><rect y="6.66" width="30" height="6.66" fill="#ffffff"/><rect y="13.33" width="30" height="6.66" fill="#ed2939"/></svg>`;
+  }
+  if (c.includes('bosnia')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="20" fill="#002395"/><polygon points="8,0 20,0 20,20" fill="#fecb00"/><circle cx="9.5" cy="4" r="1" fill="#ffffff"/><circle cx="11.5" cy="7.5" r="1" fill="#ffffff"/><circle cx="13.5" cy="11" r="1" fill="#ffffff"/><circle cx="15.5" cy="14.5" r="1" fill="#ffffff"/><circle cx="17.5" cy="18" r="1" fill="#ffffff"/></svg>`;
+  }
+  if (c.includes('brazil')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,2 28,10 15,18 2,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.2" fill="#002776"/><path d="M 11 11 Q 15 8.5 19 9.8" stroke="#ffffff" stroke-width="0.8" fill="none"/></svg>`;
+  }
+  if (c.includes('cameroon')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="10" height="20" fill="#007a5e"/><rect x="10" width="10" height="20" fill="#ce1126"/><rect x="20" width="10" height="20" fill="#fcd116"/><polygon points="15,7.5 15.9,10.2 18.7,10.2 16.5,11.8 17.3,14.5 15,12.9 12.7,14.5 13.5,11.8 11.3,10.2 14.1,10.2" fill="#fcd116"/></svg>`;
+  }
+  if (c.includes('macao') || c.includes('macau')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="20" fill="#00785e"/><circle cx="15" cy="12.5" r="3.2" fill="#ffffff"/><circle cx="15" cy="5.8" r="1.1" fill="#ffde00"/><circle cx="11.5" cy="7" r="0.8" fill="#ffde00"/><circle cx="18.5" cy="7" r="0.8" fill="#ffde00"/></svg>`;
+  }
+  if (c.includes('archibucks') || c.includes('china')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="20" fill="#de2910"/><polygon points="5,3 5.8,5.5 8.4,5.5 6.3,7 7.1,9.5 5,8 2.9,9.5 3.7,7 1.6,5.5 4.2,5.5" fill="#ffde00"/><circle cx="10" cy="3.5" r="0.8" fill="#ffde00"/><circle cx="12" cy="5.5" r="0.8" fill="#ffde00"/><circle cx="12" cy="8.5" r="0.8" fill="#ffde00"/><circle cx="10" cy="10.5" r="0.8" fill="#ffde00"/></svg>`;
+  }
+  if (c.includes('czech')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="10" fill="#ffffff"/><rect y="10" width="30" height="10" fill="#d7141a"/><polygon points="0,0 13,10 0,20" fill="#11457e"/></svg>`;
+  }
+  if (c.includes('gambia')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="6.5" fill="#ce1126"/><rect y="6.5" width="30" height="1" fill="#ffffff"/><rect y="7.5" width="30" height="5" fill="#0c1c8c"/><rect y="12.5" width="30" height="1" fill="#ffffff"/><rect y="13.5" width="30" height="6.5" fill="#3a7728"/></svg>`;
+  }
+  if (c.includes('germany')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="6.66" fill="#111111"/><rect y="6.66" width="30" height="6.66" fill="#dd152a"/><rect y="13.33" width="30" height="6.66" fill="#ffce00"/></svg>`;
+  }
+  if (c.includes('japan')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="20" fill="#ffffff"/><circle cx="15" cy="10" r="5" fill="#bc002d"/></svg>`;
+  }
+  if (c.includes('united kingdom') || c.includes('uk')) {
+    return `<svg class="rec-flag-svg" width="30" height="20" viewBox="0 0 30 20"><rect width="30" height="20" fill="#012169"/><path d="M0,0 L30,20 M30,0 L0,20" stroke="#ffffff" stroke-width="3.5"/><path d="M0,0 L30,20 M30,0 L0,20" stroke="#c8102e" stroke-width="2"/><path d="M15,0 L15,20 M0,10 L30,10" stroke="#ffffff" stroke-width="5.5"/><path d="M15,0 L15,20 M0,10 L30,10" stroke="#c8102e" stroke-width="3"/></svg>`;
+  }
+  return `<span style="font-size:1.35rem; line-height:1;">${flagEmoji || '🌐'}</span>`;
+}
+
 function runTradeLeadGenerator() {
   const leads = getEnrichedLeadsData();
   const discSelect = document.getElementById('gen-discipline-select');
@@ -4232,7 +4273,7 @@ function runTradeLeadGenerator() {
   container.innerHTML = '';
 
   const displayList = filtered.slice(0, 9);
-  if (countEl) countEl.textContent = `Showing Top ${displayList.length} Matching Partners`;
+  if (countEl) countEl.textContent = `${displayList.length} partners`;
 
   if (displayList.length === 0) {
     container.innerHTML = `
@@ -4249,41 +4290,48 @@ function runTradeLeadGenerator() {
     const card = document.createElement('div');
     card.className = 'generator-result-card';
 
-    let scoreClass = 'good';
-    if (item.score >= 85) scoreClass = 'high';
+    const flagElement = getPartnerFlagElement(l.country, l.flag);
+    const bullets = (item.reasons && item.reasons.length > 0) ? item.reasons.slice(0, 2) : [
+      `High Materialization Rate: ${l.mat_rate}% (${l.accepted} placements)`,
+      `Net Trade Capacity Surplus: ${l.net > 0 ? '+' + l.net : l.net} trainees`
+    ];
 
     card.innerHTML = `
       <div>
         <div class="gen-card-header">
           <div class="gen-card-title">
-            <span style="font-size:1.5rem;">${l.flag}</span>
-            <div>
-              <h4>${l.country}</h4>
-              <span style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">${l.tierLabel}</span>
-            </div>
+            ${flagElement}
+            <h4>${l.country}</h4>
           </div>
-          <span class="gen-score-badge ${scoreClass}">${item.score}% Match Fit</span>
+          <span class="rec-match-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            ${item.score}% Match Fit
+          </span>
         </div>
 
         <div class="gen-metrics-strip">
           <div class="gen-metric-cell">
-            <span class="val" style="color:${l.mat_rate >= 70 ? '#059669' : 'inherit'};">${l.mat_rate}%</span>
+            <span class="val">${l.mat_rate}%</span>
             <span class="lbl">Materialization</span>
           </div>
           <div class="gen-metric-cell">
-            <span class="val" style="color:${l.net >= 0 ? '#059669' : '#e11d48'};">${l.net > 0 ? '+' + l.net : l.net}</span>
+            <span class="val" style="color:${l.net < 0 ? '#e11d48' : '#0f172a'};">${l.net > 0 ? '+' + l.net : l.net}</span>
             <span class="lbl">Net Capacity</span>
           </div>
           <div class="gen-metric-cell">
-            <span class="val" style="color:${l.canc_rate <= 15 ? '#059669' : (l.canc_rate >= 35 ? '#e11d48' : 'inherit')};">${l.canc_rate}%</span>
+            <span class="val">${l.canc_rate}%</span>
             <span class="lbl">Cancellation</span>
           </div>
         </div>
 
         <ul class="gen-reasons-list">
-          ${item.reasons.map(r => `
+          ${bullets.map(r => `
             <li class="gen-reason-item">
-              <span class="gen-reason-bullet">&check;</span>
+              <svg class="gen-reason-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
               <span>${r}</span>
             </li>
           `).join('')}
@@ -4291,11 +4339,15 @@ function runTradeLeadGenerator() {
       </div>
 
       <div class="gen-card-footer">
-        <button type="button" class="btn btn-secondary btn-sm" onclick="inspectCountryFacts('${l.country}')">
+        <button type="button" class="btn-rec-facts" onclick="inspectCountryFacts('${l.country}')">
           View Facts
         </button>
-        <button type="button" class="btn btn-primary btn-sm" onclick="lookupCountryStrategy('${l.country}'); document.getElementById('country-dossier-result').scrollIntoView({ behavior:'smooth' });">
-          Inspect Dossier ➔
+        <button type="button" class="btn-rec-dossier" onclick="lookupCountryStrategy('${l.country}'); document.getElementById('country-dossier-result').scrollIntoView({ behavior:'smooth' });">
+          <span>Inspect Dossier</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
         </button>
       </div>
     `;
