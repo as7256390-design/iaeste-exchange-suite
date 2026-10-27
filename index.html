@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IAESTE Exchange Suite | Phase-II & Annual Conference Ops</title>
+  <meta name="description" content="Clean, minimal exchange operations suite for IAESTE Phase-II exchange sessions and Annual General Conference (AC). Multi-year reports analyser, intelligent offer grader, and materialization leads.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- PWA & Mobile Web App Meta & Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="IAESTE Suite">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon.png">
+</head>
+<body>
+
+  <!-- Top Navigation Bar (Sleek Glassmorphism) -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand" onclick="switchTab('overview')">
+        <div class="brand-badge">IAESTE</div>
+        <div class="brand-text">
+          <h1>EXCHANGE SUITE</h1>
+          <span>Operations &amp; Intelligence</span>
+        </div>
+      </div>
+
+      <nav class="nav-tabs" aria-label="Main Navigation">
+        <button type="button" class="nav-tab-btn active" id="tab-btn-overview" onclick="switchTab('overview')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Overview
+        </button>
+        <button type="button" class="nav-tab-btn" id="tab-btn-analyser" onclick="switchTab('analyser')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          Activity Analyser
+        </button>
+        <button type="button" class="nav-tab-btn" id="tab-btn-grader-incoming" onclick="switchTab('grader-incoming')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+          Incoming Grader
+        </button>
+        <button type="button" class="nav-tab-btn" id="tab-btn-grader-outgoing" onclick="switchTab('grader-outgoing')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Outgoing Grader
+        </button>
+        <button type="button" class="nav-tab-btn" id="tab-btn-leads" onclick="switchTab('leads')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
+          Trade Leads
+        </button>
+        <button type="button" class="nav-tab-btn" id="tab-btn-playbook" onclick="switchTab('playbook')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 6h10"></path><path d="M6 10h10"></path></svg>
+          Playbook
+        </button>
+        <button type="button" class="nav-tab-btn" id="tab-btn-strategies" onclick="switchTab('strategies')">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          Country Strategies 🇮🇳
+        </button>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" class="btn-install-app-nav" id="btn-install-app-nav" onclick="triggerPwaInstall()" style="display:none;" title="Install IAESTE Suite on this device">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Install App 📲</span>
+        </button>
+        <button type="button" class="btn-share-device" onclick="openDeviceShareModal()" title="Open on Phone, Tablet or Laptop">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          <span>Connect Device 📱</span>
+        </button>
+        <div class="nav-status">
+          <span class="pulse-dot"></span>
+          <span>Offline Ready</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-wrapper">
+
+    <!-- ===================================================================
+         1. OVERVIEW VIEW
+         =================================================================== -->
+    <section id="view-overview" class="view-section active">
+      <div class="hero-banner">
+        <div class="hero-content">
+          <div class="hero-tag">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Phase-II &amp; Annual Conference Suite
+          </div>
+          <h2>Exchange Intelligence &amp; Offer Grading Platform</h2>
+          <p>
+            Eliminate manual friction during international exchange sessions. Ingest multi-year activity datasets, auto-grade incoming and outgoing offers, and discover fact-backed country leads with verified materialization rates.
+          </p>
+          <div class="hero-actions">
+            <button type="button" class="btn btn-primary" onclick="switchTab('analyser')">Launch Activity Analyser</button>
+            <button type="button" class="btn btn-secondary" onclick="switchTab('grader-incoming')">Indian LC Grader</button>
+            <button type="button" class="btn btn-secondary" onclick="switchTab('leads')">View Trade Leads</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Tools Grid -->
+      <div class="tools-grid">
+        
+        <!-- Tool 1: Activity Reports Analyser -->
+        <article class="tool-card">
+          <div>
+            <div class="tool-card-header">
+              <div class="tool-icon analyser-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+              </div>
+              <div class="tool-title-group">
+                <h3>Activity Analyser</h3>
+                <span>Multi-Year Official Reports</span>
+              </div>
+            </div>
+            <p class="tool-desc">
+              Ingest IAESTE activity reports across 69 committees. Discover partner trade surpluses, bilateral corridors, 6-year trend trajectories, and employer cancellation risks.
+            </p>
+            <div class="tool-chips">
+              <span class="tool-chip">6-Year Archive</span>
+              <span class="tool-chip">570+ Corridors</span>
+              <span class="tool-chip">Surplus Matrix</span>
+            </div>
+          </div>
+          <div class="tool-actions">
+            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('analyser')">Open Analyser</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="loadPreloadedAnalyserData()">Load Archive</button>
+          </div>
+        </article>
+
+        <!-- Tool 2A: Incoming Offers Grader -->
+        <article class="tool-card">
+          <div>
+            <div class="tool-card-header">
+              <div class="tool-icon incoming-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+              </div>
+              <div class="tool-title-group">
+                <h3>Incoming Grader</h3>
+                <span>Indian Local Committees</span>
+              </div>
+            </div>
+            <p class="tool-desc">
+              Audit internal offers from LC Manipal, Karunya, JECRC, MUJ, and CI-SMU. Evaluates INR living allowances, on-campus lodging bonusing, and Phase-II conference tradeability.
+            </p>
+            <div class="tool-chips">
+              <span class="tool-chip">4 LCs + 1 CI</span>
+              <span class="tool-chip">Lodging Multiplier</span>
+              <span class="tool-chip">A+ to D Tiers</span>
+            </div>
+          </div>
+          <div class="tool-actions">
+            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('grader-incoming')">Open Grader</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="loadSampleIncomingOffersData()">Stage 25 Offers</button>
+          </div>
+        </article>
+
+        <!-- Tool 2B: Outgoing Offers Grader -->
+        <article class="tool-card">
+          <div>
+            <div class="tool-card-header">
+              <div class="tool-icon outgoing-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div class="tool-title-group">
+                <h3>Outgoing Grader</h3>
+                <span>Live Table Scoring</span>
+              </div>
+            </div>
+            <p class="tool-desc">
+              Grade foreign offers received at conference trading tables. Calibrated for Indian students with net purchasing power in foreign currency, guaranteed lodging, and summer break fit.
+            </p>
+            <div class="tool-chips">
+              <span class="tool-chip">2-Sec Scorer</span>
+              <span class="tool-chip">Purchasing Power</span>
+              <span class="tool-chip">Summer Fit</span>
+            </div>
+          </div>
+          <div class="tool-actions">
+            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('grader-outgoing')">Open Grader</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="openLiveEvaluatorModal()">⚡ Instant Scorer</button>
+          </div>
+        </article>
+
+        <!-- Tool 3: Materialization Leads Engine -->
+        <article class="tool-card">
+          <div>
+            <div class="tool-card-header">
+              <div class="tool-icon leads-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
+              </div>
+              <div class="tool-title-group">
+                <h3>Trade Leads</h3>
+                <span>Materialization Intelligence</span>
+              </div>
+            </div>
+            <p class="tool-desc">
+              Discover which partner countries yield the highest realized traineeships. Backed by verified facts from IAESTE activity reports (completion %, cancellation rates, and fulfillment history).
+            </p>
+            <div class="tool-chips">
+              <span class="tool-chip">Austria (78%)</span>
+              <span class="tool-chip">Czechia (79%)</span>
+              <span class="tool-chip">Japan (80%)</span>
+            </div>
+          </div>
+          <div class="tool-actions">
+            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('leads')">View Leads</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="exportMaterializationReport()">Export CSV</button>
+          </div>
+        </article>
+
+        <!-- Tool 4: Bilateral Country Strategies (India Focus) -->
+        <article class="tool-card">
+          <div>
+            <div class="tool-card-header">
+              <div class="tool-icon leads-icon" style="background:#eff6ff; color:#2563eb;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              </div>
+              <div class="tool-title-group">
+                <h3>Country Strategies 🇮🇳</h3>
+                <span>Bilateral AC Playbooks</span>
+              </div>
+            </div>
+            <p class="tool-desc">
+              Tactical trading cards tailored specifically for IAESTE India delegations. Country-by-country strategies covering Germany (+29 surplus), Poland (cancellation mitigation), Austria, Switzerland, Oman, and 11+ partner nations with live scripts and visa timings.
+            </p>
+            <div class="tool-chips">
+              <span class="tool-chip">16 Partner Profiles</span>
+              <span class="tool-chip">AC Pitch Scripts</span>
+              <span class="tool-chip">ZAV / Visa Timelines</span>
+            </div>
+          </div>
+          <div class="tool-actions">
+            <button type="button" class="btn btn-primary btn-sm" onclick="switchTab('strategies')">Explore Strategies</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="switchTab('strategies'); setTimeout(() => filterStrategyPosture('surplus'), 100);">Surplus Targets</button>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Operational Workflow Section -->
+      <div class="workflow-section">
+        <div class="workflow-header">
+          <div>
+            <h3>Exchange Session Operational Workflow</h3>
+            <p>Four-step procedure for Phase-II and Annual General Conference (AC) delegations</p>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="switchTab('playbook')">
+            View Complete Playbook
+          </button>
+        </div>
+        <div class="workflow-steps-grid">
+          <div class="step-item">
+            <div class="step-num">01</div>
+            <h4>Pre-Session Intelligence</h4>
+            <p>Review the Activity Analyser to identify partner committees with surplus capacity and bilateral trade deficits.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">02</div>
+            <h4>Ingest Offer CSVs</h4>
+            <p>Drop incoming and pool offer files into the Offer Grader. Headers are mapped automatically.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">03</div>
+            <h4>Auto-Grade &amp; Tag</h4>
+            <p>Tune weights to your students' priorities. Offers are scored A+ to D and tagged for negotiation.</p>
+          </div>
+          <div class="step-item">
+            <div class="step-num">04</div>
+            <h4>Trade Confidently</h4>
+            <p>Reference fact-backed materialization rates at the trading tables to negotiate high-value, reliable exchanges.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         2. ACTIVITY REPORTS ANALYSER VIEW
+         =================================================================== -->
+    <section id="view-analyser" class="view-section">
+      
+      <!-- Dataset Source Switch -->
+      <div class="controls-bar" style="margin-bottom:1.5rem;">
+        <div class="controls-left">
+          <div id="analyser-source-indicator" style="display:inline-flex; align-items:center; gap:0.4rem; padding:0.35rem 0.85rem; border-radius:var(--radius-full); font-size:0.775rem; font-weight:700; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe;">
+            🏛️ Official Historical Archive
+          </div>
+          <span id="analyser-active-dataset-desc" style="font-size:0.825rem; color:var(--text-secondary); font-weight:500;">
+            Active: <strong>2026 Reporting Year</strong> (65 active committees, 1,013 trainees)
+          </span>
+        </div>
+        <div class="filter-pills" id="analyser-source-pills">
+          <button type="button" class="filter-pill-btn active" id="btn-source-official" onclick="switchAnalyserDataSource('official')">
+            Official Archive
+          </button>
+          <button type="button" class="filter-pill-btn" id="btn-source-custom" onclick="switchAnalyserDataSource('custom')">
+            Upload Custom Files
+          </button>
+        </div>
+      </div>
+
+      <!-- Upload Dropzone -->
+      <div class="dropzone-container" id="analyser-dropzone">
+        <div class="dropzone-content">
+          <div class="dropzone-icon">📁</div>
+          <h3 class="dropzone-title">Upload Activity Reports, ZIPs or PDFs</h3>
+          <p class="dropzone-subtitle">Drop files here (<code>.xlsx</code>, <code>.csv</code>, <code>.docx</code>, <code>.pdf</code>, <code>.zip</code>, or scanned images). ZIP files are unpacked automatically into the staging queue.</p>
+          <div class="dropzone-actions">
+            <button type="button" class="btn btn-primary" onclick="document.getElementById('analyser-file-input').click()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              Select Files / ZIPs
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="loadPreloadedAnalyserData()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2v6h-6"></path><path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path><path d="M3 22v-6h6"></path><path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path></svg>
+              Reset to Official Archive
+            </button>
+            <input type="file" id="analyser-file-input" class="file-input-hidden" multiple accept=".xlsx,.xls,.csv,.docx,.json,.pdf,.zip,.png,.jpg,.jpeg,.webp,.tiff,.bmp,image/*,application/pdf,application/zip">
+          </div>
+
+          <!-- Staged Files Queue -->
+          <div id="analyser-staging-wrapper" style="display:none; margin-top:1.25rem; width:100%; text-align:left;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem;">
+              <h5 style="font-size:0.85rem; font-weight:700; color:var(--text-main);">Staged Queue (<span id="staged-file-count">0</span> files):</h5>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="clearStagedAnalyserFiles()">Clear Queue</button>
+            </div>
+            <div id="analyser-staged-list" class="uploaded-files-pills" style="max-height:160px; overflow-y:auto; padding:0.65rem; background:#ffffff; border:1px solid var(--border-light); border-radius:var(--radius-md);"></div>
+
+            <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <button type="button" id="btn-start-analysis" class="btn-start-analysis" onclick="startAnalyserAnalysis()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Start Analysis &amp; Generate Insights (<span id="staged-count-btn">0</span> files)
+              </button>
+            </div>
+          </div>
+
+          <div id="analyser-analysis-status" class="analysis-success-box" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- Controls & Filter Bar -->
+      <div class="controls-bar">
+        <div class="controls-left">
+          <select id="filter-year" class="input-select" onchange="applyAnalyserFilters()">
+            <option value="2026" selected>2026 Official Report (1,013 Trainees Exchanged - 65 Member Committees)</option>
+            <option value="2025">2025 Reporting Cycle (1,146 Trainees Exchanged - 75 Member Committees)</option>
+            <option value="2024">2024 Reporting Year (1,397 Trainees Exchanged)</option>
+            <option value="2023">2023 Reporting Year (1,464 Trainees Exchanged)</option>
+            <option value="2022">2022 Reporting Year (1,455 Trainees Exchanged)</option>
+            <option value="2021">2021 Reporting Year (1,241 Trainees Exchanged)</option>
+            <option value="2020">2020 Reporting Year (682 Trainees Exchanged)</option>
+            <option value="2019">2019 Reporting Year (3,135 Trainees Exchanged)</option>
+            <option value="all">Cumulative Multi-Year Archive (11,533 Trainees Exchanged)</option>
+          </select>
+
+          <select id="filter-committee" class="input-select" onchange="applyAnalyserFilters()">
+            <option value="all">All Member Committees (Global View)</option>
+          </select>
+        </div>
+
+        <div class="controls-right">
+          <div class="search-input-wrapper">
+            <span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="analyser-search" class="input-text" placeholder="Search committee..." onkeyup="applyAnalyserFilters()">
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="exportAnalyserSummary()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export Brief
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Grid -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Students Sent</div>
+          <div class="kpi-value" id="kpi-sent">1,013</div>
+          <div class="kpi-sub" id="kpi-sent-sub">Exchange Internships</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Students Received</div>
+          <div class="kpi-value" id="kpi-received">1,013</div>
+          <div class="kpi-sub" id="kpi-received-sub">Accepted Placements</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Active Committees</div>
+          <div class="kpi-value" id="kpi-committees">65</div>
+          <div class="kpi-sub" id="kpi-committees-sub">Across 6 Regions</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Bilateral Corridors</div>
+          <div class="kpi-value" id="kpi-corridors">447</div>
+          <div class="kpi-sub" id="kpi-corridors-sub">Active Trade Routes</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Placement Rate</div>
+          <div class="kpi-value" id="kpi-placement-rate">32.9%</div>
+          <div class="kpi-sub" id="kpi-placement-sub">1,013 / 3,082 Nominated</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Employer Canc. Rate</div>
+          <div class="kpi-value" id="kpi-emp-cancel">19.8%</div>
+          <div class="kpi-sub negative" id="kpi-emp-cancel-sub">415 Cancelled Offers</div>
+        </div>
+      </div>
+
+      <!-- Official 2026 Intelligence Panels -->
+      <div id="analyser-official-2026-panel" class="official-2026-wrapper">
+        <!-- 2026 Executive Header Banner -->
+        <div class="official-2026-banner">
+          <div class="official-2026-banner-left">
+            <h3><span>🌐</span> Activity Report 2026: The Exchange Year in Numbers</h3>
+            <p>Official verified figures from IAESTE Exchange Platform (SmartSimple). Covers full exchange, bilateral cooperation, cancellations &amp; study fields.</p>
+          </div>
+          <div class="official-2026-badges">
+            <span class="official-stat-pill">🎓 <strong>1,013</strong> Students Sent</span>
+            <span class="official-stat-pill">🤝 <strong>519</strong> Combinations</span>
+            <span class="official-stat-pill">🏛️ <strong>65</strong> Member Committees</span>
+            <span class="official-stat-pill">🌍 <strong>6</strong> Regions</span>
+            <span class="official-stat-pill">🛣️ <strong>447</strong> Corridors</span>
+          </div>
+        </div>
+
+        <!-- 4-Column Composition of Outgoing Students -->
+        <div>
+          <h4 style="font-size:0.95rem; font-weight:800; color:var(--text-main); margin-bottom:0.25rem;">Composition of Outgoing Students</h4>
+          <p style="font-size:0.775rem; color:var(--text-secondary); margin-bottom:1rem;">Distribution across all 1,013 students exchanged globally in 2026</p>
+          <div class="composition-grid-4">
+            <!-- Internship Type -->
+            <div class="comp-card">
+              <div class="comp-card-header">Internship Type</div>
+              <div class="comp-visual-wrap">
+                <div class="comp-donut-badge" style="background:conic-gradient(#0284c7 0% 70.2%, #0d9488 70.2% 91.7%, #f59e0b 91.7% 100%);">
+                  <div class="comp-donut-text">70%<div class="comp-donut-sub">Exchange</div></div>
+                </div>
+                <div class="comp-items-list">
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#0284c7;"></span>Exchange</span><span class="comp-item-val">711</span></div>
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#0d9488;"></span>Global</span><span class="comp-item-val">218</span></div>
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#f59e0b;"></span>Reserved</span><span class="comp-item-val">84</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Delivery Mode -->
+            <div class="comp-card">
+              <div class="comp-card-header">Delivery Mode</div>
+              <div class="comp-visual-wrap">
+                <div class="comp-donut-badge" style="background:conic-gradient(#0d9488 0% 93.9%, #3b82f6 93.9% 97.8%, #8b5cf6 97.8% 100%);">
+                  <div class="comp-donut-text">94%<div class="comp-donut-sub">On-site</div></div>
+                </div>
+                <div class="comp-items-list">
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#0d9488;"></span>On-site</span><span class="comp-item-val">951</span></div>
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#3b82f6;"></span>Remote</span><span class="comp-item-val">40</span></div>
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#8b5cf6;"></span>Hybrid</span><span class="comp-item-val">22</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gender -->
+            <div class="comp-card">
+              <div class="comp-card-header">Gender Demographics</div>
+              <div class="comp-visual-wrap">
+                <div class="comp-donut-badge" style="background:conic-gradient(#3b82f6 0% 54.2%, #ec4899 54.2% 99.8%, #94a3b8 99.8% 100%);">
+                  <div class="comp-donut-text">54%<div class="comp-donut-sub">Male</div></div>
+                </div>
+                <div class="comp-items-list">
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#3b82f6;"></span>Male</span><span class="comp-item-val">549</span></div>
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#ec4899;"></span>Female</span><span class="comp-item-val">462</span></div>
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#94a3b8;"></span>Other / Not stated</span><span class="comp-item-val">2</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Study Level -->
+            <div class="comp-card">
+              <div class="comp-card-header">Study Level</div>
+              <div class="comp-visual-wrap">
+                <div class="comp-donut-badge" style="background:conic-gradient(#0d9488 0% 51.8%, #3b82f6 51.8% 81.0%, #f59e0b 81.0% 81.8%, #cbd5e1 81.8% 100%);">
+                  <div class="comp-donut-text">52%<div class="comp-donut-sub">Bachelor</div></div>
+                </div>
+                <div class="comp-items-list">
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#0d9488;"></span>Bachelor</span><span class="comp-item-val">525</span></div>
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#3b82f6;"></span>Master</span><span class="comp-item-val">296</span></div>
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#f59e0b;"></span>PhD</span><span class="comp-item-val">8</span></div>
+                  <div class="comp-item-row"><span class="comp-item-label"><span class="comp-dot" style="background:#cbd5e1;"></span>Not stated</span><span class="comp-item-val">184</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Durations & Average Age -->
+        <div class="duration-age-row">
+          <div class="comp-card">
+            <div class="comp-card-header">Internship Duration Distribution</div>
+            <p style="font-size:0.775rem; color:var(--text-secondary); margin:0;">Outgoing students categorized by length of completed placement</p>
+            <div class="duration-bar-stack">
+              <div class="duration-segment" style="width:42.3%; background:#0d9488;" title="0 to 2 months: 428 (42.3%)">428 (42.3%)</div>
+              <div class="duration-segment" style="width:32.6%; background:#0284c7;" title="2 to 3 months: 330 (32.6%)">330 (32.6%)</div>
+              <div class="duration-segment" style="width:14.2%; background:#6366f1;" title="3 to 6 months: 144 (14.2%)">144</div>
+              <div class="duration-segment" style="width:9.5%; background:#d97706;" title="6 to 12 months: 96 (9.5%)">96</div>
+              <div class="duration-segment" style="width:1.4%; background:#e11d48;" title="Over 12 months: 14 (1.4%)">14</div>
+            </div>
+            <div class="duration-legend">
+              <span style="display:flex; align-items:center; gap:0.3rem;"><span class="comp-dot" style="background:#0d9488;"></span>0–2 months: <strong>428 (42.3%)</strong></span>
+              <span style="display:flex; align-items:center; gap:0.3rem;"><span class="comp-dot" style="background:#0284c7;"></span>2–3 months: <strong>330 (32.6%)</strong></span>
+              <span style="display:flex; align-items:center; gap:0.3rem;"><span class="comp-dot" style="background:#6366f1;"></span>3–6 months: <strong>144 (14.2%)</strong></span>
+              <span style="display:flex; align-items:center; gap:0.3rem;"><span class="comp-dot" style="background:#d97706;"></span>6–12 months: <strong>96 (9.5%)</strong></span>
+              <span style="display:flex; align-items:center; gap:0.3rem;"><span class="comp-dot" style="background:#e11d48;"></span>&gt;12 months: <strong>14 (1.4%)</strong></span>
+            </div>
+          </div>
+
+          <div class="comp-card age-metric-box">
+            <div class="comp-card-header" style="margin-bottom:0.5rem;">Average Student Age</div>
+            <div class="age-big-num">23.7</div>
+            <div style="font-size:0.85rem; font-weight:700; color:var(--text-main); margin-bottom:0.25rem;">YEARS</div>
+            <span style="font-size:0.75rem; color:var(--text-secondary);">Mean of 62 committees reporting</span>
+          </div>
+        </div>
+
+        <!-- Funnels: Nomination Journey & Offer Outcomes -->
+        <div class="funnel-grid-2">
+          <!-- Funnel 1: Nomination Journey -->
+          <div class="comp-card">
+            <div class="comp-card-header">Nomination Journey</div>
+            <p style="font-size:0.775rem; color:var(--text-secondary); margin:0;">Every state a nomination reaches across the network</p>
+            <div class="funnel-list">
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Nominations submitted</span><span>3,082 (100%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%; background:#0284c7;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Offers in circulation</span><span>2,444 (79.3%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:79.3%; background:#38bdf8;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Students rejected</span><span>1,724 (55.9%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:55.9%; background:#f87171;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Accepted placements</span><span style="color:#059669; font-weight:700;">1,013 (32.9%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:32.9%; background:#059669;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Unused or still open</span><span>595 (19.3%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:19.3%; background:#fbbf24;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Employer cancellations</span><span>415 (13.5%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:13.5%; background:#e11d48;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Student cancellations</span><span>314 (10.2%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:10.2%; background:#94a3b8;"></div></div>
+              </div>
+            </div>
+            <div class="funnel-summary-badge">
+              <strong>3,082</strong> nominations were made against <strong>2,444</strong> offers (<strong>1.26</strong> per offer), and <strong>1,013</strong> became realized placements (<strong>32.9%</strong> materialization rate).
+            </div>
+          </div>
+
+          <!-- Funnel 2: Internship Offer Outcome -->
+          <div class="comp-card">
+            <div class="comp-card-header">Internship Offer Outcome</div>
+            <p style="font-size:0.775rem; color:var(--text-secondary); margin:0;">What happened to every published offer in the system</p>
+            <div class="funnel-list">
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Offers published</span><span>2,100 (100%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:100%; background:#1e293b;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Accepted &amp; Realized</span><span style="color:#059669; font-weight:700;">1,013 (48.2%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:48.2%; background:#059669;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Unused offers</span><span>595 (28.3%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:28.3%; background:#fbbf24;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Cancelled offers</span><span>415 (19.8%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:19.8%; background:#e11d48;"></div></div>
+              </div>
+              <div class="funnel-bar-wrap">
+                <div class="funnel-bar-meta"><span>Ready for sharing</span><span>77 (3.7%)</span></div>
+                <div class="funnel-bar-track"><div class="funnel-bar-fill" style="width:3.7%; background:#38bdf8;"></div></div>
+              </div>
+            </div>
+            <div class="funnel-summary-badge" style="border-left-color:#059669;">
+              Overall network offer acceptance rate was <strong>48.2%</strong> of <strong>2,100</strong> published offers, with <strong>19.8%</strong> employer cancellations.
+            </div>
+          </div>
+        </div>
+
+        <!-- Regional Balance & Top Fields/Skills Grid -->
+        <div class="funnel-grid-2">
+          <!-- Regional Flows -->
+          <div class="comp-card">
+            <div class="comp-card-header">Regional Exchange Flows (Sent vs Received)</div>
+            <div class="regional-grid">
+              <div class="regional-card-mini">
+                <div class="regional-name">EU/EFTA</div>
+                <div class="regional-flows"><span class="out">405 Out</span> | <span class="in">438 In</span></div>
+                <div class="regional-delta">Net +33 (▼89 vs 2025)</div>
+              </div>
+              <div class="regional-card-mini">
+                <div class="regional-name">Asia Pacific</div>
+                <div class="regional-flows"><span class="out">195 Out</span> | <span class="in">209 In</span></div>
+                <div class="regional-delta">Net +14 (▲7 vs 2025)</div>
+              </div>
+              <div class="regional-card-mini">
+                <div class="regional-name">Middle East</div>
+                <div class="regional-flows"><span class="out">155 Out</span> | <span class="in">135 In</span></div>
+                <div class="regional-delta">Net -20 (▲4 vs 2025)</div>
+              </div>
+              <div class="regional-card-mini">
+                <div class="regional-name">Americas</div>
+                <div class="regional-flows"><span class="out">111 Out</span> | <span class="in">102 In</span></div>
+                <div class="regional-delta">Net -9 (▼58 vs 2025)</div>
+              </div>
+              <div class="regional-card-mini">
+                <div class="regional-name">Africa</div>
+                <div class="regional-flows"><span class="out">71 Out</span> | <span class="in">63 In</span></div>
+                <div class="regional-delta">Net -8 (▼35 vs 2025)</div>
+              </div>
+              <div class="regional-card-mini">
+                <div class="regional-name">Rest of Europe</div>
+                <div class="regional-flows"><span class="out">48 Out</span> | <span class="in">38 In</span></div>
+                <div class="regional-delta">Net -10 (▲1 vs 2025)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Disciplines & Skills -->
+          <div class="comp-card">
+            <div class="comp-card-header">Top Fields of Study &amp; In-Demand Skills</div>
+            <div style="margin-bottom:0.75rem;">
+              <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Top Study Fields:</span>
+              <div class="chips-cloud" style="margin-top:0.35rem;">
+                <span class="intel-chip">💻 Computer Science <span class="intel-chip-badge">138</span></span>
+                <span class="intel-chip">⚙️ Mechanical Eng <span class="intel-chip-badge">97</span></span>
+                <span class="intel-chip">🧪 Chemical Eng <span class="intel-chip-badge">84</span></span>
+                <span class="intel-chip">🏛️ Architecture <span class="intel-chip-badge">81</span></span>
+                <span class="intel-chip">⚡ Electrical Eng <span class="intel-chip-badge">56</span></span>
+                <span class="intel-chip">📊 Economics/Business <span class="intel-chip-badge">49</span></span>
+              </div>
+            </div>
+            <div>
+              <span style="font-size:0.725rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Most Requested Skills:</span>
+              <div class="chips-cloud" style="margin-top:0.35rem;">
+                <span class="intel-chip">Teamwork <span class="intel-chip-badge" style="background:#0d9488;">503</span></span>
+                <span class="intel-chip">Python <span class="intel-chip-badge" style="background:#0d9488;">489</span></span>
+                <span class="intel-chip">Communication <span class="intel-chip-badge" style="background:#0d9488;">288</span></span>
+                <span class="intel-chip">MATLAB <span class="intel-chip-badge" style="background:#0d9488;">270</span></span>
+                <span class="intel-chip">AutoCAD <span class="intel-chip-badge" style="background:#0d9488;">260</span></span>
+                <span class="intel-chip">Machine Learning <span class="intel-chip-badge" style="background:#0d9488;">126</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Analytics Grids -->
+      <div class="analytics-grid-two">
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div class="analytics-card-title">
+              <h4>Phase-II Trade Balance &amp; Leverage</h4>
+              <span>Net exchange surplus (+Capacity) vs deficit (-Sent &gt; Received)</span>
+            </div>
+          </div>
+          <div class="trade-list" id="trade-balance-list"></div>
+        </div>
+
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div class="analytics-card-title">
+              <h4 id="bilateral-chart-title">Top Bilateral Corridors</h4>
+              <span>Exchange flows between national committees</span>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="chart-bilateral"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="analytics-grid-two">
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div class="analytics-card-title">
+              <h4>Six-Year Exchange Trend (2021–2026)</h4>
+              <span>Global exchange volume and recovery trajectory</span>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="chart-trend"></canvas>
+          </div>
+        </div>
+
+        <div class="analytics-card">
+          <div class="analytics-card-header">
+            <div class="analytics-card-title">
+              <h4>Lost Placement Analysis</h4>
+              <span>Causes of cancellations and rejections</span>
+            </div>
+            <div class="filter-pills">
+              <button type="button" class="filter-pill-btn active" id="btn-pie-emp" onclick="switchCancellationPie('employer')">Employer</button>
+              <button type="button" class="filter-pill-btn" id="btn-pie-stud" onclick="switchCancellationPie('student')">Student</button>
+              <button type="button" class="filter-pill-btn" id="btn-pie-rej" onclick="switchCancellationPie('rejections')">Rejections</button>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="chart-cancellations"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Performance Directory Table -->
+      <div class="table-container">
+        <div class="table-header-bar">
+          <div class="analytics-card-title">
+            <h4>Member Committees Directory</h4>
+            <span id="analyser-table-count">Showing 65 Committees</span>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table" id="analyser-data-table">
+            <thead>
+              <tr>
+                <th onclick="sortAnalyserTable('committee')">Committee / Country ↕</th>
+                <th onclick="sortAnalyserTable('outgoing')">Outgoing ↕</th>
+                <th onclick="sortAnalyserTable('incoming')">Incoming ↕</th>
+                <th onclick="sortAnalyserTable('net')">Net Balance ↕</th>
+                <th onclick="sortAnalyserTable('accepted')">Accepted ↕</th>
+                <th onclick="sortAnalyserTable('published')">Published ↕</th>
+                <th onclick="sortAnalyserTable('cancelled')">Cancelled ↕</th>
+                <th>Phase-II Recommendation</th>
+              </tr>
+            </thead>
+            <tbody id="analyser-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         3A. INCOMING OFFERS GRADER (INDIAN LOCAL COMMITTEES)
+         =================================================================== -->
+    <section id="view-grader-incoming" class="view-section">
+      
+      <!-- Dual Grader Switcher -->
+      <div class="grader-dual-mode-header">
+        <div class="grader-dual-mode-pills">
+          <button type="button" class="dual-mode-pill active" onclick="switchTab('grader-incoming')">
+            📥 Incoming Offers (Indian LCs: Manipal, Karunya, JECRC, MUJ, CI-SMU)
+          </button>
+          <button type="button" class="dual-mode-pill" onclick="switchTab('grader-outgoing')">
+            📤 Outgoing Offers (Conference Trading &amp; Student Abroad Fit)
+          </button>
+        </div>
+      </div>
+
+      <!-- Incoming Dropzone -->
+      <div class="dropzone-container" id="incoming-dropzone">
+        <div class="dropzone-content">
+          <div class="dropzone-icon">📥</div>
+          <h3 class="dropzone-title">Upload Indian LC Offers (CSV, Excel, ZIP)</h3>
+          <p class="dropzone-subtitle">Audit internal offers from LC Manipal, Karunya, JECRC, MUJ, and CI-SMU. Evaluates stipends, on-campus lodging bonusing, and Phase-II conference tradeability.</p>
+          <div class="dropzone-actions">
+            <button type="button" class="btn btn-primary" onclick="document.getElementById('incoming-file-input').click()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              Select Indian Offers (CSV, Excel, ZIP)
+            </button>
+            <input type="file" id="incoming-file-input" class="file-input-hidden" multiple accept=".csv,.xlsx,.xls,.zip,application/zip">
+          </div>
+
+          <div id="incoming-staging-wrapper" style="display:none; margin-top:1.25rem; width:100%; text-align:left;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem;">
+              <h5 style="font-size:0.85rem; font-weight:700; color:var(--text-main);">Staged Files (<span id="incoming-staged-file-count">0</span>):</h5>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="clearStagedIncomingFiles()">Clear Queue</button>
+            </div>
+            <div id="incoming-staged-list" class="uploaded-files-pills" style="max-height:160px; overflow-y:auto; padding:0.65rem; background:#ffffff; border:1px solid var(--border-light); border-radius:var(--radius-md);"></div>
+
+            <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <button type="button" id="btn-start-incoming-grading" class="btn-start-analysis" onclick="startIncomingGrading()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                <span id="btn-incoming-grade-text">Grade the Offers</span>
+              </button>
+            </div>
+          </div>
+
+          <div id="incoming-analysis-status" class="analysis-success-box" style="display:none;"></div>
+          <div id="incoming-file-info" class="uploaded-files-pills" style="margin-top:0.5rem;"></div>
+        </div>
+      </div>
+
+      <!-- ML Model Calibration Status Banner -->
+      <div class="ml-model-banner" style="background:linear-gradient(135deg, #fff7ed 0%, #ffffff 100%); border:1px solid #fed7aa; border-radius:var(--radius-lg); padding:1.25rem 1.5rem; margin-bottom:1.75rem; box-shadow:var(--shadow-xs);">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:0.75rem;">
+          <div style="display:flex; align-items:flex-start; gap:0.85rem; max-width:760px;">
+            <span style="font-size:1.6rem; line-height:1;">🎓</span>
+            <div>
+              <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.25rem;">
+                <h4 style="font-size:0.975rem; font-weight:800; color:#9a3412;">Empirical ML Model Trained on 10 Official Files (18 Sheets)</h4>
+                <span style="font-size:0.7rem; font-weight:700; background:#ea580c; color:#ffffff; padding:0.15rem 0.55rem; border-radius:var(--radius-full);">544 Reviews • 500 Unique Offers</span>
+              </div>
+              <p style="font-size:0.825rem; color:#7c2d12; line-height:1.55;">
+                Trained directly on all 10 verified Excel files across LC Manipal, LC MUJ, LC Karunya, LC JECRC &amp; CI-SMU (Phase 1, Phase 2 &amp; Autumn Exchange). Learns research keyword prestige, lodging bonusing, and evaluator feedback.
+              </p>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="applyIncomingPreset('ml_trained')" style="border-color:#fed7aa; background:#ffffff; color:#9a3412; font-weight:700;">
+              Apply 2025 ML Weights
+            </button>
+          </div>
+        </div>
+
+        <details style="margin-top:0.75rem; border-top:1px solid #fed7aa; padding-top:0.65rem; font-size:0.8rem; color:#7c2d12;">
+          <summary style="cursor:pointer; font-weight:700; color:#9a3412; display:flex; align-items:center; gap:0.4rem;">
+            <span>📂 View All 10 Training Files &amp; Extracted Evaluations (544 Reviews across 5 Indian LCs)</span>
+          </summary>
+          <div style="margin-top:0.6rem; display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:0.6rem;">
+            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
+              <div style="font-weight:700; color:#c2410c; margin-bottom:0.25rem;">LC Manipal (159 reviews)</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
+                • <code>LC_MU_OfferGrading 2025.xlsx</code> (64)<br>
+                • <code>Copy of LC_MU_OfferGrading.xlsx</code> (95: P1, P2, Autumn)
+              </div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
+              <div style="font-weight:700; color:#059669; margin-bottom:0.25rem;">LC Karunya (181 reviews)</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
+                • <code>LC_KU_OfferGrading 2025.xlsx</code> (84)<br>
+                • <code>Copy of LC_KU_OfferGrading.xlsx</code> (97: P1, P2, Autumn)
+              </div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
+              <div style="font-weight:700; color:#2563eb; margin-bottom:0.25rem;">LC MUJ (139 reviews)</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
+                • <code>LC_MUJ_OfferGrading 2025.xlsx</code> (65)<br>
+                • <code>Copy of LC_MUJ_OfferGrading.xlsx</code> (74: P1, P2, Autumn)
+              </div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
+              <div style="font-weight:700; color:#7c3aed; margin-bottom:0.25rem;">LC JECRC (52 reviews)</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
+                • <code>LC_JECRC_OfferGrading 2025.xlsx</code> (32)<br>
+                • <code>Copy of LC_JECRC_OfferGrading.xlsx</code> (20: P1, Autumn)
+              </div>
+            </div>
+            <div style="background:#ffffff; border:1px solid #fed7aa; border-radius:var(--radius-sm); padding:0.6rem 0.75rem;">
+              <div style="font-weight:700; color:#0d9488; margin-bottom:0.25rem;">CI - SMU (13 reviews)</div>
+              <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.45;">
+                • <code>CI_SMU_OfferGrading 2025.xlsx</code> (8: P1, Autumn)<br>
+                • <code>Copy of CI SMU.xlsx</code> (5)
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Committee Stats Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Indian Offers</div>
+          <div class="kpi-value" id="inc-stat-total">0</div>
+          <div class="kpi-sub">Across 4 LCs + 1 CI</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid #ea580c;">
+          <div class="kpi-label">LC Manipal</div>
+          <div class="kpi-value" id="inc-stat-manipal">0</div>
+          <div class="kpi-sub" id="inc-sub-manipal">Avg Score: 0.0</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid #059669;">
+          <div class="kpi-label">LC Karunya</div>
+          <div class="kpi-value" id="inc-stat-karunya">0</div>
+          <div class="kpi-sub" id="inc-sub-karunya">Avg Score: 0.0</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid #2563eb;">
+          <div class="kpi-label">LC JECRC</div>
+          <div class="kpi-value" id="inc-stat-jecrc">0</div>
+          <div class="kpi-sub" id="inc-sub-jecrc">Avg Score: 0.0</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid #7e22ce;">
+          <div class="kpi-label">LC MUJ</div>
+          <div class="kpi-value" id="inc-stat-muj">0</div>
+          <div class="kpi-sub" id="inc-sub-muj">Avg Score: 0.0</div>
+        </div>
+        <div class="kpi-card" style="border-left: 3px solid #0d9488;">
+          <div class="kpi-label">CI - SMU</div>
+          <div class="kpi-value" id="inc-stat-smu">0</div>
+          <div class="kpi-sub" id="inc-sub-smu">Avg Score: 0.0</div>
+        </div>
+      </div>
+
+      <!-- Weights Configurator -->
+      <div class="weights-panel">
+        <div class="weights-panel-header">
+          <div>
+            <h4 style="font-size:1.05rem; font-weight:800; color:var(--text-main);">Scoring Weights &amp; Priority Calibration</h4>
+            <span style="font-size:0.775rem; color:var(--text-muted);">Calibrate weights to ensure Indian offers possess optimal conference trading leverage</span>
+          </div>
+          <div class="weights-presets">
+            <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">Presets:</span>
+            <button type="button" class="preset-chip active" id="preset-inc-ml" onclick="applyIncomingPreset('ml_trained')">🤖 2025 ML-Trained</button>
+            <button type="button" class="preset-chip" id="preset-inc-balanced" onclick="applyIncomingPreset('balanced')">Balanced</button>
+            <button type="button" class="preset-chip" id="preset-inc-lodging" onclick="applyIncomingPreset('lodging')">Lodging Focus</button>
+            <button type="button" class="preset-chip" id="preset-inc-tech" onclick="applyIncomingPreset('tech')">Lab Research</button>
+          </div>
+        </div>
+
+        <div class="sliders-grid">
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Stipend Sufficiency</span>
+              <span class="slider-val-badge" id="val-inc-w-stipend">25%</span>
+            </div>
+            <input type="range" class="range-slider" id="inc-w-stipend" min="0" max="40" value="25" oninput="updateIncomingWeights()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>On-Campus Lodging</span>
+              <span class="slider-val-badge" id="val-inc-w-lodging">25%</span>
+            </div>
+            <input type="range" class="range-slider" id="inc-w-lodging" min="0" max="40" value="25" oninput="updateIncomingWeights()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>STEM Discipline Prestige</span>
+              <span class="slider-val-badge" id="val-inc-w-discipline">20%</span>
+            </div>
+            <input type="range" class="range-slider" id="inc-w-discipline" min="0" max="40" value="20" oninput="updateIncomingWeights()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Summer Calendar Window</span>
+              <span class="slider-val-badge" id="val-inc-w-duration">15%</span>
+            </div>
+            <input type="range" class="range-slider" id="inc-w-duration" min="0" max="30" value="15" oninput="updateIncomingWeights()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Visa &amp; Admin Support</span>
+              <span class="slider-val-badge" id="val-inc-w-admin">15%</span>
+            </div>
+            <input type="range" class="range-slider" id="inc-w-admin" min="0" max="30" value="15" oninput="updateIncomingWeights()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls & Table -->
+      <div class="table-container">
+        <div class="table-header-bar">
+          <div class="controls-left">
+            <select id="filter-incoming-lc" class="input-select" onchange="renderIncomingOffersTable()">
+              <option value="all">All Indian Committees</option>
+              <option value="LC Manipal University">LC Manipal University</option>
+              <option value="LC Karunya University">LC Karunya University</option>
+              <option value="LC JECRC">LC JECRC Jaipur</option>
+              <option value="LC MUJ">LC MUJ Jaipur</option>
+              <option value="CI - SMU">CI - SMU Sikkim</option>
+            </select>
+            <select id="filter-incoming-grade" class="input-select" onchange="renderIncomingOffersTable()">
+              <option value="all">All Grades</option>
+              <option value="A+">Grade A+ (Elite)</option>
+              <option value="A">Grade A (Strong)</option>
+              <option value="B">Grade B (Standard)</option>
+              <option value="C">Grade C (Conditional)</option>
+              <option value="D">Grade D (Needs Fix)</option>
+            </select>
+          </div>
+
+          <div class="controls-right">
+            <div class="search-input-wrapper">
+              <span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+              <input type="text" id="incoming-search-input" class="input-text" placeholder="Search offers..." onkeyup="renderIncomingOffersTable()">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-incoming-export" onclick="exportIncomingOffers()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span id="btn-incoming-export-text">Export Graded File</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="incoming-data-table">
+            <thead>
+              <tr>
+                <th onclick="sortIncomingTable('grade')">Grade ↕</th>
+                <th onclick="sortIncomingTable('score')">Score ↕</th>
+                <th onclick="sortIncomingTable('ref')">Offer Ref ↕</th>
+                <th onclick="sortIncomingTable('lc')">Committee ↕</th>
+                <th onclick="sortIncomingTable('employer')">Employer / Host ↕</th>
+                <th onclick="sortIncomingTable('discipline')">Discipline ↕</th>
+                <th onclick="sortIncomingTable('stipend')">Stipend (INR) ↕</th>
+                <th>Lodging</th>
+                <th>Duration</th>
+                <th>Trade Value</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="incoming-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         3B. OUTGOING OFFERS GRADER (CONFERENCE EXCHANGE SESSIONS)
+         =================================================================== -->
+    <section id="view-grader-outgoing" class="view-section">
+      
+      <!-- Dual Grader Switcher -->
+      <div class="grader-dual-mode-header">
+        <div class="grader-dual-mode-pills">
+          <button type="button" class="dual-mode-pill" onclick="switchTab('grader-incoming')">
+            📥 Incoming Offers (Indian LCs: Manipal, Karunya, JECRC, MUJ, CI-SMU)
+          </button>
+          <button type="button" class="dual-mode-pill active" onclick="switchTab('grader-outgoing')">
+            📤 Outgoing Offers (Conference Trading &amp; Student Abroad Fit)
+          </button>
+        </div>
+      </div>
+
+      <!-- Outgoing Dropzone -->
+      <div class="dropzone-container" id="outgoing-dropzone">
+        <div class="dropzone-content">
+          <div class="dropzone-icon">📤</div>
+          <h3 class="dropzone-title">Upload Foreign Exchange Offers (CSV, Excel, ZIP)</h3>
+          <p class="dropzone-subtitle">Drop international offers received during conference exchange sessions. Scored for Indian students by net purchasing power, guaranteed lodging, vacation fit, and partner reliability.</p>
+          <div class="dropzone-actions">
+            <button type="button" class="btn btn-primary" onclick="document.getElementById('outgoing-file-input').click()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              Select Foreign Offers / ZIP
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="loadSampleOutgoingOffersData()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              Stage Demo (25 Offers)
+            </button>
+            <button type="button" class="btn btn-secondary" onclick="openLiveEvaluatorModal()" style="border-color:var(--primary); color:var(--primary); font-weight:700;">
+              ⚡ Instant Table Scorer
+            </button>
+            <input type="file" id="outgoing-file-input" class="file-input-hidden" multiple accept=".csv,.xlsx,.xls,.zip,application/zip">
+          </div>
+
+          <div id="outgoing-staging-wrapper" style="display:none; margin-top:1.25rem; width:100%; text-align:left;">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.5rem;">
+              <h5 style="font-size:0.85rem; font-weight:700; color:var(--text-main);">Staged Queue (<span id="outgoing-staged-file-count">0</span> ready):</h5>
+              <button type="button" class="btn btn-secondary btn-sm" onclick="clearStagedOutgoingFiles()">Clear Queue</button>
+            </div>
+            <div id="outgoing-staged-list" class="uploaded-files-pills" style="max-height:160px; overflow-y:auto; padding:0.65rem; background:#ffffff; border:1px solid var(--border-light); border-radius:var(--radius-md);"></div>
+
+            <div style="margin-top:1rem; display:flex; flex-direction:column; gap:0.4rem;">
+              <button type="button" id="btn-start-outgoing-grading" class="btn-start-analysis" onclick="startOutgoingGrading()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Score Foreign Offers for Indian Students (<span id="outgoing-staged-count-btn">0</span> ready)
+              </button>
+            </div>
+          </div>
+
+          <div id="outgoing-analysis-status" class="analysis-success-box" style="display:none;"></div>
+          <div id="outgoing-file-info" class="uploaded-files-pills" style="margin-top:0.5rem;"></div>
+        </div>
+      </div>
+
+      <!-- Outgoing Summary Stats -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Foreign Offers</div>
+          <div class="kpi-value" id="out-stat-total">0</div>
+          <div class="kpi-sub">Available at table</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Grade A+ (Elite)</div>
+          <div class="kpi-value" style="color:var(--grade-aplus);" id="out-stat-aplus">0</div>
+          <div class="kpi-sub">Priority Targets</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Grade A (Strong)</div>
+          <div class="kpi-value" style="color:var(--grade-a);" id="out-stat-a">0</div>
+          <div class="kpi-sub">Solid Tradeables</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Guaranteed Housing</div>
+          <div class="kpi-value" style="color:#059669;" id="out-stat-housing">0%</div>
+          <div class="kpi-sub">Arranged by host</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Summer Break Fit</div>
+          <div class="kpi-value" style="color:var(--primary);" id="out-stat-summer">0%</div>
+          <div class="kpi-sub">May–Aug Window</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Average Score</div>
+          <div class="kpi-value" id="out-stat-avg">0.0</div>
+          <div class="kpi-sub">Out of 100 points</div>
+        </div>
+      </div>
+
+      <!-- Outgoing Weights Panel -->
+      <div class="weights-panel">
+        <div class="weights-panel-header">
+          <div>
+            <h4 style="font-size:1.05rem; font-weight:800; color:var(--text-main);">Indian Student Priorities &amp; Calibration Weights</h4>
+            <span style="font-size:0.775rem; color:var(--text-muted);">Calibrate weights to match the exact priorities of students going abroad</span>
+          </div>
+          <div class="weights-presets">
+            <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">Presets:</span>
+            <button type="button" class="preset-chip active" onclick="applyOutgoingPreset('balanced')">Balanced</button>
+            <button type="button" class="preset-chip" onclick="applyOutgoingPreset('savings')">Net Savings</button>
+            <button type="button" class="preset-chip" onclick="applyOutgoingPreset('summer')">Summer Break</button>
+            <button type="button" class="preset-chip" onclick="applyOutgoingPreset('safety')">Low Risk</button>
+          </div>
+        </div>
+
+        <div class="sliders-grid">
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Net Savings (Stipend vs Rent)</span>
+              <span class="slider-val-badge" id="val-out-w-purchasing">25%</span>
+            </div>
+            <input type="range" class="range-slider" id="out-w-purchasing" min="0" max="40" value="25" oninput="updateOutgoingWeights()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Guaranteed Housing</span>
+              <span class="slider-val-badge" id="val-out-w-lodging">25%</span>
+            </div>
+            <input type="range" class="range-slider" id="out-w-lodging" min="0" max="40" value="25" oninput="updateOutgoingWeights()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Vacation Fit (May–Aug)</span>
+              <span class="slider-val-badge" id="val-out-w-calendar">20%</span>
+            </div>
+            <input type="range" class="range-slider" id="out-w-calendar" min="0" max="35" value="20" oninput="updateOutgoingWeights()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Field Demand (CS/Tech)</span>
+              <span class="slider-val-badge" id="val-out-w-discipline">15%</span>
+            </div>
+            <input type="range" class="range-slider" id="out-w-discipline" min="0" max="30" value="15" oninput="updateOutgoingWeights()">
+          </div>
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span>Partner Reliability</span>
+              <span class="slider-val-badge" id="val-out-w-reliability">15%</span>
+            </div>
+            <input type="range" class="range-slider" id="out-w-reliability" min="0" max="30" value="15" oninput="updateOutgoingWeights()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Outgoing Controls & Table -->
+      <div class="table-container">
+        <div class="table-header-bar">
+          <div class="controls-left">
+            <select id="filter-outgoing-country" class="input-select" onchange="renderOutgoingOffersTable()">
+              <option value="all">All Host Countries</option>
+            </select>
+            <select id="filter-outgoing-grade" class="input-select" onchange="renderOutgoingOffersTable()">
+              <option value="all">All Grades</option>
+              <option value="A+">Grade A+ (Elite)</option>
+              <option value="A">Grade A (Strong)</option>
+              <option value="B">Grade B (Standard)</option>
+              <option value="C">Grade C (Risk)</option>
+              <option value="D">Grade D (Avoid)</option>
+            </select>
+          </div>
+
+          <div class="controls-right">
+            <div class="search-input-wrapper">
+              <span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+              <input type="text" id="outgoing-search-input" class="input-text" placeholder="Search offers..." onkeyup="renderOutgoingOffersTable()">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" onclick="exportOutgoingOffersCSV()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Export CSV
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="outgoing-data-table">
+            <thead>
+              <tr>
+                <th onclick="sortOutgoingTable('grade')">Grade ↕</th>
+                <th onclick="sortOutgoingTable('score')">Score ↕</th>
+                <th onclick="sortOutgoingTable('ref')">Offer ID ↕</th>
+                <th onclick="sortOutgoingTable('country')">Host Country ↕</th>
+                <th onclick="sortOutgoingTable('employer')">Employer &amp; Field ↕</th>
+                <th onclick="sortOutgoingTable('savings')">Net Savings ↕</th>
+                <th>Housing</th>
+                <th>Vacation Fit</th>
+                <th>Reliability</th>
+                <th>Decision Tag</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="outgoing-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE SINGLE-OFFER INSTANT EVALUATOR MODAL -->
+    <div id="modal-live-evaluator" class="modal-backdrop" onclick="if(event.target===this)closeLiveEvaluatorModal()">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div>
+            <h3>Instant Single-Offer Scorer</h3>
+            <span style="font-size:0.775rem; color:var(--text-muted);">Score offers live at the conference table in 2 seconds</span>
+          </div>
+          <button type="button" class="modal-close-btn" onclick="closeLiveEvaluatorModal()">&times;</button>
+        </div>
+
+        <form id="form-live-eval" onsubmit="event.preventDefault(); computeLiveEvaluation();" style="margin-top:1rem;">
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
+            <div>
+              <label style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:0.35rem;">Host Country:</label>
+              <input type="text" id="live-country" class="input-text" style="width:100%;" placeholder="e.g. Germany" required value="Germany">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:0.35rem;">Monthly Stipend:</label>
+              <input type="number" id="live-stipend" class="input-text" style="width:100%;" placeholder="e.g. 1250" required value="1250">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:0.35rem;">Currency:</label>
+              <select id="live-currency" class="input-select" style="width:100%;">
+                <option value="EUR" selected>EUR (€)</option>
+                <option value="CHF">CHF (Swiss Franc)</option>
+                <option value="USD">USD ($)</option>
+                <option value="GBP">GBP (£)</option>
+                <option value="JPY">JPY (¥)</option>
+                <option value="PLN">PLN (Zloty)</option>
+                <option value="SEK">SEK (Krona)</option>
+                <option value="NOK">NOK (Krone)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:0.35rem;">Housing Arrangement:</label>
+              <select id="live-lodging" class="input-select" style="width:100%;">
+                <option value="arranged" selected>🏡 Arranged by Host</option>
+                <option value="provided_free">✨ Provided Free</option>
+                <option value="student">❌ Student Must Find Private</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:0.35rem;">Duration (Weeks):</label>
+              <input type="number" id="live-weeks" class="input-text" style="width:100%;" placeholder="e.g. 10" required value="10">
+            </div>
+            <div>
+              <label style="font-size:0.75rem; font-weight:700; color:var(--text-secondary); display:block; margin-bottom:0.35rem;">Field of Study:</label>
+              <input type="text" id="live-field" class="input-text" style="width:100%;" placeholder="e.g. Computer Science" required value="Computer Science">
+            </div>
+          </div>
+
+          <div style="margin-top:1.5rem; display:flex; gap:0.75rem; justify-content:flex-end;">
+            <button type="button" class="btn btn-secondary" onclick="closeLiveEvaluatorModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">⚡ Compute Verdict</button>
+          </div>
+        </form>
+
+        <div id="live-eval-result" class="live-eval-result-card" style="display:none; margin-top:1.25rem;"></div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         4. MATERIALIZATION LEADS & RECOMMENDATIONS VIEW
+         =================================================================== -->
+    <section id="view-leads" class="view-section">
+      
+      <!-- Leads Banner -->
+      <div class="lead-hero-banner">
+        <div class="lead-tag">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polygon points="12 8 8 12 12 16 12 8"></polygon></svg>
+          Exchange Intelligence
+        </div>
+        <h2 style="font-size:1.85rem; font-weight:800; color:var(--text-main); margin-bottom:0.4rem; letter-spacing:-0.02em;">
+          High-Materialization Partner Recommendations
+        </h2>
+        <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.6; max-width:780px;">
+          Exchanging offers that fail to materialize wastes valuable quota. The recommendations below identify committees where exchanged positions achieve the highest verifiable rate of turning into <strong>completed traineeships</strong>.
+        </p>
+      </div>
+
+      <!-- Trained Model Knowledge Base Status Bar -->
+      <div class="trained-status-bar">
+        <div class="trained-status-left">
+          <div class="trained-pulse-badge">
+            <span class="trained-pulse-dot"></span>
+            <strong>Leads Generator Model: Fully Trained</strong>
+          </div>
+          <div class="trained-stats-pills">
+            <span class="trained-stat-pill"><strong>37</strong> Official Files Ingested</span>
+            <span class="trained-stat-pill"><strong>2019–2025</strong> Multi-Year Archive</span>
+            <span class="trained-stat-pill"><strong>9,374+</strong> Trainees Tracked</span>
+            <span class="trained-stat-pill"><strong>577</strong> Bilateral Corridors</span>
+            <span class="trained-stat-pill"><strong>15</strong> Disciplines Mapped</span>
+          </div>
+        </div>
+        <div class="trained-status-right">
+          <button type="button" class="btn btn-secondary btn-sm" onclick="openTrainedFilesModal()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            View 37 Trained Documents
+          </button>
+        </div>
+      </div>
+
+      <!-- Delegation Perspective Bar -->
+      <div class="controls-bar">
+        <div class="controls-left">
+          <select id="lead-year-select" class="input-select" onchange="onLeadYearChange(this.value)">
+            <option value="all" selected>Cumulative 8-Year Archive (11,533 Trainees Exchanged)</option>
+            <option value="2026">2026 Active Cycle (1,013 Trainees Exchanged)</option>
+            <option value="2025">2025 Reporting Cycle (1,146 Trainees Exchanged)</option>
+            <option value="2024">2024 Reporting Year (1,397 Trainees Exchanged)</option>
+            <option value="2023">2023 Reporting Year (1,464 Trainees Exchanged)</option>
+            <option value="2022">2022 Reporting Year (1,455 Trainees Exchanged)</option>
+            <option value="2021">2021 Reporting Year (1,241 Trainees Exchanged)</option>
+            <option value="2020">2020 Reporting Year (682 Trainees Exchanged)</option>
+            <option value="2019">2019 Reporting Year (3,135 Trainees Exchanged)</option>
+          </select>
+
+          <select id="lead-perspective-select" class="input-select" onchange="updateDelegationPerspective()">
+            <option value="india" selected>IAESTE India</option>
+            <option value="global">Global Strategy (All Committees)</option>
+          </select>
+        </div>
+        <div class="controls-right">
+          <button type="button" class="btn btn-primary btn-sm" onclick="exportMaterializationReport()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Export Fact Sheet (CSV)
+          </button>
+        </div>
+      </div>
+
+      <!-- Strategic Callout Box -->
+      <div id="delegation-strategic-callout" style="background:var(--bg-surface); border:1px solid var(--border-light); border-left:4px solid var(--primary); border-radius:var(--radius-lg); padding:1.25rem 1.5rem; margin-bottom:1.75rem; box-shadow:var(--shadow-xs);">
+        <div style="display:flex; align-items:flex-start; gap:0.85rem;">
+          <span style="font-size:1.35rem; line-height:1;">🎯</span>
+          <div>
+            <h4 style="font-size:0.95rem; font-weight:800; color:var(--text-main); margin-bottom:0.25rem;">
+              Strategic Trade Focus for IAESTE India
+            </h4>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.55;">
+              Across the 6-year multi-year archive, India sent <strong>595 trainees</strong> and hosted <strong>538 international trainees</strong>. To maximize yield and eliminate deficits, prioritize net-capacity European importers: <strong>Austria (+346 net capacity, 77.6% mat.)</strong> and <strong>Czech Republic (+100 net capacity, 78.8% mat.)</strong>, while capitalizing on volume trades with <strong>Germany (990 hosted, 25 sent from India)</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive AI Trade Lead Generator & Matcher Card -->
+      <div class="leads-generator-card">
+        <div class="leads-generator-header">
+          <div style="display:flex; align-items:center; gap:0.6rem;">
+            <div class="leads-generator-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            </div>
+            <div>
+              <h3 style="font-size:1.15rem; font-weight:800; color:var(--text-main); margin:0;">AI Trade Lead Generator</h3>
+              <p style="font-size:0.775rem; color:var(--text-muted); margin:0.15rem 0 0 0;">
+                Trained on 37 official IAESTE documents (2019–2025). Select criteria to generate empirically scored partner leads:
+              </p>
+            </div>
+          </div>
+          <span class="leads-model-tag">Empirical Multi-Factor Model</span>
+        </div>
+
+        <div class="generator-controls-grid">
+          <div class="gen-control-field">
+            <label for="gen-discipline-select">Academic Discipline Focus</label>
+            <select id="gen-discipline-select" class="input-select">
+              <option value="all" selected>All Engineering &amp; Sciences</option>
+              <option value="Computer and Information Sciences">Computer &amp; Information Sciences (IT)</option>
+              <option value="Mechanical Engineering">Mechanical &amp; Industrial Engineering</option>
+              <option value="Electrical and Electronics Engineering">Electrical &amp; Electronics Engineering</option>
+              <option value="Biological and Biomedical Sciences">Biological &amp; Biomedical Sciences</option>
+              <option value="Civil Engineering, Geology and Mining">Civil Engineering &amp; Architecture</option>
+              <option value="Chemistry, Material Science, and Chemical Engineering">Chemistry &amp; Material Science</option>
+              <option value="Agriculture and Food Science">Agriculture &amp; Food Science</option>
+              <option value="Business, Management, and Marketing">Business &amp; Management</option>
+            </select>
+          </div>
+
+          <div class="gen-control-field">
+            <label for="gen-capacity-select">Capacity Balance Target</label>
+            <select id="gen-capacity-select" class="input-select">
+              <option value="all" selected>Any Capacity Balance</option>
+              <option value="surplus">Net Capacity Surplus (+ Importers)</option>
+              <option value="volume">High Volume Exchange (>50 Trainees)</option>
+              <option value="balanced">Balanced Corridors (Zero Net Deficit)</option>
+            </select>
+          </div>
+
+          <div class="gen-control-field">
+            <label for="gen-risk-select">Cancellation Risk Threshold</label>
+            <select id="gen-risk-select" class="input-select">
+              <option value="all" selected>All Risk Levels</option>
+              <option value="strict">Ultra-Low Risk (&lt;15% Cancellation)</option>
+              <option value="moderate">Moderate Risk (&lt;25% Cancellation)</option>
+            </select>
+          </div>
+
+          <div class="gen-control-field">
+            <label for="gen-region-select">Target Region</label>
+            <select id="gen-region-select" class="input-select">
+              <option value="all" selected>All Global Regions</option>
+              <option value="europe">Europe (Western &amp; Central)</option>
+              <option value="asia">Asia-Pacific</option>
+              <option value="americas">Americas</option>
+              <option value="other">Middle East &amp; Africa</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="generator-actions-row">
+          <div style="font-size:0.775rem; color:var(--text-secondary); display:flex; align-items:center; gap:0.4rem;">
+            <span>💡</span>
+            <span>Weights: Materialization (35%) &bull; Capacity Balance (25%) &bull; Completion Reliability (20%) &bull; India Corridor (15%) &bull; Discipline Match (5%)</span>
+          </div>
+          <button type="button" class="btn btn-primary" id="btn-generate-leads" onclick="runTradeLeadGenerator()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Generate Empirical Trade Leads
+          </button>
+        </div>
+
+        <!-- Dynamic Results Container -->
+        <div id="generator-results-wrapper" style="display:none; margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid var(--border-light);">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem;">
+            <h4 style="font-size:0.95rem; font-weight:800; color:var(--text-main); margin:0;">
+              Generated Partner Recommendations (Ranked by Model Fit)
+            </h4>
+            <span id="gen-results-count" style="font-size:0.75rem; color:var(--text-muted); font-weight:600;"></span>
+          </div>
+          <div id="generator-results-grid" class="generator-results-grid"></div>
+        </div>
+      </div>
+
+      <!-- Country Strategy Dossier Search -->
+      <div class="country-lookup-card">
+        <div class="country-lookup-header">
+          <h3 style="font-size:1.1rem; font-weight:800; color:var(--text-main); margin-bottom:0.2rem;">Country Strategy &amp; Intelligence Search</h3>
+          <span style="font-size:0.775rem; color:var(--text-muted);">Lookup any partner country to view materialization rates, empirical proof, and Phase-II trade guidance:</span>
+        </div>
+
+        <div class="lookup-input-group">
+          <div class="lookup-input-wrapper">
+            <span class="lookup-search-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+            <input type="text" id="country-dossier-search" class="input-text" placeholder="Type country name (e.g. Austria, Germany, Czech Republic, Japan)..." oninput="onCountrySearchInput(this.value)">
+          </div>
+          <select id="country-dossier-select" class="input-select" style="font-weight:700;" onchange="lookupCountryStrategy(this.value)">
+            <option value="">-- Choose Country --</option>
+          </select>
+        </div>
+
+        <div class="lookup-chips-row">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); margin-right:0.25rem;">Popular:</span>
+          <button type="button" class="lookup-chip-btn" onclick="lookupCountryStrategy('Austria')">🇦🇹 Austria</button>
+          <button type="button" class="lookup-chip-btn" onclick="lookupCountryStrategy('Germany')">🇩🇪 Germany</button>
+          <button type="button" class="lookup-chip-btn" onclick="lookupCountryStrategy('Czech Republic')">🇨🇿 Czechia</button>
+          <button type="button" class="lookup-chip-btn" onclick="lookupCountryStrategy('Japan')">🇯🇵 Japan</button>
+          <button type="button" class="lookup-chip-btn" onclick="lookupCountryStrategy('Switzerland')">🇨🇭 Switzerland</button>
+          <button type="button" class="lookup-chip-btn" onclick="lookupCountryStrategy('Brazil')">🇧🇷 Brazil</button>
+          <button type="button" class="lookup-chip-btn" onclick="lookupCountryStrategy('Poland')">🇵🇱 Poland</button>
+          <button type="button" class="lookup-chip-btn" onclick="lookupCountryStrategy('Tunisia')">🇹🇳 Tunisia (Alert)</button>
+        </div>
+      </div>
+
+      <div id="country-dossier-result"></div>
+
+      <!-- Curated Country Leads Section -->
+      <div class="country-cards-control-panel" style="background:#ffffff; border:1px solid var(--border-light); border-radius:var(--radius-xl); padding:1.25rem 1.5rem; margin-bottom:1.5rem; box-shadow:var(--shadow-xs);">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+          <div>
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <h3 style="font-size:1.25rem; font-weight:800; color:var(--text-main); margin:0;">Country Intelligence Cards</h3>
+              <span id="country-cards-count-badge" class="badge" style="background:var(--bg-subtle); color:var(--text-secondary); font-weight:700; font-size:0.75rem; border:1px solid var(--border-light);">Loading cards...</span>
+            </div>
+            <span style="font-size:0.8rem; color:var(--text-muted); margin-top:0.2rem; display:block;">
+              Empirically verified across all 55 Activity Report files: materialization rates, net capacity balance &amp; India bilateral trade
+            </span>
+          </div>
+
+          <!-- Dedicated Year Filter for Country Cards -->
+          <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+            <label for="country-cards-year-select" style="font-size:0.8rem; font-weight:800; color:var(--text-main); display:flex; align-items:center; gap:0.35rem;">
+              <span>📅</span> Year Filter:
+            </label>
+            <select id="country-cards-year-select" class="input-select" style="font-weight:700; min-width:280px;" onchange="onCountryCardsYearChange(this.value)">
+              <option value="all" selected>Cumulative 8-Year Archive (2019–2026 Verified Record)</option>
+              <option value="2026">2026 Active Cycle (Latest Metabase Cloud Data)</option>
+              <option value="2025">2025 Reporting Cycle (Cloud Dashboard Benchmark)</option>
+              <option value="2024">2024 Reporting Year (Official Activity Report)</option>
+              <option value="2023">2023 Reporting Year (Official Activity Report)</option>
+              <option value="2022">2022 Reporting Year (Official Activity Report)</option>
+              <option value="2021">2021 Reporting Year (Official Activity Report)</option>
+              <option value="2020">2020 Reporting Year (Official Activity Report)</option>
+              <option value="2019">2019 Reporting Year (World Exchange 2019)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem; padding-top:0.85rem; border-top:1px solid var(--border-light);">
+          <!-- Tier Filter Pills -->
+          <div class="filter-pills" id="curated-filter-pills">
+            <button type="button" class="filter-pill-btn active" id="cur-pill-all" onclick="setCuratedCardFilter('all')">All Countries</button>
+            <button type="button" class="filter-pill-btn" id="cur-pill-elite" onclick="setCuratedCardFilter('elite')">🌟 Elite (>70%)</button>
+            <button type="button" class="filter-pill-btn" id="cur-pill-volume" onclick="setCuratedCardFilter('volume')">🚀 High Volume</button>
+            <button type="button" class="filter-pill-btn" id="cur-pill-stable" onclick="setCuratedCardFilter('stable')">🛡️ Low Cancellation</button>
+            <button type="button" class="filter-pill-btn" id="cur-pill-warning" onclick="setCuratedCardFilter('warning')">⚠️ Caution</button>
+          </div>
+
+          <!-- Search & Display Controls -->
+          <div style="display:flex; align-items:center; gap:0.6rem; flex-wrap:wrap;">
+            <div class="search-input-wrapper" style="width:230px;">
+              <span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+              <input type="text" id="country-cards-search" class="input-text" placeholder="Search country cards..." oninput="renderCuratedLeadCards()">
+            </div>
+            <button type="button" id="btn-toggle-all-cards" class="btn btn-secondary btn-sm" onclick="toggleAllCountryCards()">
+              Show All (120+ Countries)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="leads-grid" id="curated-leads-grid"></div>
+
+      <!-- Full Leads Table -->
+      <div class="table-container">
+        <div class="table-header-bar">
+          <div class="filter-pills" id="lead-filter-pills">
+            <button type="button" class="filter-pill-btn active" onclick="setLeadFilter('all')">All Countries</button>
+            <button type="button" class="filter-pill-btn" onclick="setLeadFilter('elite')">🌟 Elite (>70%)</button>
+            <button type="button" class="filter-pill-btn" onclick="setLeadFilter('volume')">🚀 High Volume</button>
+            <button type="button" class="filter-pill-btn" onclick="setLeadFilter('stable')">🛡️ Low Canc.</button>
+            <button type="button" class="filter-pill-btn" onclick="setLeadFilter('warning')">⚠️ Caution</button>
+          </div>
+
+          <div class="controls-right">
+            <div class="search-input-wrapper">
+              <span class="search-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+              <input type="text" id="lead-search-input" class="input-text" placeholder="Search country..." onkeyup="renderLeadsTable()">
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="leads-data-table">
+            <thead>
+              <tr>
+                <th onclick="sortLeadsTable('country')">Country ↕</th>
+                <th onclick="sortLeadsTable('mat_rate')">Materialization ↕</th>
+                <th onclick="sortLeadsTable('accepted')">Accepted ↕</th>
+                <th onclick="sortLeadsTable('total')">Total Offers ↕</th>
+                <th onclick="sortLeadsTable('canc_rate')">Cancellation ↕</th>
+                <th onclick="sortLeadsTable('net')">Net Capacity ↕</th>
+                <th>Strategic Tier</th>
+                <th>Guidance</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody id="leads-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         5. HOW TO USE EACH TOOL & PLAYBOOK VIEW
+         =================================================================== -->
+    <section id="view-playbook" class="view-section">
+      <article class="playbook-article">
+        <div style="margin-bottom:1.75rem;">
+          <h2 style="font-size:1.85rem; font-weight:800; color:var(--text-main); margin-bottom:0.4rem; letter-spacing:-0.02em;">
+            📖 Tool Guide &amp; Conference Playbook
+          </h2>
+          <p style="font-size:0.95rem; color:var(--text-secondary); line-height:1.6; max-width:780px;">
+            Step-by-step instructions for every tool in the suite, plus battle-tested strategies for Phase-II and Annual General Conference (AC) sessions.
+          </p>
+        </div>
+
+        <div class="guide-tabs">
+          <button type="button" class="guide-tab-btn active" id="btn-guide-analyser" onclick="switchGuideTab('analyser')">
+            Activity Analyser Guide
+          </button>
+          <button type="button" class="guide-tab-btn" id="btn-guide-grader" onclick="switchGuideTab('grader')">
+            Offer Grader Guide
+          </button>
+          <button type="button" class="guide-tab-btn" id="btn-guide-leads" onclick="switchGuideTab('leads')">
+            Trade Leads Guide
+          </button>
+          <button type="button" class="guide-tab-btn" id="btn-guide-playbook" onclick="switchGuideTab('playbook')">
+            Conference Playbook
+          </button>
+        </div>
+
+        <!-- GUIDE 1: ACTIVITY REPORTS ANALYSER -->
+        <div id="guide-content-analyser" class="guide-steps-container">
+          <div class="guide-step-card">
+            <div class="guide-step-header">
+              <div class="guide-step-num">1</div>
+              <div class="guide-step-title">Select Reporting Year or Upload Custom Files</div>
+            </div>
+            <div class="guide-step-body">
+              <p>The Analyser comes pre-loaded with verified official IAESTE Annual Activity Reports (2019 to 2026, encompassing 11,250+ trainees across 69 committees).</p>
+              <ul>
+                <li><strong>Examine official historical figures:</strong> Use the <em>Reporting Year Filter</em> to switch between 2019–2026 or cumulative archive. All KPIs, charts, and bilateral balances refresh instantly.</li>
+                <li><strong>Upload custom datasets:</strong> Click <em>"Upload Custom Files"</em> or drag files into the upload area. The system accepts <code>.xlsx</code>, <code>.csv</code>, <code>.docx</code>, <code>.pdf</code>, and <code>.zip</code> archives.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="guide-step-card">
+            <div class="guide-step-header">
+              <div class="guide-step-num">2</div>
+              <div class="guide-step-title">Inspect Trade Balance &amp; Leverage</div>
+            </div>
+            <div class="guide-step-body">
+              <p>The <strong>Phase-II Trade Balance Leaderboard</strong> categorizes member committees by reciprocal exchange capacity:</p>
+              <ul>
+                <li><strong>Surplus (+Capacity):</strong> Hosted more students than they sent. Priority targets for trading.</li>
+                <li><strong>Deficit (-Sent &gt; Received):</strong> Sent more students than they received. Demands reciprocal placements.</li>
+                <li><strong>Corridor Drill-down:</strong> Click any committee to isolate its bilateral flows and longitudinal 6-year history.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- GUIDE 2: OFFER GRADER -->
+        <div id="guide-content-grader" class="guide-steps-container" style="display:none;">
+          <div class="guide-step-card">
+            <div class="guide-step-header">
+              <div class="guide-step-num">1</div>
+              <div class="guide-step-title">Incoming vs Outgoing Mode</div>
+            </div>
+            <div class="guide-step-body">
+              <p>The Offer Grader is split into two specialized engines:</p>
+              <ul>
+                <li><strong>Incoming Grader:</strong> Audits internal offers created by our 4 Indian LCs + 1 CI before conference trading.</li>
+                <li><strong>Outgoing Grader:</strong> Evaluates international offers received at exchange tables for Indian student fit.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="guide-step-card">
+            <div class="guide-step-header">
+              <div class="guide-step-num">2</div>
+              <div class="guide-step-title">Fine-Tune Scoring Weights</div>
+            </div>
+            <div class="guide-step-body">
+              <p>Adjust criteria weights (Stipend, Lodging, Discipline, Summer Window, Partner Reliability) or select one of the built-in presets (Balanced, Lodging Focus, Net Savings).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GUIDE 3: TRADE LEADS -->
+        <div id="guide-content-leads" class="guide-steps-container" style="display:none;">
+          <div class="guide-step-card">
+            <div class="guide-step-header">
+              <div class="guide-step-num">1</div>
+              <div class="guide-step-title">Verified Empirical Materialization</div>
+            </div>
+            <div class="guide-step-body">
+              <p>Materialization rate is defined as <code>(Accepted Placements / Total Nominations) × 100</code>. Prioritize partner countries maintaining over 70% materialization rates with low cancellation ratios.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- GUIDE 4: PLAYBOOK -->
+        <div id="guide-content-playbook" class="guide-steps-container" style="display:none;">
+          <div class="guide-step-card">
+            <div class="guide-step-header">
+              <div class="guide-step-num">1</div>
+              <div class="guide-step-title">Conference Negotiation Rules</div>
+            </div>
+            <div class="guide-step-body">
+              <p>Never trade an A+ offer without receiving an equivalent A/A+ position in return. Protect housing-guaranteed positions as high-value currency at the table.</p>
+            </div>
+          </div>
+        </div>
+
+      </article>
+    </section>
+
+    <!-- ===================================================================
+         6. COUNTRY STRATEGIES SECTION (INDIA BILATERAL TRADING CARDS)
+         =================================================================== -->
+    <section id="view-strategies" class="view-section">
+      <!-- Hero Banner -->
+      <div class="strategies-hero">
+        <div class="strategies-hero-badge">
+          <span>🇮🇳 IAESTE India Strategic Intelligence</span>
+        </div>
+        <h2>
+          <span>Bilateral Country Exchange Strategies</span>
+        </h2>
+        <p>
+          Actionable intelligence and tactical trading cards tailored specifically for IAESTE India delegations (LC Manipal, Karunya, JECRC, MUJ, and CI-SMU). Every profile synthesizes verified flow data from 2026 &amp; 2025 Activity Reports, net surplus balances, consular visa hurdles (ZAV / Cantonal permits), student compensation realities, and negotiation scripts for Phase-II and Annual Conference (AC) trading tables.
+        </p>
+        <div class="strategies-hero-stats">
+          <div class="hero-stat-box">
+            <span class="val">16</span>
+            <span class="lbl">Strategic Partner Profiles</span>
+          </div>
+          <div class="hero-stat-box">
+            <span class="val">+29 / +34</span>
+            <span class="lbl">Top Surpluses (DE / AT)</span>
+          </div>
+          <div class="hero-stat-box">
+            <span class="val">80 Out / 72 In</span>
+            <span class="lbl">India Global 2026 Volume</span>
+          </div>
+          <div class="hero-stat-box">
+            <span class="val">100% Offline</span>
+            <span class="lbl">Conference Ready</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls & Filter Pills -->
+      <div class="strategies-controls">
+        <div class="strategies-search-row">
+          <div class="strategies-search-input">
+            <svg class="strategies-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="strategy-search-box" placeholder="Search country, branch (CS, biotech, robotics), or visa requirement..." oninput="handleStrategySearch(this.value)">
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="resetStrategyFilters()">
+            Reset Filters
+          </button>
+        </div>
+
+        <!-- Region Filter Pills -->
+        <div class="filter-pills-row">
+          <span class="filter-group-label">Region:</span>
+          <button type="button" class="filter-pill active" data-region="all" onclick="filterStrategyRegion('all')">All Regions</button>
+          <button type="button" class="filter-pill" data-region="EU/EFTA" onclick="filterStrategyRegion('EU/EFTA')">🇪🇺 EU &amp; EFTA</button>
+          <button type="button" class="filter-pill" data-region="Americas" onclick="filterStrategyRegion('Americas')">🌎 Americas</button>
+          <button type="button" class="filter-pill" data-region="Asia-Pacific" onclick="filterStrategyRegion('Asia-Pacific')">🌏 Asia-Pacific</button>
+          <button type="button" class="filter-pill" data-region="Middle East" onclick="filterStrategyRegion('Middle East')">🕌 Middle East</button>
+        </div>
+
+        <!-- Posture Filter Pills -->
+        <div class="filter-pills-row">
+          <span class="filter-group-label">Tactical Posture:</span>
+          <button type="button" class="filter-pill active" data-posture="all" onclick="filterStrategyPosture('all')">All Postures</button>
+          <button type="button" class="filter-pill" data-posture="surplus" onclick="filterStrategyPosture('surplus')">🟢 Surplus Targets (+Capacity)</button>
+          <button type="button" class="filter-pill" data-posture="highyield" onclick="filterStrategyPosture('highyield')">⚡ High-Yield Corridors</button>
+          <button type="button" class="filter-pill" data-posture="elite" onclick="filterStrategyPosture('elite')">💎 Elite Tech Labs (High Stipend)</button>
+          <button type="button" class="filter-pill" data-posture="caution" onclick="filterStrategyPosture('caution')">⚠️ Caution / Cancellation Risk</button>
+        </div>
+      </div>
+
+      <!-- Country Cards Grid -->
+      <div id="country-strategies-grid" class="strategy-cards-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Toast Notification for Copy -->
+      <div id="strategy-toast" class="strategy-toast">
+        <span>📋</span>
+        <span id="strategy-toast-msg">Strategy brief copied to clipboard!</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FACT SHEET MODAL -->
+  <div class="modal-backdrop" id="fact-modal" onclick="if(event.target===this)closeFactModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-fact-title">Country Fact Sheet</h3>
+          <span id="modal-fact-subtitle" style="font-size:0.775rem; color:var(--text-muted);">Empirical Audit Trail</span>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeFactModal()">&times;</button>
+      </div>
+      <div id="modal-fact-content"></div>
+    </div>
+  </div>
+
+  <!-- SCORE AUDIT MODAL -->
+  <div class="modal-backdrop" id="score-modal" onclick="if(event.target===this)closeScoreModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-offer-title">Offer Quality Audit</h3>
+          <span id="modal-offer-subtitle" style="font-size:0.775rem; color:var(--text-muted);">Score breakdown</span>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeScoreModal()">&times;</button>
+      </div>
+      <div id="modal-body-content"></div>
+    </div>
+  </div>
+
+  <!-- IMAGE / SCANNED PREVIEW MODAL -->
+  <div class="modal-backdrop" id="image-modal" onclick="if(event.target===this)closeImageModal()">
+    <div class="modal-box" style="max-width:820px;">
+      <div class="modal-header">
+        <div>
+          <h3 id="modal-image-title">Document Preview</h3>
+          <span id="modal-image-subtitle" style="font-size:0.775rem; color:var(--text-muted);">Inspect uploaded file</span>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeImageModal()">&times;</button>
+      </div>
+      <div id="modal-image-content" style="padding:1rem 0; text-align:center;"></div>
+    </div>
+  </div>
+
+  <!-- TRAINED FILES REGISTRY MODAL -->
+  <div class="modal-backdrop" id="trained-files-modal" onclick="if(event.target===this)closeTrainedFilesModal()">
+    <div class="modal-box" style="max-width:880px;">
+      <div class="modal-header">
+        <div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <h3 style="margin:0; font-size:1.2rem; font-weight:800;">Trained Files Registry (37 Documents)</h3>
+            <span class="badge" style="background:#ecfdf5; color:#065f46; font-size:0.7rem; font-weight:800; border:1px solid #a7f3d0;">Fully Verified &amp; Ingested</span>
+          </div>
+          <span style="font-size:0.775rem; color:var(--text-muted);">
+            All official IAESTE Activity Report documents trained into the Exchange Intelligence &amp; Lead Generator engine
+          </span>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closeTrainedFilesModal()">&times;</button>
+      </div>
+
+      <div id="modal-trained-files-content" style="padding:1.25rem 0; max-height:65vh; overflow-y:auto;">
+        <!-- Populated dynamically by app.js -->
+      </div>
+
+      <div style="padding-top:1rem; border-top:1px solid var(--border-light); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:0.75rem;">
+        <span style="font-size:0.775rem; color:var(--text-secondary);">
+          🟢 Model is trained on all 37 files. Additional reports provided by user will be automatically integrated.
+        </span>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="closeTrainedFilesModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div>
+        <strong>IAESTE Exchange Suite</strong> &bull; Phase-II &amp; Annual General Conference Operations
+      </div>
+      <div>
+        100% Client-Side &bull; Zero Server Dependencies &bull; Private &amp; Offline Ready
+      </div>
+    </div>
+  </footer>
+
+  <!-- Device Connect & QR Code Modal -->
+  <div id="device-share-modal" class="device-modal" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="share-modal-title">
+    <div class="device-modal-backdrop" onclick="closeDeviceShareModal()"></div>
+    <div class="device-modal-dialog">
+      <div class="device-modal-header">
+        <div class="device-modal-title-wrap">
+          <div class="device-modal-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+          </div>
+          <div>
+            <h3 id="share-modal-title">Open on Mobile, Tablet &amp; Other Laptops</h3>
+            <p>Access this entire Exchange Suite live with all data and analytics</p>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" onclick="closeDeviceShareModal()" aria-label="Close modal">&times;</button>
+      </div>
+
+      <div class="device-modal-body">
+        <!-- One-Tap PWA Install Banner for Mobile Browsers -->
+        <div id="pwa-install-banner" class="pwa-install-banner" style="display:none;">
+          <div class="pwa-banner-left">
+            <div class="pwa-app-icon">
+              <img src="icons/icon-192.png" alt="IAESTE Suite Icon" width="40" height="40">
+            </div>
+            <div>
+              <strong>Install App on this Phone</strong>
+              <p>Add to your home screen for full-screen offline access</p>
+            </div>
+          </div>
+          <button type="button" class="btn-pwa-install-trigger" onclick="triggerPwaInstall()">
+            Install Now
+          </button>
+        </div>
+
+        <!-- iOS Safari Specific Instructions Banner -->
+        <div id="ios-install-banner" class="ios-install-banner" style="display:none;">
+          <div class="ios-banner-badge">🍎 iPhone / iPad Installation</div>
+          <p>Tap the <strong>Share</strong> button ( <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg> ) at the bottom of Safari, then tap <strong>"Add to Home Screen"</strong> ( ➕ ).</p>
+        </div>
+
+        <div class="share-tab-pills">
+          <button type="button" class="share-pill active" id="share-pill-online" onclick="switchShareMode('online')">
+            <span class="pill-badge-live">🌐 Anywhere</span>
+            Cloudflare HTTPS (Works on 4G/5G/Wi-Fi)
+          </button>
+          <button type="button" class="share-pill" id="share-pill-local" onclick="switchShareMode('local')">
+            <span class="pill-badge-lan">📶 Same Wi-Fi</span>
+            Local Offline LAN IP (<span id="pill-local-ip-text">10.90.107.176</span>)
+          </button>
+        </div>
+
+        <div class="share-qr-section">
+          <div class="qr-canvas-wrapper">
+            <div id="qrcode-render"></div>
+            <div class="qr-scan-badge">Scan with Camera 📷</div>
+          </div>
+          <div class="qr-scan-guide">
+            <div class="scan-step">
+              <span class="step-num">1</span>
+              <div>
+                <strong>Point Your Phone Camera</strong>
+                <p>Open Camera on iPhone or Android and focus on the QR code.</p>
+              </div>
+            </div>
+            <div class="scan-step">
+              <span class="step-num">2</span>
+              <div>
+                <strong>Tap the Browser Link</strong>
+                <p>Instantly opens in Safari/Chrome. 100% of features &amp; data work right away.</p>
+              </div>
+            </div>
+            <div class="scan-step">
+              <span class="step-num">3</span>
+              <div>
+                <strong>Install as Mobile App (PWA)</strong>
+                <p>In Safari: Tap Share &rarr; <em>Add to Home Screen</em>. Works full-screen without address bar!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="share-url-box">
+          <label id="share-url-label">Direct Link to Open on other devices:</label>
+          <div class="share-url-input-wrap">
+            <input type="text" id="share-url-input" readonly value="" />
+            <button type="button" class="btn-copy-link" onclick="copyShareUrl()" id="btn-copy-share">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span id="btn-copy-text">Copy Link</span>
+            </button>
+          </div>
+          <div class="share-note" id="share-mode-note">
+            🚀 <strong>Worldwide Fast Access:</strong> Encrypted HTTPS link. Your teammates can open it from any device or network anywhere in the world.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor Scripts (Offline & Local) -->
+  <script src="vendor/jszip.min.js"></script>
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script src="vendor/papaparse.min.js"></script>
+  <script src="vendor/chart.umd.min.js"></script>
+  <script src="vendor/mammoth.browser.min.js"></script>
+  <script src="vendor/pdf.min.js"></script>
+  <script src="vendor/tesseract.min.js"></script>
+  <script src="vendor/qrcode.min.js"></script>
+
+  <!-- Network Configuration for Multi-Device Access -->
+  <script src="network_config.js"></script>
+
+  <!-- Preloaded Data & Sample Offers -->
+  <script src="preloaded_activity_data.js"></script>
+  <script src="sample_offers.js"></script>
+  <script src="trained_incoming_model.js"></script>
+  <script src="country_strategies_data.js"></script>
+
+  <!-- Main Engine Logic -->
+  <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+cloudflared.log
+
+# Raw documents and large archives
+*.zip
+*.docx
+*.xlsx
+*.pdf
+Activity Report *
+Activity report *
+Iaeste activity reports *
+Offer Grading *
+Copy of *
+Free offers *
+sample_offers.csv
+
+# Python caches and scratch
+__pycache__/
+*.pyc
+scratch/
